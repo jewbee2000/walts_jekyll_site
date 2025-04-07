@@ -1,19 +1,44 @@
-collections:
-  topics:
-    output: true
+title: Walter Teitelbaum
+description: Welcome to my site. Feel free to have a look around.
+baseurl: ""
+# url: https://teitelbaum.us/walt
 
-defaults:
-  - scope:
-      path: ""
-      type: "topics"
-    values:
-      layout: "topic"
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-  - scope:
-      path: ""
-    values:
-      layout: "default"
+theme: cvless
+
+# site settings
+taglong: Welcome to my site. Feel free to have a look around.
+tagshort: Welcome!
+cv: true
+
+# author settings
+author:
+  name: Walter Teitelbaum
+  email: walter@teitelbaum.us
+photo: assets/files/walt_portrait.jpeg
+address: Wallingford - Seattle, WA
+phone: +1 2510 365 7859
+
+# profile links
+profile:
+  facebook: https://www.facebook.com/walter.teitelbaum/
+  instagram: https://www.instagram.com/walter.teitelbaum/
+  linkedin: https://www.linkedin.com/in/walter-teitelbaum/
+  github: https://github.com/jewbee2000
+
+# build settings
+permalink: pretty
+exclude:
+  - Gemfile
+  - vendor/
+  - docker-compose.yml
+
+plugins:
+  - jekyll-feed
+  - jekyll-gist
+  - jekyll-paginate-v2
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+sass:
+  sourcemap: never
+  
