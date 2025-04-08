@@ -1,6 +1,6 @@
 services:
   cvless:
-    image: bretfisher/jekyll-serve
+    build: .
     ports:
       - "4000:4000"
     volumes:
