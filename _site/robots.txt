@@ -1,1 +1,1 @@
-Sitemap: https://walter.teitelbaum.us/sitemap.xml
+Sitemap: https://walter.teitelbaum.us//sitemap.xml
