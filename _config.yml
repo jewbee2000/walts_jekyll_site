@@ -1,13 +1,13 @@
 title: Walter Teitelbaum
 description: Welcome to my site. Feel free to have a look around.
-url: "http://localhost:4000/site"
+url: "https://walter.teitelbaum.us"
 baseurl: ""
 
 theme: cvless
 
 # site settings
-taglong: Welcome to my site. Feel free to have a look around.
-tagshort: Welcome!
+taglong: Welcome to my site.
+tagshort: Engineer
 cv: true
 
 # author settings
