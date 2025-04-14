@@ -14,9 +14,8 @@ cv: true
 author:
   name: Walter Teitelbaum
   email: walter@teitelbaum.us
+  adress: Seattle, WA
 photo: assets/files/walt_portrait.jpeg
-address: Wallingford - Seattle, WA
-phone: +1 2510 365 7859
 
 # profile links
 profile:
