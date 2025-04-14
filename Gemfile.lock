@@ -286,7 +286,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  cvless (~> 2.4)
+  cvless (~> 2.5.0)
   erb (~> 4.0, >= 4.0.4)
 
 BUNDLED WITH
