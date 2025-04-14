@@ -1,4 +1,4 @@
 source "https://rubygems.org"
 
-gem 'cvless'
-gem 'erb'
+gem 'cvless', '~> 2.5.0'
+gem 'erb', '~> 4.0', '>= 4.0.4'
