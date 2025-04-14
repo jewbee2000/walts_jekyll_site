@@ -1,6 +1,7 @@
 title: Walter Teitelbaum
 description: Welcome to my site. Feel free to have a look around.
 url: "https://walter.teitelbaum.us/"
+baseurl: ""
 
 theme: cvless
 
@@ -13,8 +14,9 @@ cv: true
 author:
   name: Walter Teitelbaum
   email: walter@teitelbaum.us
-  adress: Seattle, WA
 photo: assets/files/walt_portrait.jpeg
+address: Seattle, WA
+phone: +1 510 365 7859
 
 # profile links
 profile:
