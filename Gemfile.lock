@@ -288,6 +288,7 @@ PLATFORMS
 DEPENDENCIES
   cvless (~> 2.5.0)
   erb (~> 4.0, >= 4.0.4)
+  jekyll-paginate-v2
 
 BUNDLED WITH
    2.6.7

@@ -43,3 +43,8 @@ plugins:
 
 sass:
   sourcemap: never
+
+pagination:
+  enabled: true
+  per_page: 1
+  path: "/page:num/"
