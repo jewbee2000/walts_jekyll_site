@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Example content
+date: 2022-08-15
 lead: A long post that showcases style elements.
 ---
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: What Jekyll is
+date: 2022-09-01
 lead: A short post to demonstrate the layout.
 ---
 
