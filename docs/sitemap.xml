@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://walter.teitelbaum.us//2022/05/23/Senior-Design-Project/</loc>
+<lastmod>2022-05-23T00:00:00+03:00</lastmod>
+</url>
+<url>
 <loc>https://walter.teitelbaum.us//2022/08/01/on-the-use-of-icons/</loc>
 <lastmod>2022-08-01T00:00:00+03:00</lastmod>
 </url>
@@ -9,14 +13,18 @@
 <lastmod>2022-08-15T00:00:00+03:00</lastmod>
 </url>
 <url>
-<loc>https://walter.teitelbaum.us//2022/09/01/whats-jekyll/</loc>
-<lastmod>2022-09-01T00:00:00+03:00</lastmod>
-</url>
-<url>
 <loc>https://walter.teitelbaum.us//cv/</loc>
 </url>
 <url>
 <loc>https://walter.teitelbaum.us//</loc>
+</url>
+<url>
+<loc>https://walter.teitelbaum.us//assets/files/Design%20Brief%20v3.pdf</loc>
+<lastmod>2025-04-16T09:45:36+03:00</lastmod>
+</url>
+<url>
+<loc>https://walter.teitelbaum.us//assets/files/Final%20Report.pdf</loc>
+<lastmod>2025-04-16T09:43:32+03:00</lastmod>
 </url>
 <url>
 <loc>https://walter.teitelbaum.us//assets/files/Resume%20-%20Walter%20Teitelbaum.pdf</loc>
