@@ -2,7 +2,7 @@
 layout: post
 title: 3D Printed Bicycle Components
 date: 2025-04-1
-lead: Aerodynamics is King
+lead: For aerodynamic superiority.
 ---
 
 My buddy [Ari Klau](https://www.youtube.com/@archmdz) is a badass professional triathlete. However, he has not seen much financial success in the sport yet and does not have a bicycle brand as a sponsor. The sport of triathlon is extremely dependent on marginal gains in aerodynamics for competitive success. The fastest athletes in the world spend countless hours in the wind tunnel, testing various components and positions on the bicycle to become as slippery as possible.

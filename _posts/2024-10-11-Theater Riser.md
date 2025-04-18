@@ -2,10 +2,8 @@
 layout: post
 title: Wooden Couch Riser
 date: 2024-10-11
-lead: for Walt's epic home theater
+lead: An essential addition to any home theater.
 ---
-
-I am not really sure if this counts as an engineering project, but it serves as quite a good example of the type of project that I tend to get excited about.
 
 Being the logician that I am, I generally tend to fabricate concepts for projects based on real problems that need solving. However, in this example, I fabricated a problem for myself, not because it needed solving, but because I was excited to solve it. 
 
@@ -15,10 +13,14 @@ A few years back, while still living in Santa Cruz, CA, I purchased a surround s
 
 Luckily, when I moved to Seattle last January, I had an extra room in my house with plenty of room for my setup, and my mind began to churn on the idea of increasing the seating capacity in the theater.
 
-It was on a chilly weekend in October that I insisted on borrowing my housemate's truck to drive to Home Depot and pick up some lumber, carpet, and spray adhesive. If I could make some sort of raised platform in the theater, I could have two rows of seating!
+It was on a chilly weekend in October that I insisted on borrowing my housemate's truck to drive to Home Depot and pick up some lumber, carpet, and spray adhesive. 
 
-![Picture 1](https://walter.teitelbaum.us/assets/files/Theater1.jpg "Picture 1")
-![Picture 2](https://walter.teitelbaum.us/assets/files/Theater2.jpg "Picture 2")
-![Picture 3](https://walter.teitelbaum.us/assets/files/Theater3.jpg "Picture 3")
-![Picture 4](https://walter.teitelbaum.us/assets/files/Theater4.jpg "Picture 4")
+Conveniently, plywood comes in 4ft by 8ft sheets, which is the perfect size for a large couch plus some legroom. Lumber also comes in even lengths, which really minimized the quantity of scrap for this project.
+
+I framed the platform by hand using a circular saw and a couple clamps. I wish I has a sawhorse for this job, but it didn't seem like it was essential. Honestly had very few issues putting the whole thing together. The only real challenge was getting it into my house.
+
 ![Picture 5](https://walter.teitelbaum.us/assets/files/Theater5.jpg "Picture 5")
+![Picture 4](https://walter.teitelbaum.us/assets/files/Theater4.jpg "Picture 4")
+![Picture 3](https://walter.teitelbaum.us/assets/files/Theater3.jpg "Picture 3")
+![Picture 2](https://walter.teitelbaum.us/assets/files/Theater2.jpg "Picture 2")
+![Picture 1](https://walter.teitelbaum.us/assets/files/Theater1.jpg "Picture 1")
