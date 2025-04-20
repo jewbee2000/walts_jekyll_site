@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://walter.teitelbaum.us//feed.xml" rel="self" type="application/atom+xml" /><link href="https://walter.teitelbaum.us//" rel="alternate" type="text/html" /><updated>2025-04-18T17:54:52+03:00</updated><id>https://walter.teitelbaum.us//feed.xml</id><title type="html">Walter Teitelbaum</title><subtitle>Welcome to my site. Feel free to have a look around.</subtitle><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><entry><title type="html">3D Printed Bicycle Components</title><link href="https://walter.teitelbaum.us//2025/04/01/3D-Printed-Bicycle-Components/" rel="alternate" type="text/html" title="3D Printed Bicycle Components" /><published>2025-04-01T00:00:00+03:00</published><updated>2025-04-01T00:00:00+03:00</updated><id>https://walter.teitelbaum.us//2025/04/01/3D%20Printed%20Bicycle%20Components</id><content type="html" xml:base="https://walter.teitelbaum.us//2025/04/01/3D-Printed-Bicycle-Components/"><![CDATA[<p>My buddy <a href="https://www.youtube.com/@archmdz">Ari Klau</a> is a badass professional triathlete. However, he has not seen much financial success in the sport yet and does not have a bicycle brand as a sponsor. The sport of triathlon is extremely dependent on marginal gains in aerodynamics for competitive success. The fastest athletes in the world spend countless hours in the wind tunnel, testing various components and positions on the bicycle to become as slippery as possible.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://walter.teitelbaum.us//feed.xml" rel="self" type="application/atom+xml" /><link href="https://walter.teitelbaum.us//" rel="alternate" type="text/html" /><updated>2025-04-20T10:18:06+03:00</updated><id>https://walter.teitelbaum.us//feed.xml</id><title type="html">Walter Teitelbaum</title><subtitle>Welcome to my site. Feel free to have a look around.</subtitle><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><entry><title type="html">3D Printed Bicycle Components</title><link href="https://walter.teitelbaum.us//2025/04/01/3D-Printed-Bicycle-Components/" rel="alternate" type="text/html" title="3D Printed Bicycle Components" /><published>2025-04-01T00:00:00+03:00</published><updated>2025-04-01T00:00:00+03:00</updated><id>https://walter.teitelbaum.us//2025/04/01/3D%20Printed%20Bicycle%20Components</id><content type="html" xml:base="https://walter.teitelbaum.us//2025/04/01/3D-Printed-Bicycle-Components/"><![CDATA[<p>My buddy <a href="https://www.youtube.com/@archmdz">Ari Klau</a> is a badass professional triathlete. However, he has not seen much financial success in the sport yet and does not have a bicycle brand as a sponsor. The sport of triathlon is extremely dependent on marginal gains in aerodynamics for competitive success. The fastest athletes in the world spend countless hours in the wind tunnel, testing various components and positions on the bicycle to become as slippery as possible.</p>
 
 <p>Without access to resources like that, I have been using my knowledge of aerodynamics to design and print various components for Ari’s race bike in order to give him an opportunity to compete with the best in the world.</p>
 
@@ -26,7 +26,218 @@
 <img src="https://walter.teitelbaum.us/assets/files/Theater4.jpg" alt="Picture 4" title="Picture 4" />
 <img src="https://walter.teitelbaum.us/assets/files/Theater3.jpg" alt="Picture 3" title="Picture 3" />
 <img src="https://walter.teitelbaum.us/assets/files/Theater2.jpg" alt="Picture 2" title="Picture 2" />
-<img src="https://walter.teitelbaum.us/assets/files/Theater1.jpg" alt="Picture 1" title="Picture 1" /></p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Being the logician that I am, I generally tend to fabricate concepts for projects based on real problems that need solving. However, in this example, I fabricated a problem for myself, not because it needed solving, but because I was excited to solve it.]]></summary></entry><entry><title type="html">Modular Drive-by-Wire System</title><link href="https://walter.teitelbaum.us//2022/05/23/Senior-Design-Project/" rel="alternate" type="text/html" title="Modular Drive-by-Wire System" /><published>2022-05-23T00:00:00+03:00</published><updated>2022-05-23T00:00:00+03:00</updated><id>https://walter.teitelbaum.us//2022/05/23/Senior%20Design%20Project</id><content type="html" xml:base="https://walter.teitelbaum.us//2022/05/23/Senior-Design-Project/"><![CDATA[<p class="message"><strong>Note</strong> This project was graciously funded by Dr. Ricardo Sanfelice and the Hybrid Systems Labratory at the University of California: Santa Cruz</p>
+<img src="https://walter.teitelbaum.us/assets/files/Theater1.jpg" alt="Picture 1" title="Picture 1" /></p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Being the logician that I am, I generally tend to fabricate concepts for projects based on real problems that need solving. However, in this example, I fabricated a problem for myself, not because it needed solving, but because I was excited to solve it.]]></summary></entry><entry><title type="html">Word Chain</title><link href="https://walter.teitelbaum.us//2024/04/02/Word-Chain/" rel="alternate" type="text/html" title="Word Chain" /><published>2024-04-02T00:00:00+03:00</published><updated>2024-04-02T00:00:00+03:00</updated><id>https://walter.teitelbaum.us//2024/04/02/Word%20Chain</id><content type="html" xml:base="https://walter.teitelbaum.us//2024/04/02/Word-Chain/"><![CDATA[<h1 id="compound-noun-chain-game">Compound Noun Chain Game</h1>
+
+<p>This is a we-based daily game (like wordle) where players find a chain of compound nouns from noun-A to noun-B. Each entered noun is validated to form a compound noun with the previous noun. If a prefix chain is invalid, progress cannot be made until the last noun in the chain is cleared and replaced with a valid compound. If noun-B is reached, the user’s solution is registered, something celebratory happens, and the user’s cumulative stats are shown.</p>
+
+<p><img src="https://walter.teitelbaum.us/assets/files/word_chain.png" alt="Screenshot" title="Screenshot" /></p>
+
+<h1 id="-wordchain-game-backend">🧩 Wordchain Game Backend</h1>
+
+<p>My dad invented this game, but I wrote the whole backend and frontend implementation. I coded the app with <strong>Ruby</strong> and the <strong>Sinatra</strong> framework. It utilizes <strong>ActiveRecord</strong> for database management and <strong>Redis</strong> for fast caching and word validation.</p>
+
+<p>The backend handles:</p>
+<ul>
+  <li>User interaction and session tracking</li>
+  <li>Word chain validation logic</li>
+  <li>User statistics management and persistence</li>
+</ul>
+
+<hr />
+
+<h2 id="-technologies-used">🔧 Technologies Used</h2>
+
+<ul>
+  <li><strong><a href="http://sinatrarb.com/">Sinatra</a></strong> – Lightweight Ruby web framework for HTTP routing</li>
+  <li><strong><a href="https://guides.rubyonrails.org/active_record_basics.html">ActiveRecord</a></strong> – ORM for interacting with the database</li>
+  <li><strong><a href="https://redis.io/">Redis</a></strong> – In-memory data structure store for compound noun validation</li>
+  <li><strong><a href="https://github.com/cyu/rack-cors">Rack::Cors</a></strong> – Middleware for Cross-Origin Resource Sharing</li>
+  <li><strong><a href="https://www.sqlite.org/index.html">SQLite3</a></strong> – Simple file-based relational database</li>
+</ul>
+
+<hr />
+
+<h2 id="-project-structure">📁 Project Structure</h2>
+
+<h3 id="apprb"><code class="language-plaintext highlighter-rouge">app.rb</code></h3>
+<p>Main Sinatra app file:</p>
+<ul>
+  <li>Defines core API routes:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">GET /game</code> – Retrieve game data</li>
+      <li><code class="language-plaintext highlighter-rouge">GET /stats</code> – Get user statistics</li>
+      <li><code class="language-plaintext highlighter-rouge">POST /chain</code> and <code class="language-plaintext highlighter-rouge">POST /soln</code> – Validate submitted word chains</li>
+    </ul>
+  </li>
+  <li>Initializes Redis</li>
+  <li>Includes helper methods for standardized responses and validation</li>
+</ul>
+
+<h3 id="modelsuserrb"><code class="language-plaintext highlighter-rouge">models/user.rb</code></h3>
+<p>Defines the <code class="language-plaintext highlighter-rouge">User</code> model with the following attributes:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">uuid</code></li>
+  <li><code class="language-plaintext highlighter-rouge">won</code></li>
+  <li><code class="language-plaintext highlighter-rouge">current_streak</code></li>
+  <li><code class="language-plaintext highlighter-rouge">max_streak</code></li>
+</ul>
+
+<p>These fields track user-specific performance stats.</p>
+
+<h3 id="modelsinitrb"><code class="language-plaintext highlighter-rouge">models/init.rb</code></h3>
+<p>Initializes all models:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">User</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Game</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Solution</code></li>
+</ul>
+
+<h3 id="dbschemarb"><code class="language-plaintext highlighter-rouge">db/schema.rb</code></h3>
+<p>Represents the current schema definition for the SQLite3 database:</p>
+<ul>
+  <li>Tables: <code class="language-plaintext highlighter-rouge">users</code>, <code class="language-plaintext highlighter-rouge">games</code>, <code class="language-plaintext highlighter-rouge">solutions</code></li>
+</ul>
+
+<h3 id="dbmigrate"><code class="language-plaintext highlighter-rouge">db/migrate/...</code></h3>
+<p>Includes a migration that updates the <code class="language-plaintext highlighter-rouge">shortest_path</code> column in the <code class="language-plaintext highlighter-rouge">games</code> table (from string to integer).</p>
+
+<h3 id="utilscsv2redisrb"><code class="language-plaintext highlighter-rouge">utils/csv2redis.rb</code></h3>
+<p>Utility script for populating Redis from a CSV file:</p>
+<ul>
+  <li>Normalizes compound nouns</li>
+  <li>Loads them into Redis for fast lookup during gameplay</li>
+</ul>
+
+<h3 id="specapp_specrb"><code class="language-plaintext highlighter-rouge">spec/app_spec.rb</code></h3>
+<p>RSpec tests to verify:</p>
+<ul>
+  <li>Core routes (<code class="language-plaintext highlighter-rouge">/</code>, <code class="language-plaintext highlighter-rouge">/game</code>, <code class="language-plaintext highlighter-rouge">/stats</code>) are working correctly</li>
+  <li>Application behavior meets expectations</li>
+</ul>
+
+<h3 id="gemfile"><code class="language-plaintext highlighter-rouge">Gemfile</code></h3>
+<p>Declares all gem dependencies:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">sinatra</code>, <code class="language-plaintext highlighter-rouge">activerecord</code>, <code class="language-plaintext highlighter-rouge">redis</code>, <code class="language-plaintext highlighter-rouge">rspec</code>, etc.</li>
+</ul>
+
+<h3 id="configru"><code class="language-plaintext highlighter-rouge">config.ru</code></h3>
+<p>Rack configuration file used to launch the Sinatra server.</p>
+
+<h3 id="rakefile"><code class="language-plaintext highlighter-rouge">Rakefile</code></h3>
+<p>Defines database tasks using Rake and ActiveRecord, such as:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">db:migrate</code></li>
+  <li><code class="language-plaintext highlighter-rouge">db:seed</code></li>
+</ul>
+
+<hr />
+
+<h2 id="-purpose-and-architecture">🚀 Purpose and Architecture</h2>
+
+<p>The backend serves as the core logic engine for a wordchain game. It:</p>
+
+<ul>
+  <li>Validates compound nouns using Redis for quick access</li>
+  <li>Tracks and persists user streaks and wins</li>
+  <li>Provides HTTP endpoints for frontend integration</li>
+</ul>
+
+<h3 id="components">Components:</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>Technology</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Web Server</td>
+      <td>Sinatra</td>
+      <td>Handles HTTP requests</td>
+    </tr>
+    <tr>
+      <td>Persistence</td>
+      <td>SQLite3</td>
+      <td>Stores user and game data</td>
+    </tr>
+    <tr>
+      <td>Caching/Logic</td>
+      <td>Redis</td>
+      <td>Validates compound words and fast lookup</td>
+    </tr>
+    <tr>
+      <td>ORM</td>
+      <td>ActiveRecord</td>
+      <td>Maps Ruby objects to DB records</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="dictionary-api">Dictionary API</h2>
+
+<p>The Dictionary API validates prefix chains of compound nouns:</p>
+
+<p>GET /q?w[]=cow&amp;w[]=bell&amp;w[]=hop&amp;…</p>
+
+<p>It responds with JSON <code class="language-plaintext highlighter-rouge">{“result”:0}</code> or <code class="language-plaintext highlighter-rouge">{“result”:1}</code> indicating whether the given array of words is a valid chain of compound nouns.</p>
+
+<h2 id="backend-api">Backend API</h2>
+
+<p>The API endpoints are as follows:</p>
+
+<h3 id="get-game">GET /game</h3>
+
+<p>Responds with the daily game. E.g.</p>
+
+<p>{“from”:”dog”,”to”:”blade”,”steps”:6,”expires”:ts}</p>
+
+<h3 id="get-stats">GET /stats</h3>
+
+<p>Responds with the user’s stats. E.g.</p>
+
+<p>{“played”:100,”won”:60,”current_streak”:6,”max_streak”:10,”dist”:[60,20,10,2,1,1,7]}</p>
+
+<p>“dist” is a distribution of the user’s solutions: +0 (i.e. shortest valid solution), +1, +2, +3, +4, +5, +more than 5.</p>
+
+<h3 id="put-soln">PUT /soln</h3>
+
+<p>Allows the user to submit a solution to the daily game. Responds with a success Boolean and the updated user stats.</p>
+
+<h2 id="tables">Tables</h2>
+
+<h3 id="games">Games</h3>
+
+<p>Associations: <code class="language-plaintext highlighter-rouge">has_many solutions</code></p>
+
+<p>Fields: Game number, Date, Start word, End word, Shortest path</p>
+
+<h3 id="users">Users</h3>
+
+<p>Associations: <code class="language-plaintext highlighter-rouge">has_many solutions</code></p>
+
+<p>Fields: UUID, Won, Current_streak, Max_streak, Plus_1, Plus_2, Plus_3, Plus_4, Plus_5, Plus_more</p>
+
+<h3 id="solutions">Solutions</h3>
+
+<p>Associations: <code class="language-plaintext highlighter-rouge">belongs_to Game</code>, <code class="language-plaintext highlighter-rouge">belongs_to User</code></p>
+
+<p>Fields: User_id, Game_id, Timestamp, Chain (comma-separated list of words)</p>
+
+<h2 id="authentication">Authentication</h2>
+
+<p>Anonymous identity is provided through a UUID stored in a cookie. Best practices should be adopted for using this cookie to create a secure authenticated session with the user.</p>
+
+<h2 id="game-generation">Game Generation</h2>
+
+<p>Daily games will be pre-generated (e.g. a year in advance) with offline tools that Ben and Louis have written, manually created, and stored in a table on the backend server.</p>
+
+<p><a href="https://cad.onshape.com/documents/19c47b2204936e0e6afb5d5f/w/8c687fab2e1043ea59059492/e/a7e77233d09cace7d0dfaa54">Link to my CAD files</a></p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Compound Noun Chain Game]]></summary></entry><entry><title type="html">Modular Drive-by-Wire System</title><link href="https://walter.teitelbaum.us//2022/05/23/Senior-Design-Project/" rel="alternate" type="text/html" title="Modular Drive-by-Wire System" /><published>2022-05-23T00:00:00+03:00</published><updated>2022-05-23T00:00:00+03:00</updated><id>https://walter.teitelbaum.us//2022/05/23/Senior%20Design%20Project</id><content type="html" xml:base="https://walter.teitelbaum.us//2022/05/23/Senior-Design-Project/"><![CDATA[<p class="message"><strong>Note</strong> This project was graciously funded by Dr. Ricardo Sanfelice and the Hybrid Systems Labratory at the University of California: Santa Cruz</p>
 
 <p>This group project was supervised by Tela Favaloro and Stephen C Petersen as a component of the ECE129 (Formerly EE 129A) Engineering Capstone through the Baskin School of Engineering. The project took place from October 2021 - May 2022.</p>
 
