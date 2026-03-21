@@ -168,6 +168,3 @@ Anonymous identity is provided through a UUID stored in a cookie. Best practices
 ## Game Generation
 
 Daily games will be pre-generated (e.g. a year in advance) with offline tools that Ben and Louis have written, manually created, and stored in a table on the backend server.
-
-
-[Link to my CAD files](https://cad.onshape.com/documents/19c47b2204936e0e6afb5d5f/w/8c687fab2e1043ea59059492/e/a7e77233d09cace7d0dfaa54)

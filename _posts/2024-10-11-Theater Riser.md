@@ -2,7 +2,7 @@
 layout: post
 title: Wooden Couch Riser
 date: 2024-10-11
-lead: An essential addition to any home theater.
+lead: A silly carpentry project.
 ---
 
 Being the logician that I am, I generally tend to fabricate concepts for projects based on real problems that need solving. However, in this example, I fabricated a problem for myself, not because it needed solving, but because I was excited to solve it. 
