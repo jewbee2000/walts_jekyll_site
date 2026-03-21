@@ -7,7 +7,7 @@ lead: A web-based word game
 
 # Compound Noun Chain Game
 
-This is a we-based daily game (like wordle) where players find a chain of compound nouns from noun-A to noun-B. Each entered noun is validated to form a compound noun with the previous noun. If a prefix chain is invalid, progress cannot be made until the last noun in the chain is cleared and replaced with a valid compound. If noun-B is reached, the user’s solution is registered, something celebratory happens, and the user’s cumulative stats are shown.
+This is a web-based daily game (like wordle) where players find a chain of compound nouns from noun-A to noun-B. Each entered noun is validated to form a compound noun with the previous noun. If a prefix chain is invalid, progress cannot be made until the last noun in the chain is cleared and replaced with a valid compound. If noun-B is reached, the user’s solution is registered, something celebratory happens, and the user’s cumulative stats are shown.
 
 ![Screenshot](https://walter.teitelbaum.us/assets/files/word_chain.png "Screenshot")
 
