@@ -28,7 +28,13 @@ tools, and mechanical design and fabrication.
 * Solidworks CAD Design and FEA
 * Teamwork and Project Leadership
 
-## Relevant Experience
+## Experience
+
+### Lumotive - Redmond, WA; Member of Technical Staff - Test and Automation
+
+* Development of complex electromechanical systems, integrating part design, mechanical fabrication, motion control, embedded systems, and software in a fast-paced engineering environment 
+* Design ownership of optomechanical test stands to enable development and production for Lidar reference designs.
+* Development of scalable control and automation frameworks using Python and industrial communication protocols, with hands-on experience in servo/stepper systems, sensors, and real-time system behavior.
 
 ### Boeing - Renton, WA; Manufacturing Engineer II
 
