@@ -5,8 +5,8 @@ title: Home
 
 # About
 
-Walter Teitelbaum is a versatile engineer who loves building things and leading teams. Originally from the East Bay, Walt is currently living in Seattle, WA.
+Hi, I'm Walt. I'm an engineer who enjoys building useful things, learning from the people around me, and helping teams do good work together. I grew up in the East Bay and now live in Seattle, WA.
 
-[Click here](cv) to see Walt's resume, and [here](assets/files/Resume - Walter Teitelbaum.pdf) to download a print version. Also check out Walt's blog: [click here](posts) to scroll through his posts.
+This site is a small home for projects, notes, and the occasional write-up. You can [read my resume](cv), [download a print version](assets/files/Resume - Walter Teitelbaum.pdf), or [browse my posts](posts) if you'd like to see what I've been working on.
 
 {% include archive.html %}
