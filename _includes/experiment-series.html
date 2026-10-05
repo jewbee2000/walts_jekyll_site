@@ -1,0 +1,10 @@
+<nav class="experiment-series" aria-label="Other projects in this experiment">
+  <p>Other projects in this experiment:</p>
+  <ul>
+    {% for project in site.data.experiment-projects %}
+    {% unless project.id == page.project_id %}
+    <li><a href="{{ project.url | relative_url }}">{{ project.name }}</a></li>
+    {% endunless %}
+    {% endfor %}
+  </ul>
+</nav>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    Walter Teitelbaum &middot; FixtureForge: Checking Tool Access in CAD
+    
+  </title>
+
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/open-color.min.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/syntax.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/styles.min.css">
+  <link rel="stylesheet" href="/assets/css/experiment.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://walter.teitelbaum.us/assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://walter.teitelbaum.us/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://walter.teitelbaum.us/assets/favicon-16x16.png">
+  <link rel="manifest" href="https://walter.teitelbaum.us/assets/site.webmanifest">
+  <link rel="alternate" type="application/atom+xml" title="Walter Teitelbaum" href="https://walter.teitelbaum.us/feed.xml">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="FixtureForge: Checking Tool Access in CAD" />
+<meta name="author" content="Walter Teitelbaum" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Inspect whether a simplified tool can follow a declared path through a fixture or small assembly. Part of Walter Teitelbaum’s two-day AI engineering experiment." />
+<meta property="og:description" content="Inspect whether a simplified tool can follow a declared path through a fixture or small assembly. Part of Walter Teitelbaum’s two-day AI engineering experiment." />
+<link rel="canonical" href="https://walter.teitelbaum.us/2026/10/04/fixtureforge/" />
+<meta property="og:url" content="https://walter.teitelbaum.us/2026/10/04/fixtureforge/" />
+<meta property="og:site_name" content="Walter Teitelbaum" />
+<meta property="og:image" content="https://walter.teitelbaum.us/assets/files/agentic-engineering/fixture-access.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-04T00:00:00-07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://walter.teitelbaum.us/assets/files/agentic-engineering/fixture-access.jpg" />
+<meta property="twitter:title" content="FixtureForge: Checking Tool Access in CAD" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Walter Teitelbaum"},"dateModified":"2026-10-04T00:00:00-07:00","datePublished":"2026-10-04T00:00:00-07:00","description":"Inspect whether a simplified tool can follow a declared path through a fixture or small assembly. Part of Walter Teitelbaum’s two-day AI engineering experiment.","headline":"FixtureForge: Checking Tool Access in CAD","image":"https://walter.teitelbaum.us/assets/files/agentic-engineering/fixture-access.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://walter.teitelbaum.us/2026/10/04/fixtureforge/"},"url":"https://walter.teitelbaum.us/2026/10/04/fixtureforge/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body>
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-11 col-lg-10 experiment-layout">
+        <article>
+  <header>
+  <div>
+    <a class="site-title" href="https://walter.teitelbaum.us">Walter Teitelbaum</a>
+    <small>
+      
+      Engineer
+      
+    </small>
+  </div>
+  <a id="theme-toggle" class="toggle-icon" onclick="modeSwitcher()"></a>
+</header>
+
+  <main>
+    <h1 class="post-title">FixtureForge: Checking Tool Access in CAD</h1>
+    <time datetime="2026-10-04T00:00:00-07:00" class="post-date">October  4, 2026</time>
+    <p class="lead">Inspect whether a simplified tool can follow a declared path through a fixture or small assembly.</p>
+    <aside class="experiment-banner" aria-label="About the AI engineering experiment">
+  <p class="experiment-banner-title">A two-day AI engineering experiment</p>
+  <p>On October 3–4, 2026, I asked Codex to identify useful engineering projects, define requirements and acceptance criteria, and implement them. I’m using this work to understand the tools’ current capabilities and practice a more managerial way of thinking: framing problems, delegating execution, and evaluating results. The agents drafted much of the specification; these posts describe what was built and what remains unproven.</p>
+</aside>
+
+    <p>A part can fit inside a fixture while leaving no route for a screwdriver or connector to reach it. <a href="https://github.com/jewbee2000/fixtureforge">FixtureForge</a> checks that narrower assembly question: can a simplified tool follow a specified straight path without intersecting the parts around it?</p>
+
+<p>I see this as a small, inspectable integration of existing CAD tools. CadQuery supplies the geometric operations; FixtureForge adds an input contract, repeatable checks, and reports identifying the obstructing part. Its <a href="https://github.com/jewbee2000/fixtureforge/blob/main/docs/BASELINE.md">comparison with CadQuery, build123d, and CADCLAW</a> illustrates why checking only the starting and ending positions can miss an obstacle in between.</p>
+
+<h2 id="how-it-is-used">How it is used</h2>
+
+<p>The intended user is an engineer checking access in a fixture or small assembly. After following the <a href="https://github.com/jewbee2000/fixtureforge#reproduce-locally">installation and demo instructions</a>, the workflow is:</p>
+
+<ol>
+  <li>Supply each part as a single-solid STEP file in millimetres.</li>
+  <li>Define a box or cylinder representing the tool, its starting and ending positions, and the parts present at that assembly stage in the <a href="https://github.com/jewbee2000/fixtureforge/blob/main/docs/PUBLIC_API.md">JSON access contract</a>.</li>
+  <li>Run the inspection and open the local HTML report. The check considers the volume occupied along the whole path.</li>
+</ol>
+
+<p>The supplied sensor-clamp demonstration deliberately routes a tool through the upper clamp. Its report shows approximately <strong>382.377 mm³</strong> of overlap. The demo also includes a corrected path, making it possible to inspect both outcomes.</p>
+
+<figure class="experiment-figure">
+  <a href="/assets/files/agentic-engineering/fixture-access.jpg"><img src="/assets/files/agentic-engineering/fixture-access.jpg" alt="FixtureForge report showing a deliberately obstructed tool path through a sensor clamp, with 382.377 cubic millimetres of overlap." loading="lazy" /></a>
+  <figcaption>A deliberately seeded obstruction. Purple shows the swept envelope; this is a geometry replay, not a physical measurement.</figcaption>
+</figure>
+
+<h2 id="validation-and-limits">Validation and limits</h2>
+
+<p>The publication audit passed <strong>61 tests</strong>; four inspect retained campaign evidence rather than rerunning those campaigns. The <a href="https://github.com/jewbee2000/fixtureforge/tree/main/evidence/publication-audit">audit evidence</a> records the checks. The software is runnable, with setup verified on Windows and Python 3.12.</p>
+
+<p>I would use it to investigate a declared access path, not approve an assembly. It supports straight translations and conservative envelopes, which can over-report collisions. It does not plan rotating motions or establish clamping force or material strength. The clamp has not been physically validated, and usefulness to an independent practitioner remains untested.</p>
+
+    <nav class="experiment-series" aria-label="Other projects in this experiment">
+  <p>Other projects in this experiment:</p>
+  <ul>
+    
+    
+    <li><a href="/2026/10/04/driverforge/">DriverForge</a></li>
+    
+    
+    
+    <li><a href="/2026/10/04/abyssbench/">AbyssBench</a></li>
+    
+    
+    
+    
+    
+    <li><a href="/2026/10/04/rfqfuzz/">RFQFuzz</a></li>
+    
+    
+  </ul>
+</nav>
+
+  </main>
+  <footer>
+  <small>&copy; <time datetime="2026-10-04T17:34:45-07:00">2026</time>
+    Walter Teitelbaum. All rights reserved.</small>
+</footer>
+
+</article>
+
+      </div>
+    </div>
+  </div>
+  <script src="https://walter.teitelbaum.us/assets/js/bootstrap.min.js"></script>
+  
+  <script src="https://walter.teitelbaum.us/assets/js/darkmode.js"></script>
+  
+  
+</body>
+
+</html>

@@ -1,6 +1,12 @@
 .experiment-layout main { max-width: 48rem; margin: 0 auto; line-height: 1.8; }
 .experiment-layout .post-title { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.12; letter-spacing: -.035em; margin-bottom: 1rem; }
 .experiment-layout .lead { line-height: 1.55; margin: 1.2rem 0 2.5rem; }
+.experiment-layout .experiment-banner { border-left: 4px solid #7da2a6; background: rgba(82, 120, 125, .09); border-radius: .25rem; padding: 1rem 1.2rem; margin: 1.5rem 0 2rem; font-size: 1rem; line-height: 1.6; }
+.experiment-layout .experiment-banner p { margin: 0; }
+.experiment-layout .experiment-banner .experiment-banner-title { font-weight: 700; margin-bottom: .5rem; }
+.experiment-layout .experiment-series { border-top: 1px solid #b7c4c7; margin-top: 2.5rem; padding-top: 1rem; font-size: 1rem; }
+.experiment-layout .experiment-series p { margin-bottom: .4rem; }
+.experiment-layout .experiment-series ul { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; padding: 0; list-style: none; }
 .experiment-layout h2 { margin-top: 3rem; margin-bottom: 1.25rem; font-size: 1.65rem; line-height: 1.3; }
 .experiment-layout h3 { margin-top: 2.3rem; margin-bottom: 1rem; font-size: 1.35rem; line-height: 1.4; }
 .experiment-layout p { margin-bottom: 1.3rem; }
@@ -9,7 +15,7 @@
 .experiment-layout a { text-underline-offset: .18em; overflow-wrap: anywhere; }
 .experiment-layout .experiment-figure { margin: 2rem 0 2.4rem; }
 .experiment-layout .experiment-figure img { display: block; width: 100%; height: auto; border: 1px solid #b7c4c7; border-radius: .3rem; background: white; }
-.experiment-layout .experiment-figure.compact { max-width: 36rem; margin-left: auto; margin-right: auto; }
+.experiment-layout .experiment-figure.compact { max-width: 24rem; margin-left: auto; margin-right: auto; }
 .experiment-layout figcaption { font-size: .9rem; line-height: 1.5; margin-top: .8rem; opacity: .88; }
 .experiment-layout hr { margin: 3rem 0 2rem; }
 .experiment-layout table { display: block; overflow-x: auto; width: 100%; margin: 1.5rem 0 2rem; font-size: .9rem; line-height: 1.45; }

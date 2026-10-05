@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    Walter Teitelbaum &middot; DriverForge: Testing Instrument Drivers Without Hardware
+    
+  </title>
+
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/open-color.min.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/syntax.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/styles.min.css">
+  <link rel="stylesheet" href="/assets/css/experiment.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://walter.teitelbaum.us/assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://walter.teitelbaum.us/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://walter.teitelbaum.us/assets/favicon-16x16.png">
+  <link rel="manifest" href="https://walter.teitelbaum.us/assets/site.webmanifest">
+  <link rel="alternate" type="application/atom+xml" title="Walter Teitelbaum" href="https://walter.teitelbaum.us/feed.xml">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="DriverForge: Testing Instrument Drivers Without Hardware" />
+<meta name="author" content="Walter Teitelbaum" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A small Python tool for replaying protocol faults and inspecting how an instrument driver responds. Part of Walter Teitelbaum’s two-day AI engineering experiment." />
+<meta property="og:description" content="A small Python tool for replaying protocol faults and inspecting how an instrument driver responds. Part of Walter Teitelbaum’s two-day AI engineering experiment." />
+<link rel="canonical" href="https://walter.teitelbaum.us/2026/10/04/driverforge/" />
+<meta property="og:url" content="https://walter.teitelbaum.us/2026/10/04/driverforge/" />
+<meta property="og:site_name" content="Walter Teitelbaum" />
+<meta property="og:image" content="https://walter.teitelbaum.us/assets/files/agentic-engineering/driver-signed-failure.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-04T00:00:00-07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://walter.teitelbaum.us/assets/files/agentic-engineering/driver-signed-failure.png" />
+<meta property="twitter:title" content="DriverForge: Testing Instrument Drivers Without Hardware" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Walter Teitelbaum"},"dateModified":"2026-10-04T00:00:00-07:00","datePublished":"2026-10-04T00:00:00-07:00","description":"A small Python tool for replaying protocol faults and inspecting how an instrument driver responds. Part of Walter Teitelbaum’s two-day AI engineering experiment.","headline":"DriverForge: Testing Instrument Drivers Without Hardware","image":"https://walter.teitelbaum.us/assets/files/agentic-engineering/driver-signed-failure.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://walter.teitelbaum.us/2026/10/04/driverforge/"},"url":"https://walter.teitelbaum.us/2026/10/04/driverforge/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body>
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-11 col-lg-10 experiment-layout">
+        <article>
+  <header>
+  <div>
+    <a class="site-title" href="https://walter.teitelbaum.us">Walter Teitelbaum</a>
+    <small>
+      
+      Engineer
+      
+    </small>
+  </div>
+  <a id="theme-toggle" class="toggle-icon" onclick="modeSwitcher()"></a>
+</header>
+
+  <main>
+    <h1 class="post-title">DriverForge: Testing Instrument Drivers Without Hardware</h1>
+    <time datetime="2026-10-04T00:00:00-07:00" class="post-date">October  4, 2026</time>
+    <p class="lead">A small Python tool for replaying protocol faults and inspecting how an instrument driver responds.</p>
+    <aside class="experiment-banner" aria-label="About the AI engineering experiment">
+  <p class="experiment-banner-title">A two-day AI engineering experiment</p>
+  <p>On October 3–4, 2026, I asked Codex to identify useful engineering projects, define requirements and acceptance criteria, and implement them. I’m using this work to understand the tools’ current capabilities and practice a more managerial way of thinking: framing problems, delegating execution, and evaluating results. The agents drafted much of the specification; these posts describe what was built and what remains unproven.</p>
+</aside>
+
+    <p>An instrument driver translates between software and a physical device. That translation can fail even when a response looks perfectly reasonable. For <a href="https://github.com/jewbee2000/driverforge">DriverForge</a>, I asked Codex to investigate a useful addition to existing instrument libraries, establish acceptance checks, and preserve failed examples.</p>
+
+<p>The result is a small Python tool for engineers maintaining instrument drivers, particularly when the hardware is unavailable in continuous integration. It supplies a simulated communication channel, controlled faults, and reports showing the exact bytes exchanged alongside the expected and observed results.</p>
+
+<h2 id="how-it-is-used">How it is used</h2>
+
+<p>The workflow starts with an explicit protocol contract and expected readings. An engineer connects a driver to the test transport, schedules faults such as fragmented responses or timeouts, then inspects the resulting HTML or JSON report. The <a href="https://github.com/jewbee2000/driverforge/blob/main/docs/PUBLIC_API.md">public API</a> also provides a pytest fixture. One integration uses an unchanged PyMeasure Agilent34410A driver through its existing adapter interface. <a href="https://pymeasure.readthedocs.io/en/stable/dev/adding_instruments/tests.html">PyMeasure already supports protocol testing</a>; DriverForge’s contribution is the reusable fault schedules and detailed diagnostic records.</p>
+
+<p>After following the <a href="https://github.com/jewbee2000/driverforge#install-and-demonstrate">installation instructions</a> and activating the environment, run:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python -m driverforge demo --offline --output artifacts/demo
+</code></pre></div></div>
+
+<p>Open <code class="language-plaintext highlighter-rouge">artifacts/demo/report.html</code> to explore the evidence.</p>
+
+<h2 id="a-small-example">A small example</h2>
+
+<p>One example makes the purpose concrete. A deliberately broken reference driver interprets hexadecimal <code class="language-plaintext highlighter-rouge">FB2E</code> as an unsigned temperature value, producing <strong>643.02 °C</strong> instead of <strong>−12.34 °C</strong>. The report preserves the response bytes and the incorrect interpretation, making the mistake traceable.</p>
+
+<figure class="experiment-figure compact">
+  <a href="/assets/files/agentic-engineering/driver-signed-failure.png"><img src="/assets/files/agentic-engineering/driver-signed-failure.png" alt="DriverForge report showing expected minus 12.34 degrees Celsius and observed 643.02 after a deliberately incorrect unsigned decode." loading="lazy" width="755" height="1060" /></a>
+  <figcaption>A seeded decoding defect under synthetic replay; no hardware measurement is involved.</figcaption>
+</figure>
+
+<h2 id="validation-and-limits">Validation and limits</h2>
+
+<p>The publication audit passed <strong>100 tests</strong>. That includes six regressions added during publication review after discovering that report comparison missed changes to completion status and source evidence. Separately, the offline demo passes 39 reference cases and rejects six deliberately introduced defects.</p>
+
+<p>I would treat this as a starting point for driver development. No physical instruments or independent practitioners have validated it. The reference protocols are fictional, Windows/Python 3.12 is the verified environment, and two synthetic fault cases still fail the upstream integration’s stated consumer contract. Those failures remain visible in the <a href="https://github.com/jewbee2000/driverforge/tree/main/evidence/article-audit">audit evidence</a>.</p>
+
+    <nav class="experiment-series" aria-label="Other projects in this experiment">
+  <p>Other projects in this experiment:</p>
+  <ul>
+    
+    
+    
+    
+    <li><a href="/2026/10/04/abyssbench/">AbyssBench</a></li>
+    
+    
+    
+    <li><a href="/2026/10/04/fixtureforge/">FixtureForge</a></li>
+    
+    
+    
+    <li><a href="/2026/10/04/rfqfuzz/">RFQFuzz</a></li>
+    
+    
+  </ul>
+</nav>
+
+  </main>
+  <footer>
+  <small>&copy; <time datetime="2026-10-04T17:34:45-07:00">2026</time>
+    Walter Teitelbaum. All rights reserved.</small>
+</footer>
+
+</article>
+
+      </div>
+    </div>
+  </div>
+  <script src="https://walter.teitelbaum.us/assets/js/bootstrap.min.js"></script>
+  
+  <script src="https://walter.teitelbaum.us/assets/js/darkmode.js"></script>
+  
+  
+</body>
+
+</html>

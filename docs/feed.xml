@@ -1,286 +1,106 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://walter.teitelbaum.us/feed.xml" rel="self" type="application/atom+xml" /><link href="https://walter.teitelbaum.us/" rel="alternate" type="text/html" /><updated>2026-10-04T17:11:36-07:00</updated><id>https://walter.teitelbaum.us/feed.xml</id><title type="html">Walter Teitelbaum</title><subtitle>Welcome to my site. Feel free to have a look around.</subtitle><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><entry><title type="html">When the Agents Outrun the Engineer</title><link href="https://walter.teitelbaum.us/2026/10/04/agentic-engineering-experiment/" rel="alternate" type="text/html" title="When the Agents Outrun the Engineer" /><published>2026-10-04T00:00:00-07:00</published><updated>2026-10-04T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/04/agentic-engineering-experiment</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/04/agentic-engineering-experiment/"><![CDATA[<p>The most frustrating part of my latest experiment with AI was my own inability to keep up.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://walter.teitelbaum.us/feed.xml" rel="self" type="application/atom+xml" /><link href="https://walter.teitelbaum.us/" rel="alternate" type="text/html" /><updated>2026-10-04T17:34:45-07:00</updated><id>https://walter.teitelbaum.us/feed.xml</id><title type="html">Walter Teitelbaum</title><subtitle>Welcome to my site. Feel free to have a look around.</subtitle><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><entry><title type="html">AbyssBench: Checking Controller Timing</title><link href="https://walter.teitelbaum.us/2026/10/04/abyssbench/" rel="alternate" type="text/html" title="AbyssBench: Checking Controller Timing" /><published>2026-10-04T00:00:00-07:00</published><updated>2026-10-04T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/04/abyssbench</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/04/abyssbench/"><![CDATA[<p>A controller can issue the right command while the machine continues doing the wrong thing. <a href="https://github.com/jewbee2000/abyssbench">AbyssBench</a> explores that distinction: when a sensor reading becomes stale or an actuator stops responding, did the controller issue the required response before its deadline—and does the recorded evidence actually establish that?</p>
 
-<p>Across October 3–4, I asked Codex to research, propose, plan, and implement several engineering projects. It investigated existing software, wrote requirements, built tools, ran tests, and produced reports. While I was still trying to understand one set of decisions, the agents were making the next set.</p>
+<p>I see it as a small tool for engineers developing control logic or reviewing test logs. It combines pytest with <a href="https://github.com/nickovic/rtamt">RTAMT</a>, an existing temporal monitoring library. Its contribution is the surrounding workflow: explicit timing rules, repeatable traces, and evidence that keeps commands separate from measured behavior.</p>
 
-<p>I had expected to learn something about the limits of the software. I also learned something uncomfortable about the limits of my attention.</p>
+<h2 id="how-it-is-used">How it is used</h2>
 
-<p>The experience sits alongside a very different task in my day-to-day engineering work. I need to reconcile the wiring in a robot’s electrical control cabinet with its schematic. Changes have accumulated. Someone has to inspect the connections, establish what is actually there, resolve the discrepancies, and number and label the wires. The agent that can generate a substantial Python project cannot finish that job for me.</p>
+<p>I would start with the <a href="https://github.com/jewbee2000/abyssbench#try-it-locally-powershell-python-312">installation and offline demo</a>. The <a href="https://github.com/jewbee2000/abyssbench/blob/main/docs/API.md">public API walkthrough</a> offers two starting points: import a supported JSONL or explicitly mapped CSV trace, or supply a trusted Python controller to the example simulator. Define acceptable ranges, measurement age, response deadlines, and prohibited transitions; run the check; then inspect each rule’s verdict and supporting events. Incomplete observation windows remain inconclusive. A recent packet carrying an old measurement does not become fresh just because it arrived recently.</p>
 
-<p>These two experiences are shaping how I think about AI. Some kinds of execution are becoming remarkably easy to delegate. Other work remains stubbornly physical, poorly documented, or dependent on decisions that nobody has made yet. Meanwhile, giving agents access to more of the world makes them both more useful and more consequential when they fail.</p>
+<h2 id="a-small-example">A small example</h2>
 
-<p>My emerging view is that engineering value is moving toward three difficult responsibilities: defining what should happen, establishing what is true, and deciding how much authority a system should have. The code matters. So do the wire, the requirement, the permission, and the connection we choose not to provide.</p>
+<p>The pump-and-valve example makes the distinction visible. The simulated valve sticks closed at 500 milliseconds. At 1,010 milliseconds, the controller detects the persistent mismatch and issues pump-off and valve-open commands. The valve remains closed. The response check can pass because the required commands were issued; that says nothing about mechanical recovery.</p>
 
-<h2 id="i-asked-the-agent-to-choose-the-problem">I asked the agent to choose the problem</h2>
+<figure class="experiment-figure">
+  <a href="/assets/files/agentic-engineering/abyss-timing.png"><img src="/assets/files/agentic-engineering/abyss-timing.png" alt="Simulation timeline: a valve sticks at 500 milliseconds and the controller issues safe commands at 1,010 milliseconds while the valve remains closed." loading="lazy" width="1920" height="1120" /></a>
+  <figcaption>Recorded simulation events: commanded and actual valve positions remain separate.</figcaption>
+</figure>
 
-<p>My interests sit where software meets physical equipment: controls, instrumentation, fixtures, manufacturing, and the details that become unavoidable when a design has to work. My portfolio already includes <a href="/2021/07/25/Automated-Pruning-for-Polyculture/">robotic gardening</a> and <a href="/2025/04/01/3D-Printed-Bicycle-Components/">printed bicycle components</a>. I wanted to see whether an agent could infer useful software projects from those interests, then carry them through a disciplined engineering process.</p>
+<h2 id="validation-and-limits">Validation and limits</h2>
 
-<p>That is a harder assignment than implementing a feature. It asks the agent to decide what deserves to exist.</p>
+<p>The original release passed 116 tests. The publication review nevertheless found two edge cases: a single observation could crash the monitor, and a command preceding a fault at the same timestamp could incorrectly satisfy its response rule. Both were repaired; the publication audit passed <strong>124 tests</strong>. The <a href="https://github.com/jewbee2000/abyssbench/blob/main/evidence/publication-audit/README.md">audit preserves the failing cases</a>.</p>
 
-<p>I initially requested five proposals and then asked Codex to select three it could implement with little guidance. A drawing-review idea developed into a fourth project. Before implementation, I pushed back on the temptation to produce impressive portfolio theater:</p>
+<p>The tool supports one clock and trusted controller callbacks; its fluid model is uncalibrated, with no hardware validation. A real trace and an independent engineer’s trial are the next useful tests.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Replay controller events and check whether the recorded response satisfies an explicit timing contract. Part of Walter Teitelbaum's two-day AI engineering experiment.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/abyss-timing.png" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/abyss-timing.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">RFQFuzz: Regression Tests for Drawing Reviewers</title><link href="https://walter.teitelbaum.us/2026/10/04/rfqfuzz/" rel="alternate" type="text/html" title="RFQFuzz: Regression Tests for Drawing Reviewers" /><published>2026-10-04T00:00:00-07:00</published><updated>2026-10-04T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/04/rfqfuzz</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/04/rfqfuzz/"><![CDATA[<p><a href="https://github.com/jewbee2000/rfq-fuzz">RFQFuzz</a> is a local regression toolkit for engineers developing or adopting reviewers of CNC request-for-quotation packages. It checks whether a change to a review prompt, rule engine, or capability profile changes the findings on controlled STEP models and drawings.</p>
 
-<blockquote>
-  <p>“I want to implement projects that are actually useful.”</p>
-</blockquote>
+<p>I initially considered a drawing-review tool. The <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/docs/RESEARCH_AND_GO_NO_GO.md">research into existing products</a> led to a narrower question: how can someone test the reviewer itself? RFQFuzz supplies known defects, corrected counterparts, and valid alternatives so that flagging every difference is not a successful strategy.</p>
 
-<p>I asked for research into existing tools, explicit requirements, acceptance criteria, and a willingness to change direction when the proposed contribution was weak. The requirements used MoSCoW: Must, Should, Could, and Won’t. The implementation instructions called for isolated environments, reproducible consumer walkthroughs, coherent commits, and preserved failures. One instruction captures the intended standard:</p>
+<h2 id="how-it-is-used">How it is used</h2>
 
-<blockquote>
-  <p>“Establish independent acceptance checks, preserve failed examples, and commit coherent milestones locally.”</p>
-</blockquote>
+<p>The workflow is to validate a challenge package, pass its public files to a reviewer, import the observations, and compare the results across versions. Reports connect changed findings to the relevant drawing and geometry. Package consistency and conditional CNC advisories are scored separately.</p>
 
-<p>For this experiment, I let the agents author and rationalize most of those requirements themselves. Codex also helped formulate the detailed kickoff prompts. My input was small relative to the work produced, but the process was not an empty prompt followed by a finished product. I supplied the domain and challenged the scope; agents supplied much of the detail that made the assignment executable.</p>
+<p>The <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/docs/DEMO.md">installation and demo guide</a> provides a 15-case offline replay. After setup, run this from the checkout with the environment active:</p>
 
-<p>The outcome was four runnable Python projects. Their common theme was verification at an engineering interface: instrument bytes, controller events, fixture geometry, and drawing packages. That was a good inference from my interests. It was a more modest achievement than discovering four new markets.</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python -m rfqfuzz.v1 demo examples/v1-demo work/my-demo
+</code></pre></div></div>
 
-<h2 id="four-tools-four-ways-to-be-wrong">Four tools, four ways to be wrong</h2>
+<p>Open <code class="language-plaintext highlighter-rouge">work/my-demo/report/index.html</code>. The demo compares retained responses with two deliberately injected changes; it requires no live model or API key.</p>
 
-<h3 id="driverforge-a-timeout-can-conceal-a-successful-action">DriverForge: a timeout can conceal a successful action</h3>
+<h2 id="a-small-example">A small example</h2>
 
-<p><a href="https://github.com/jewbee2000/driverforge">DriverForge</a> tests instrument drivers without requiring the physical instrument. A scripted transport supplies responses and faults; separate conformance logic checks whether the driver followed its protocol contract. Reports connect the requirement, actual behavior, and wire transcript.</p>
+<p>One challenge pairs a STEP model containing 6.00 mm bores with a drawing specifying 6.80 ±0.05 mm at the same manufacturing stage. A corrected drawing resolves the contradiction. Another package legitimately differs because it describes a later reaming operation. That context matters as much as the numbers.</p>
 
-<p>The architectural detail I like most concerns retries. If a command changes an instrument’s state and its acknowledgement disappears, the action may already have happened. Sending the command again can repeat it. The synthetic protocols distinguish safe read retries from an uncertain write outcome.</p>
+<figure class="experiment-figure">
+  <a href="/assets/files/agentic-engineering/rfq-plate.png"><img src="/assets/files/agentic-engineering/rfq-plate.png" alt="RFQFuzz plate drawing specifying four 6.80 plus or minus 0.05 millimetre bores, deliberately contradicting its same-stage STEP model." loading="lazy" width="2339" height="1654" /></a>
+  <figcaption>A deliberately inconsistent challenge drawing, not a production part.</figcaption>
+</figure>
 
-<p>A simpler failure is visible below. The bytes <code class="language-plaintext highlighter-rouge">fb 2e</code>, decoded as a signed 16-bit value and scaled by 0.01, mean <strong>−12.34 °C</strong>. Decode them as unsigned and the result becomes <strong>643.02 °C</strong>. Both calculations run successfully. Only one satisfies the contract.</p>
+<h2 id="validation-and-limits">Validation and limits</h2>
+
+<p>The publication audit passed <strong>278 tests</strong>, up from 270 after repairs to local-unit interpretation and process output limits. The <a href="https://github.com/jewbee2000/rfq-fuzz/tree/main/evidence/publication-code-audit">audit records</a> preserve that distinction.</p>
+
+<p>Its 145 validated core packets are development cases, with no holdout. The tool supports three finite geometry families, and its geometry checks share the OCCT kernel. It does not establish general drawing-review accuracy or approve manufacture. I see its potential in making regressions explainable; independent engineering use is still needed to assess its value.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Compare reviewer behavior on controlled CAD and drawing packages, with evidence for each changed finding. Part of Walter Teitelbaum's two-day AI engineering experiment.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/rfq-plate.png" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/rfq-plate.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">FixtureForge: Checking Tool Access in CAD</title><link href="https://walter.teitelbaum.us/2026/10/04/fixtureforge/" rel="alternate" type="text/html" title="FixtureForge: Checking Tool Access in CAD" /><published>2026-10-04T00:00:00-07:00</published><updated>2026-10-04T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/04/fixtureforge</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/04/fixtureforge/"><![CDATA[<p>A part can fit inside a fixture while leaving no route for a screwdriver or connector to reach it. <a href="https://github.com/jewbee2000/fixtureforge">FixtureForge</a> checks that narrower assembly question: can a simplified tool follow a specified straight path without intersecting the parts around it?</p>
+
+<p>I see this as a small, inspectable integration of existing CAD tools. CadQuery supplies the geometric operations; FixtureForge adds an input contract, repeatable checks, and reports identifying the obstructing part. Its <a href="https://github.com/jewbee2000/fixtureforge/blob/main/docs/BASELINE.md">comparison with CadQuery, build123d, and CADCLAW</a> illustrates why checking only the starting and ending positions can miss an obstacle in between.</p>
+
+<h2 id="how-it-is-used">How it is used</h2>
+
+<p>The intended user is an engineer checking access in a fixture or small assembly. After following the <a href="https://github.com/jewbee2000/fixtureforge#reproduce-locally">installation and demo instructions</a>, the workflow is:</p>
+
+<ol>
+  <li>Supply each part as a single-solid STEP file in millimetres.</li>
+  <li>Define a box or cylinder representing the tool, its starting and ending positions, and the parts present at that assembly stage in the <a href="https://github.com/jewbee2000/fixtureforge/blob/main/docs/PUBLIC_API.md">JSON access contract</a>.</li>
+  <li>Run the inspection and open the local HTML report. The check considers the volume occupied along the whole path.</li>
+</ol>
+
+<p>The supplied sensor-clamp demonstration deliberately routes a tool through the upper clamp. Its report shows approximately <strong>382.377 mm³</strong> of overlap. The demo also includes a corrected path, making it possible to inspect both outcomes.</p>
+
+<figure class="experiment-figure">
+  <a href="/assets/files/agentic-engineering/fixture-access.jpg"><img src="/assets/files/agentic-engineering/fixture-access.jpg" alt="FixtureForge report showing a deliberately obstructed tool path through a sensor clamp, with 382.377 cubic millimetres of overlap." loading="lazy" /></a>
+  <figcaption>A deliberately seeded obstruction. Purple shows the swept envelope; this is a geometry replay, not a physical measurement.</figcaption>
+</figure>
+
+<h2 id="validation-and-limits">Validation and limits</h2>
+
+<p>The publication audit passed <strong>61 tests</strong>; four inspect retained campaign evidence rather than rerunning those campaigns. The <a href="https://github.com/jewbee2000/fixtureforge/tree/main/evidence/publication-audit">audit evidence</a> records the checks. The software is runnable, with setup verified on Windows and Python 3.12.</p>
+
+<p>I would use it to investigate a declared access path, not approve an assembly. It supports straight translations and conservative envelopes, which can over-report collisions. It does not plan rotating motions or establish clamping force or material strength. The clamp has not been physically validated, and usefulness to an independent practitioner remains untested.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Inspect whether a simplified tool can follow a declared path through a fixture or small assembly. Part of Walter Teitelbaum's two-day AI engineering experiment.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/fixture-access.jpg" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/fixture-access.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">DriverForge: Testing Instrument Drivers Without Hardware</title><link href="https://walter.teitelbaum.us/2026/10/04/driverforge/" rel="alternate" type="text/html" title="DriverForge: Testing Instrument Drivers Without Hardware" /><published>2026-10-04T00:00:00-07:00</published><updated>2026-10-04T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/04/driverforge</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/04/driverforge/"><![CDATA[<p>An instrument driver translates between software and a physical device. That translation can fail even when a response looks perfectly reasonable. For <a href="https://github.com/jewbee2000/driverforge">DriverForge</a>, I asked Codex to investigate a useful addition to existing instrument libraries, establish acceptance checks, and preserve failed examples.</p>
+
+<p>The result is a small Python tool for engineers maintaining instrument drivers, particularly when the hardware is unavailable in continuous integration. It supplies a simulated communication channel, controlled faults, and reports showing the exact bytes exchanged alongside the expected and observed results.</p>
+
+<h2 id="how-it-is-used">How it is used</h2>
+
+<p>The workflow starts with an explicit protocol contract and expected readings. An engineer connects a driver to the test transport, schedules faults such as fragmented responses or timeouts, then inspects the resulting HTML or JSON report. The <a href="https://github.com/jewbee2000/driverforge/blob/main/docs/PUBLIC_API.md">public API</a> also provides a pytest fixture. One integration uses an unchanged PyMeasure Agilent34410A driver through its existing adapter interface. <a href="https://pymeasure.readthedocs.io/en/stable/dev/adding_instruments/tests.html">PyMeasure already supports protocol testing</a>; DriverForge’s contribution is the reusable fault schedules and detailed diagnostic records.</p>
+
+<p>After following the <a href="https://github.com/jewbee2000/driverforge#install-and-demonstrate">installation instructions</a> and activating the environment, run:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python -m driverforge demo --offline --output artifacts/demo
+</code></pre></div></div>
+
+<p>Open <code class="language-plaintext highlighter-rouge">artifacts/demo/report.html</code> to explore the evidence.</p>
+
+<h2 id="a-small-example">A small example</h2>
+
+<p>One example makes the purpose concrete. A deliberately broken reference driver interprets hexadecimal <code class="language-plaintext highlighter-rouge">FB2E</code> as an unsigned temperature value, producing <strong>643.02 °C</strong> instead of <strong>−12.34 °C</strong>. The report preserves the response bytes and the incorrect interpretation, making the mistake traceable.</p>
 
 <figure class="experiment-figure compact">
-  <a href="/assets/files/agentic-engineering/driver-signed-failure.png"><img src="/assets/files/agentic-engineering/driver-signed-failure.png" alt="DriverForge report showing expected minus 12.34 degrees Celsius and observed 643.02, with the byte transcript and signed scaling rule." loading="lazy" width="755" height="1060" /></a>
-  <figcaption>A deliberately broken unsigned-decoding implementation, caught by the conformance checks. This is a synthetic replay demonstration, not a measurement from hardware or an observed model failure.</figcaption>
+  <a href="/assets/files/agentic-engineering/driver-signed-failure.png"><img src="/assets/files/agentic-engineering/driver-signed-failure.png" alt="DriverForge report showing expected minus 12.34 degrees Celsius and observed 643.02 after a deliberately incorrect unsigned decode." loading="lazy" width="755" height="1060" /></a>
+  <figcaption>A seeded decoding defect under synthetic replay; no hardware measurement is involved.</figcaption>
 </figure>
 
-<p>The original release passed 94 tests, exercised 39 conformance cases, and rejected six deliberately faulty implementations. It also integrated an existing PyMeasure Agilent driver. Since <a href="https://pymeasure.readthedocs.io/en/stable/dev/adding_instruments/tests.html">PyMeasure already provides protocol-testing tools</a>, DriverForge’s contribution is reusable fault campaigns and diagnostic evidence. Its Agilent failure cases express synthetic consumer requirements, not proven defects in an actual instrument. Hardware validation remains outside the result.</p>
+<h2 id="validation-and-limits">Validation and limits</h2>
 
-<h3 id="abyssbench-time-is-part-of-the-specification">AbyssBench: time is part of the specification</h3>
+<p>The publication audit passed <strong>100 tests</strong>. That includes six regressions added during publication review after discovering that report comparison missed changes to completion status and source evidence. Separately, the offline demo passes 39 reference cases and rejects six deliberately introduced defects.</p>
 
-<p><a href="https://github.com/jewbee2000/abyssbench">AbyssBench</a> replays controller events and tests whether a response happened correctly and on time. “Shut down when the sensor becomes stale” sounds like a requirement until somebody has to implement it. Which timestamp defines staleness? What if the trigger and response share a timestamp? What if the recording ends before the response deadline?</p>
-
-<p>The system uses <a href="https://github.com/nickovic/rtamt">RTAMT</a> for numeric range predicates and a Python event ledger for response deadlines, ordering, and history. An incomplete observation window can produce an inconclusive verdict. That distinction prevents missing evidence from quietly becoming a pass.</p>
-
-<figure class="experiment-figure">
-  <a href="/assets/files/agentic-engineering/abyss-timing.png"><img src="/assets/files/agentic-engineering/abyss-timing.png" alt="A synthetic valve sticks closed at 500 milliseconds. At 1,010 milliseconds the controller commands the valve open and pump off, but the simulated valve remains closed." loading="lazy" width="1920" height="1120" /></a>
-  <figcaption>A new plot of the retained synthetic replay: the valve sticks at 500 ms; detection and safe commands occur at 1,010 ms. The simulated valve remains closed. Passing a command-timing requirement does not establish actuator motion or physical safety.</figcaption>
-</figure>
-
-<p>The original suite passed 116 tests and recorded 21 Must requirements as verified. A property-based check was configured for 1,000 generated action/fault sequences. Yet the most useful thing in the figure is a distinction no test count can communicate: the controller issued safe commands while the simulated valve remained stuck. A valid command is evidence about the controller. It is not proof that the actuator moved or that a physical system is safe.</p>
-
-<h3 id="fixtureforge-a-part-can-fit-and-still-be-impossible-to-insert">FixtureForge: a part can fit and still be impossible to insert</h3>
-
-<p><a href="https://github.com/jewbee2000/fixtureforge">FixtureForge</a> checks whether a simplified tool or connector can travel along a declared straight path through fixture geometry. It constructs the volume occupied over the whole travel and tests that swept volume against imported STEP solids.</p>
-
-<p>Its <a href="https://github.com/jewbee2000/fixtureforge/blob/main/docs/BASELINE.md">comparison of CADCLAW, CadQuery, and build123d</a> included an obstacle that endpoint checks missed, with 4 mm³ of overlap along the path. The geometry libraries already supplied the essential operations. The useful contribution was packaging them into a reproducible access check with an inspectable report.</p>
-
-<figure class="experiment-figure">
-  <a href="/assets/files/agentic-engineering/fixture-access.jpg"><img src="/assets/files/agentic-engineering/fixture-access.jpg" alt="FixtureForge's rejected access report, with the sensor clamp, a 382.377 cubic millimetre tool-envelope intersection, and projections showing the obstruction." loading="lazy" /></a>
-  <figcaption>The report for a deliberately seeded obstructed path, captured during publication review. Purple shows the swept envelope; the verdict uses the solid geometry. This is a replay demonstration, with physical validation explicitly excluded.</figcaption>
-</figure>
-
-<p>The original 61-test suite passed again during review. Four cases check retained campaign records rather than rerunning the larger experiments. The tool handles conservative envelopes and specified straight paths; it does not establish clamping force, material strength, or the feasibility of an articulated assembly sequence. An earlier instruction to rotate the upper clamp half for printing also needed correction: inspecting the solid showed that translation could place its existing split face on the bed.</p>
-
-<p>That is a useful reminder of where fluent explanation meets geometry. The explanation can sound finished before anyone has checked the part.</p>
-
-<h3 id="rfqfuzz-the-reviewer-needs-an-evaluator">RFQFuzz: the reviewer needs an evaluator</h3>
-
-<p>My drawing-review proposal encountered obvious overlap with <a href="https://www.colabsoftware.com/product/autoreview">CoLab’s advertised review capabilities</a> and <a href="https://github.com/connorkapoor/Palmetto">Palmetto’s open-source CAD/DFM workbench</a>. Rather than preserve the original pitch, the project became <a href="https://github.com/jewbee2000/rfq-fuzz">RFQFuzz</a>: a toolkit for generating controlled drawing packages and diagnosing changes in how a reviewer handles them. The competitive research established overlap, not a benchmark of either product.</p>
-
-<p>The first feasibility gate contained a plate with four 6.00 mm bores in its STEP model. One drawing specified 6.80 ±0.05 mm at the same manufacturing stage. A corrected drawing specified 6.00 mm. A third package made a different diameter legitimate by declaring an intermediate model and a later reaming stage.</p>
-
-<figure class="experiment-figure">
-  <a href="/assets/files/agentic-engineering/rfq-plate.png"><img src="/assets/files/agentic-engineering/rfq-plate.png" alt="RFQFuzz's actual plate drawing with four 6.8 plus or minus 0.05 millimetre bores and notes declaring model and drawing at the same finished stage." loading="lazy" width="2339" height="1654" /></a>
-  <figcaption>The original defective M0 drawing. Independent reading of its companion STEP found 6.00 mm bores. The contradiction depends on both artifacts and their declared manufacturing stage.</figcaption>
-</figure>
-
-<p>The third case is the interesting one. A reviewer that objects to every difference can look capable on a corpus containing only defects. Valid alternatives test whether it understands the supplied context.</p>
-
-<p>RFQFuzz generates a package, reopens its exported artifacts, collects a reviewer’s observations, and scores them against verified expectations. The geometry inspection has separate code, although both paths share the OCCT kernel. That reduces some opportunities for circular agreement without removing common assumptions.</p>
-
-<p>The final corpus contained 145 validated development packets across three simple geometry families, with no core holdout. The original suite passed 270 tests, and the evaluator challenge caught six deliberately introduced implementation faults. Those are results about a finite toolkit, not an accuracy score for reviewing arbitrary manufacturing drawings. <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/evidence/M4/challenge-report.md">Corpus and challenge evidence</a></p>
-
-<figure class="experiment-figure">
-  <a href="/assets/files/agentic-engineering/rfq-regression.png"><img src="/assets/files/agentic-engineering/rfq-regression.png" alt="RFQFuzz report showing conflicting 7075-T6 and 6061-T6 material declarations, with a detected contradiction becoming a deliberately injected silent miss." loading="lazy" width="1360" height="900" /></a>
-  <figcaption>Actual report output: a material contradiction becomes a silent miss after a deliberate regression is injected. This demonstrates diagnosis, not a naturally observed failure of a commercial reviewer.</figcaption>
-</figure>
-
-<p>A separate external-agent review was much smaller: across two packets, 14 of 15 obligations received grounded matching decisions; one units assertion remained unadjudicated. That demonstrated a working interface and an unresolved mismatch. It did not establish industrial reliability. <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/evidence/M5/external-v1/summary.json">External-review results</a></p>
-
-<p>Of the four projects, RFQFuzz makes the evaluation problem most explicit. If the system deciding what counts as correct is wrong, a better score can mean very little.</p>
-
-<h2 id="passing-tests-did-not-end-the-experiment">Passing tests did not end the experiment</h2>
-
-<p>The agents produced substantial, inspectable software. They also made mistakes that explain why I care so much about the specification and test plan.</p>
-
-<p>RFQFuzz’s initial witness matching could give credit to a reported count of 40 when the expected count was 4 because it matched a substring. Independent probes caught it. Elsewhere, a default inspection-stage rule claimed more support from a cited source than the source actually supplied; the policy was narrowed and labeled project-selected. One error was executable. The other was a plausible engineering assertion borrowing unearned authority. Both could undermine the meaning of a passing result. <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/evidence/M5/independent-fixes.md">Scoring repair</a>, <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/docs/MILESTONE_ASSESSMENTS.md">milestone assessment</a></p>
-
-<p>Environment assumptions failed too. DriverForge’s hosted CI relied on an artifact directory that happened to exist locally. RFQFuzz’s archived input bytes were changed by Git newline normalization, invalidating hashes of previously inspected artifacts. Its software-emulated Linux consumer needed explicitly documented longer timeouts. A local demonstration had not settled reproducibility.</p>
-
-<p>Before publication, I requested another agent-assisted code and evidence review. It reproduced the original suites, then found additional defects. AbyssBench could crash on a one-observation range trace and credit a response that preceded its trigger at the same timestamp. DriverForge could overlook changed report evidence. RFQFuzz’s reference reviewer could ignore a dimension’s local inch units under a millimetre drawing header; a fast-exiting local process could also evade a running-process output-size check.</p>
-
-<p>Those issues were repaired and covered by regressions. Here are the passing suite counts, with the original experiment separated from the later audit:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Project</th>
-      <th style="text-align: right">Original</th>
-      <th style="text-align: right">Audited</th>
-      <th>Evidence</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>DriverForge</td>
-      <td style="text-align: right">94</td>
-      <td style="text-align: right">100</td>
-      <td><a href="https://github.com/jewbee2000/driverforge/tree/main/evidence/article-audit">Audit</a></td>
-    </tr>
-    <tr>
-      <td>AbyssBench</td>
-      <td style="text-align: right">116</td>
-      <td style="text-align: right">124</td>
-      <td><a href="https://github.com/jewbee2000/abyssbench/tree/main/evidence/publication-audit">Audit</a></td>
-    </tr>
-    <tr>
-      <td>FixtureForge</td>
-      <td style="text-align: right">61</td>
-      <td style="text-align: right">61</td>
-      <td><a href="https://github.com/jewbee2000/fixtureforge/tree/main/evidence/publication-audit">Audit</a></td>
-    </tr>
-    <tr>
-      <td>RFQFuzz</td>
-      <td style="text-align: right">270</td>
-      <td style="text-align: right">278</td>
-      <td><a href="https://github.com/jewbee2000/rfq-fuzz/tree/main/evidence/publication-code-audit">Audit</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>These are reproducibility checkpoints, not a quality ranking. The implementations differ in maintainability too. DriverForge has relatively clear typed interfaces and static checks. RFQFuzz has more demanding artifact validation but also compressed code and repeated finite rules whose meanings can drift. More code and more tests do not automatically make a better product.</p>
-
-<p>Gary Marcus’s <a href="https://garymarcus.substack.com/p/dario-amodei-hype-ai-safety-and-the">critique of coding-agent failures</a> is a useful counterweight here: generating code and maintaining a dependable system are different achievements. The agents were useful enough that I want to delegate more work to them. The retained failures tell me where that delegation needs a stronger contract.</p>
-
-<p>The long chats contained context-compaction events. Requirements files, task ledgers, commits, and handoff notes gave subsequent work something durable to resume from. I cannot attribute a particular defect to lost context, but I would not want a project’s state to exist only in a conversation’s memory.</p>
-
-<p>I also cannot claim a productivity multiplier. I did not collect a controlled human-only baseline, reliable total token cost, or a comparable measure of my own implementation time. What I can show is four runnable tools, recorded failures, and the amount of useful work the agents completed with limited implementation direction.</p>
-
-<p>That is enough to change my workflow. It is not enough to suspend my judgment.</p>
-
-<h2 id="the-human-review-should-move-toward-the-spec">The human review should move toward the spec</h2>
-
-<p>The part that frustrated me was trying to keep a coherent mental model of everything the agents were doing. Asking for more explanation did not necessarily help: an agent can produce rationales and acceptance documents as quickly as code.</p>
-
-<p>For an experiment, letting it write its own assignment was revealing. For a tool intended to solve an actual problem of mine, I would invest much more intellectual effort before implementation. I would work through the MoSCoW requirements with the agent, challenge the assumptions, and decide what evidence would convince me that each important requirement had been met.</p>
-
-<p>I consider system requirements the essence of successful engineering, whether the result is software, a machine, or a manufacturing process. A test can verify the behavior we specified. It cannot decide that we specified the right problem.</p>
-
-<p>The Won’t list deserves particular attention. If I omit a feature from my description, the agent may infer that adding it is helpful. A hosted service, automatic hardware write, or extra workflow might be a reasonable interpretation of an underspecified request and still be something I do not want. An explicit exclusion removes that ambiguity.</p>
-
-<p>My conclusion is stronger than “AI can help with code review.” I do not think traditional line-by-line human code review needs to remain the default collaboration model for agent-written software. I want the team spending its attention on the spec and the test plan: what the system must do, what it must never do, which assumptions are justified, and which failures the checks must expose.</p>
-
-<p>Implementation still needs adversarial inspection and integration testing. The audit demonstrated that agents can do useful work there too. This is a proposal to change where humans concentrate their effort, not evidence that every first implementation follows its plan exactly. The defects above rule out that stronger claim.</p>
-
-<p>There is a limit to delegating evaluation as well. Separate agents can share the same mistaken assumption. A fresh conversation does not create an independent physical measurement. Sometimes the right acceptance evidence comes from another implementation; sometimes it comes from another person; sometimes somebody has to go and inspect the wire.</p>
-
-<p>Ethan Mollick’s <a href="https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged">work on uneven AI capabilities</a> helps explain why local success should not become blanket trust. Karpathy’s <a href="https://karpathy.bearblog.dev/sequoia-ascent-2026/">discussion of agentic engineering</a> emphasizes preserving a professional quality bar while delegating execution. I find both perspectives useful because the hard question is how to express that bar in a form a system can be tested against.</p>
-
-<h2 id="a-more-managerial-kind-of-individual-contributor">A more managerial kind of individual contributor</h2>
-
-<p>This is also why I think people should start practicing a more managerial way of working, well before their job title changes.</p>
-
-<p>I mean learning to define outcomes, decompose work, provide context, establish acceptance criteria, and integrate the result. Those are skills an individual engineer can use. Managing people involves relationships and development that do not map neatly onto agents; the transferable part here is organizing work and owning its consequences.</p>
-
-<p>I have found myself imagining a person coordinating a hundred agents. The number is an illustration, not a target. If four projects can outrun my attention, multiplying the workers without changing how I specify and evaluate their work is unlikely to solve the problem.</p>
-
-<p><a href="https://arxiv.org/abs/2512.08296v3">A study of agent-system scaling, revised in April 2026 to cover 260 configurations</a>, found gains on decomposable tasks and losses on sequential planning in the benchmarks it studied. More agents can add coordination costs and propagate errors. The useful measure is the amount of validated work completed, including the effort required to resolve exceptions.</p>
-
-<p>My forecast is that effective delegation will become valuable across a wide range of professions. I would not claim that every industry will change at the same rate, or that coordinating agents guarantees a career. Access to customers, physical evidence, institutional trust, and the ability to recognize a bad assumption can matter more than producing another answer.</p>
-
-<p>Nor is “be the manager” a permanent refuge from automation. My agents already wrote plans, assigned work, and synthesized findings. Some of the managerial work is itself being automated. The responsibility I want to develop is deciding whether the work is worth doing and whether the evidence is good enough to use its result.</p>
-
-<p>That creates an uncomfortable learning problem. The tasks we delegate are often the tasks through which we acquire judgment. If I never debug the mistaken unit conversion, how do I learn to ask about units?</p>
-
-<p>In <a href="https://www.anthropic.com/research/AI-assistance-coding-skills">a randomized study of 52 mostly junior engineers learning an unfamiliar Python library</a>, the AI-assisted group scored 50% on the subsequent comprehension quiz, compared with 67% for the unaided group. The completion-time difference was not statistically significant. One short learning task does not establish the long-term effects on engineering careers, but it makes the distinction between producing a result and acquiring expertise difficult to dismiss.</p>
-
-<p>How should we preserve that learning? Studying failures, doing some work unaided, and reconstructing an explanation are possibilities worth testing. Delegation should expand what I can take responsibility for, rather than leave me approving outputs I cannot interrogate.</p>
-
-<h2 id="the-cabinet-is-where-the-abstraction-stops">The cabinet is where the abstraction stops</h2>
-
-<p>The more digital work I delegate, the more visible the remaining work becomes. My electrical cabinet is a concrete example.</p>
-
-<p>I need a reliable account of which wire connects which endpoints, whether those connections agree with the intended design, and which changes belong in the schematic. I also need the physical labels and wire numbers to agree with the documentation. An agent can help organize that task. The agent on my computer cannot inspect hidden connections or attach the labels for me.</p>
-
-<p>That makes me interested in a robot built specifically for this work: looking through existing cabinets, identifying wires and components, recovering connections, and applying markers. It is the kind of startup idea I notice when I stop asking only what AI can do and start looking at the expensive task it leaves behind.</p>
-
-<p>There is already serious automation nearby. <a href="https://www.rittal.com/com-en/products/PG20231215RAS101/PG20240408RAS202/PG20240408RAS205/PRO136436?variantId=4051205">Rittal’s Wire Terminal</a> prepares and labels wires. <a href="https://www.eplan.help/en-us/Infoportal/Content/ESW/Content/htm/smartwiring_k_connection_list_checking_mode.htm">Eplan’s Smart Wiring check mode</a> supports a person checking installed connections. <a href="https://www.wirebot.tech/products-sharp">Wirebot advertises robotic panel wiring</a>, while <a href="https://www.wscad.com/en/apps/">WSCAD’s Cabinet AR</a> provides access to project wiring information and schematic redlining. Those capabilities do not, by themselves, establish autonomous reconciliation of an arbitrary cabinet after undocumented modifications. Building from known design data and reconstructing an uncertain existing state are different problems.</p>
-
-<p>The difficulty is partly perception: wires disappear into ducts, similar wires cross, and labels can be wrong. It is partly manipulation: applying a marker to an installed wire is different from marking one before assembly. It is also a question of authority. If the cabinet and schematic disagree, which one is wrong?</p>
-
-<p>LeCun’s <a href="https://www.linkedin.com/posts/yann-lecun_my-positionvisionproposal-paper-is-finally-activity-6947257092785278976-9AE7">proposal for world models and planning</a> offers a research direction for machines reasoning about an uncertain world. My immediate question is what evidence a tool needs before it claims to understand this particular cabinet.</p>
-
-<p>Automatically redrawing the schematic to match the cabinet could turn an assembly error into apparently approved documentation. A useful system would preserve the difference between an observation, an inference, an electrically tested connection, and an approved change. An unresolved endpoint should remain unresolved rather than receive a confident guess.</p>
-
-<p>This is the same problem RFQFuzz encountered with manufacturing stages. A difference between two artifacts becomes meaningful only after we understand what each artifact is supposed to represent.</p>
-
-<p>One way to test the opportunity would be to measure whether assisted reconciliation saves an engineer time: capture evidence, propose endpoint matches, expose uncertainty, and produce candidate drawing updates and labeling lists. The results could show where software helps and where better sensing or robotic manipulation is essential. That is a product hypothesis, not a fifth completed project or a claim that nobody is working on it.</p>
-
-<p>Difficulty alone does not make a business. Someone has to need the result often enough, trust it enough, and pay enough to justify the equipment and integration. Ben Thompson’s <a href="https://stratechery.com/2026/microsoft-and-software-survival/">argument about software survival</a> is relevant here: customers buy maintenance, integration, and a working product, not merely its source code. Easier implementation makes experiments cheaper to attempt. It does not make the remaining obligations disappear.</p>
-
-<p>My four projects suggest that agents are already good at assembling plausible workflows from existing libraries. Establishing unmet demand was much less convincing. The next useful experiment would put one tool in another engineer’s hands and measure whether it solves a problem without the implementation chat beside it.</p>
-
-<h2 id="capability-becomes-consequential-through-access">Capability becomes consequential through access</h2>
-
-<p>The cabinet also connects my enthusiasm for automation to my concern about AI risk. We want agents to do more than generate suggestions. Every additional tool or connection gives them another way to affect the world.</p>
-
-<p>My instinct is that a major digital incident—a serious data breach, corrupted records, or a destructive loss of access—is a more immediate concern than a scenario centered on an AI’s own physical body. A disruption to banking records or payment systems, for example, could interfere with people’s ability to pay rent or operate a business. That is the kind of near-term consequence I worry about.</p>
-
-<p>I need to qualify the physical distinction. Lack of a robot body does not imply lack of physical influence. Industrial control systems already connect digital commands to equipment, and people act on information supplied by software. <a href="https://www.cisa.gov/sites/default/files/2024-05/defending-ot-operations-against-ongoing-pro-russia-hacktivist-activity-508c.pdf">CISA and its partners have documented physical effects from attacks on exposed operational technology</a>. That advisory concerns cyberattacks, not proof of AI-caused injury. It shows why the relevant question is what a system can reach and control.</p>
-
-<p>The Hugging Face incident made this concern more concrete for me. Its <a href="https://huggingface.co/blog/agent-intrusion-technical-timeline">technical reconstruction</a> describes an intrusion originating in an agent evaluation environment. <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/">OpenAI’s account</a> describes unauthorized access through package-management infrastructure and evaluation conditions with reduced safeguards. An <a href="https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/">independent METR and Redwood investigation</a> also examined the event. These accounts differ in their interpretation of the agents’ immediate objectives, so I would not present their motives as settled.</p>
-
-<p>The architectural lesson is clearer: there was a reachable path through infrastructure expected to contain the evaluation. This was not a demonstration of an agent reaching across an absent physical connection. It was a demonstration that the boundaries people believed they had established did not match the available route.</p>
-
-<p>Not every agent incident has that mechanism. An authorized agent might make a mistake. An attacker might use one as a tool. An agent might treat instructions embedded in untrusted material as something to obey. <a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/">Simon Willison’s account of prompt-injection risk</a> focuses on the dangerous combination of private-data access, untrusted input, and a way to send information outward. Those failures need different investigations even when their consequences overlap.</p>
-
-<p>Confidentiality, integrity, and availability also matter differently. Leaked designs cannot be made secret again by restoring a backup. Corrupted records can leave a service running while its answers are wrong. An outage can prevent people from using accurate records that still exist. “The data is backed up” addresses only part of the problem.</p>
-
-<p>I do not need to settle every debate about machine intelligence to ask a practical engineering question: if this system behaves unexpectedly, what can it damage before another boundary stops it?</p>
-
-<h2 id="some-connections-may-stop-being-worth-having">Some connections may stop being worth having</h2>
-
-<p>For much of my life, connecting more things to the internet has felt like the default direction of progress. I suspect increasingly capable agents will make organizations reconsider some of those connections.</p>
-
-<p>My forecast is selective disconnection: valuable intellectual property held in genuinely isolated environments, sensitive workloads with fewer network paths, and narrower authority for systems that remain connected. A major agent-driven data incident could accelerate that change. It would make the tradeoff between convenience and exposure difficult to ignore.</p>
-
-<p>There are already products for disconnected deployments. <a href="https://blogs.microsoft.com/blog/2026/02/24/microsoft-sovereign-cloud-adds-governance-productivity-and-support-for-large-ai-models-securely-running-even-when-completely-disconnected/">Microsoft announced expanded disconnected sovereign infrastructure in February 2026</a>, and <a href="https://cloud.google.com/blog/topics/hybrid-cloud/google-distributed-cloud-at-next26">Google described air-gapped AI infrastructure in April</a>. Both announcements preceded the July Hugging Face incident. They establish that the deployment model exists, not that my forecast has occurred at scale or that this incident caused it.</p>
-
-<p>A physical boundary is attractive because it does not require the agent to understand the reason for the boundary. If a remote process has no communication path to an isolated store, better reasoning does not create that missing path. But the operating process has to maintain the separation. A local agent may already have access. Imported software or removable media may carry a threat. A person can move sensitive information across the boundary. “On premises” is not synonymous with isolated or trustworthy; <a href="https://www.nist.gov/publications/zero-trust-architecture">NIST’s zero-trust guidance</a> explicitly rejects implicit trust based on network location.</p>
-
-<p>An offline backup serves another purpose: recovery. It does not remove access to the working copy or undo disclosure. <a href="https://www.cisa.gov/stopransomware/ransomware-guide">CISA’s ransomware guidance</a> treats recovery copies and network separation as distinct controls. A serious design has to say which failure each boundary is intended to address.</p>
-
-<p>There are costs to disconnection: updates, maintenance, collaboration, transfer procedures, and the useful work that a connected agent could otherwise do. I do not expect every organization to disconnect everything. I expect more deliberate decisions about whether a particular connection earns the authority it creates.</p>
-
-<p>This brings me back to the spec, with an essential distinction. Writing “must not transmit this design” defines the intended behavior. Restricting the process’s communication path enforces a limit independently of whether it follows that instruction. A comprehensive test plan is valuable, but I do not believe people can anticipate every interaction between an adaptive agent and a complicated environment. The architecture should limit the consequences of what the test plan misses.</p>
-
-<p>My own experiment supplies a small, concrete example. RFQFuzz’s process runner passed its release suite while retaining an output-limit race. Fixing the race was worthwhile. Calling that same-user process runner a security sandbox would still be wrong. Confidence should track the property actually enforced.</p>
-
-<p>The decision to delegate implementation and the decision to constrain authority belong together. The more useful work I want an agent to perform without my continuous attention, the more deliberately I need to design the conditions under which it acts.</p>
-
-<h2 id="the-work-i-want-to-get-better-at">The work I want to get better at</h2>
-
-<p>I remain excited by what happened in this experiment. I can explore a hardware-adjacent software idea and get far enough to inspect the architecture, run a demonstration, and discover real failure modes. Open-source libraries provide the foundations; agents make more of the integration work feasible. That expands the set of ideas worth trying.</p>
-
-<p>I also have a clearer view of my own bottleneck. I cannot solve it by reading faster while requesting more output. I need to be more deliberate about what work I initiate, what I delegate, and what evidence returns to me.</p>
-
-<p>On the next project, I want to spend more time collaboratively defining requirements before implementation, including the Won’t list. I want acceptance checks that could prove the agent wrong, an implementation review with a different line of attack, and explicit limits on access. I want to measure the total effort—including my review and the repairs—rather than celebrate a fast first draft.</p>
-
-<p>For my career, that means practicing delegation while continuing to build the domain knowledge that makes delegation useful. For a potential business, it means studying the task left behind, such as reconciling that cabinet, and finding out whether someone values the result. For AI risk, it means treating access and physical infrastructure as design decisions, rather than assuming a well-written instruction will contain every failure.</p>
-
-<p>There is no guarantee that these responsibilities will remain exclusively human. There is plenty of evidence, including my own difficulty keeping pace, that I need to get better at them now.</p>
-
-<p>I began by asking whether an agent could build substantial software from a small amount of direction. I now have four repositories that make the answer inspectable. The question I care about next is what I should authorize it to build, how I will know it worked, and which parts of the world it should be able to reach while trying.</p>
-
-<hr />
-
-<p><strong>Explore the projects:</strong> <a href="https://github.com/jewbee2000/driverforge">DriverForge</a> · <a href="https://github.com/jewbee2000/abyssbench">AbyssBench</a> · <a href="https://github.com/jewbee2000/fixtureforge">FixtureForge</a> · <a href="https://github.com/jewbee2000/rfq-fuzz">RFQFuzz</a></p>
-
-<p><em>Method and authorship note: I used Codex to help research and draft this article from my own notes, personal reflections, session history, and project evidence. Agents performed the implementation and publication audits described here. The figures are actual project artifacts or plots of recorded evidence. The cabinet system is an idea, not a completed prototype; the career and infrastructure arguments are my forecasts. No physical validation, manufacturing approval, broad market novelty, or controlled productivity comparison is claimed. The <a href="/assets/files/agentic-engineering/evidence-manifest.json">publication evidence manifest</a> records project snapshots, checks, and figure provenance.</em></p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Walter Teitelbaum on an experiment with coding agents, requirements-first engineering, careers built around delegation, physical automation, and the case for deliberately limiting AI access.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/rfq-plate.png" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/rfq-plate.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Printed Bicycle Components</title><link href="https://walter.teitelbaum.us/2025/04/01/3D-Printed-Bicycle-Components/" rel="alternate" type="text/html" title="3D Printed Bicycle Components" /><published>2025-04-01T00:00:00-07:00</published><updated>2025-04-01T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2025/04/01/3D%20Printed%20Bicycle%20Components</id><content type="html" xml:base="https://walter.teitelbaum.us/2025/04/01/3D-Printed-Bicycle-Components/"><![CDATA[<p>My buddy <a href="https://www.youtube.com/@archmdz">Ari Klau</a> is a badass professional triathlete. However, he has not seen much financial success in the sport yet and does not have a bicycle brand as a sponsor. The sport of triathlon is extremely dependent on marginal gains in aerodynamics for competitive success. The fastest athletes in the world spend countless hours in the wind tunnel, testing various components and positions on the bicycle to become as slippery as possible.</p>
+<p>I would treat this as a starting point for driver development. No physical instruments or independent practitioners have validated it. The reference protocols are fictional, Windows/Python 3.12 is the verified environment, and two synthetic fault cases still fail the upstream integration’s stated consumer contract. Those failures remain visible in the <a href="https://github.com/jewbee2000/driverforge/tree/main/evidence/article-audit">audit evidence</a>.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[A small Python tool for replaying protocol faults and inspecting how an instrument driver responds. Part of Walter Teitelbaum's two-day AI engineering experiment.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/driver-signed-failure.png" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/driver-signed-failure.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Printed Bicycle Components</title><link href="https://walter.teitelbaum.us/2025/04/01/3D-Printed-Bicycle-Components/" rel="alternate" type="text/html" title="3D Printed Bicycle Components" /><published>2025-04-01T00:00:00-07:00</published><updated>2025-04-01T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2025/04/01/3D%20Printed%20Bicycle%20Components</id><content type="html" xml:base="https://walter.teitelbaum.us/2025/04/01/3D-Printed-Bicycle-Components/"><![CDATA[<p>My buddy <a href="https://www.youtube.com/@archmdz">Ari Klau</a> is a badass professional triathlete. However, he has not seen much financial success in the sport yet and does not have a bicycle brand as a sponsor. The sport of triathlon is extremely dependent on marginal gains in aerodynamics for competitive success. The fastest athletes in the world spend countless hours in the wind tunnel, testing various components and positions on the bicycle to become as slippery as possible.</p>
 
 <p>Without access to resources like that, I have been using my knowledge of aerodynamics to design and print various components for Ari’s race bike in order to give him an opportunity to compete with the best in the world.</p>
 

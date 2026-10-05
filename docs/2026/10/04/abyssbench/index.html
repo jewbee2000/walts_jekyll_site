@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    Walter Teitelbaum &middot; AbyssBench: Checking Controller Timing
+    
+  </title>
+
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/open-color.min.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/syntax.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/styles.min.css">
+  <link rel="stylesheet" href="/assets/css/experiment.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://walter.teitelbaum.us/assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://walter.teitelbaum.us/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://walter.teitelbaum.us/assets/favicon-16x16.png">
+  <link rel="manifest" href="https://walter.teitelbaum.us/assets/site.webmanifest">
+  <link rel="alternate" type="application/atom+xml" title="Walter Teitelbaum" href="https://walter.teitelbaum.us/feed.xml">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="AbyssBench: Checking Controller Timing" />
+<meta name="author" content="Walter Teitelbaum" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Replay controller events and check whether the recorded response satisfies an explicit timing contract. Part of Walter Teitelbaum’s two-day AI engineering experiment." />
+<meta property="og:description" content="Replay controller events and check whether the recorded response satisfies an explicit timing contract. Part of Walter Teitelbaum’s two-day AI engineering experiment." />
+<link rel="canonical" href="https://walter.teitelbaum.us/2026/10/04/abyssbench/" />
+<meta property="og:url" content="https://walter.teitelbaum.us/2026/10/04/abyssbench/" />
+<meta property="og:site_name" content="Walter Teitelbaum" />
+<meta property="og:image" content="https://walter.teitelbaum.us/assets/files/agentic-engineering/abyss-timing.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-04T00:00:00-07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://walter.teitelbaum.us/assets/files/agentic-engineering/abyss-timing.png" />
+<meta property="twitter:title" content="AbyssBench: Checking Controller Timing" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Walter Teitelbaum"},"dateModified":"2026-10-04T00:00:00-07:00","datePublished":"2026-10-04T00:00:00-07:00","description":"Replay controller events and check whether the recorded response satisfies an explicit timing contract. Part of Walter Teitelbaum’s two-day AI engineering experiment.","headline":"AbyssBench: Checking Controller Timing","image":"https://walter.teitelbaum.us/assets/files/agentic-engineering/abyss-timing.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://walter.teitelbaum.us/2026/10/04/abyssbench/"},"url":"https://walter.teitelbaum.us/2026/10/04/abyssbench/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body>
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-11 col-lg-10 experiment-layout">
+        <article>
+  <header>
+  <div>
+    <a class="site-title" href="https://walter.teitelbaum.us">Walter Teitelbaum</a>
+    <small>
+      
+      Engineer
+      
+    </small>
+  </div>
+  <a id="theme-toggle" class="toggle-icon" onclick="modeSwitcher()"></a>
+</header>
+
+  <main>
+    <h1 class="post-title">AbyssBench: Checking Controller Timing</h1>
+    <time datetime="2026-10-04T00:00:00-07:00" class="post-date">October  4, 2026</time>
+    <p class="lead">Replay controller events and check whether the recorded response satisfies an explicit timing contract.</p>
+    <aside class="experiment-banner" aria-label="About the AI engineering experiment">
+  <p class="experiment-banner-title">A two-day AI engineering experiment</p>
+  <p>On October 3–4, 2026, I asked Codex to identify useful engineering projects, define requirements and acceptance criteria, and implement them. I’m using this work to understand the tools’ current capabilities and practice a more managerial way of thinking: framing problems, delegating execution, and evaluating results. The agents drafted much of the specification; these posts describe what was built and what remains unproven.</p>
+</aside>
+
+    <p>A controller can issue the right command while the machine continues doing the wrong thing. <a href="https://github.com/jewbee2000/abyssbench">AbyssBench</a> explores that distinction: when a sensor reading becomes stale or an actuator stops responding, did the controller issue the required response before its deadline—and does the recorded evidence actually establish that?</p>
+
+<p>I see it as a small tool for engineers developing control logic or reviewing test logs. It combines pytest with <a href="https://github.com/nickovic/rtamt">RTAMT</a>, an existing temporal monitoring library. Its contribution is the surrounding workflow: explicit timing rules, repeatable traces, and evidence that keeps commands separate from measured behavior.</p>
+
+<h2 id="how-it-is-used">How it is used</h2>
+
+<p>I would start with the <a href="https://github.com/jewbee2000/abyssbench#try-it-locally-powershell-python-312">installation and offline demo</a>. The <a href="https://github.com/jewbee2000/abyssbench/blob/main/docs/API.md">public API walkthrough</a> offers two starting points: import a supported JSONL or explicitly mapped CSV trace, or supply a trusted Python controller to the example simulator. Define acceptable ranges, measurement age, response deadlines, and prohibited transitions; run the check; then inspect each rule’s verdict and supporting events. Incomplete observation windows remain inconclusive. A recent packet carrying an old measurement does not become fresh just because it arrived recently.</p>
+
+<h2 id="a-small-example">A small example</h2>
+
+<p>The pump-and-valve example makes the distinction visible. The simulated valve sticks closed at 500 milliseconds. At 1,010 milliseconds, the controller detects the persistent mismatch and issues pump-off and valve-open commands. The valve remains closed. The response check can pass because the required commands were issued; that says nothing about mechanical recovery.</p>
+
+<figure class="experiment-figure">
+  <a href="/assets/files/agentic-engineering/abyss-timing.png"><img src="/assets/files/agentic-engineering/abyss-timing.png" alt="Simulation timeline: a valve sticks at 500 milliseconds and the controller issues safe commands at 1,010 milliseconds while the valve remains closed." loading="lazy" width="1920" height="1120" /></a>
+  <figcaption>Recorded simulation events: commanded and actual valve positions remain separate.</figcaption>
+</figure>
+
+<h2 id="validation-and-limits">Validation and limits</h2>
+
+<p>The original release passed 116 tests. The publication review nevertheless found two edge cases: a single observation could crash the monitor, and a command preceding a fault at the same timestamp could incorrectly satisfy its response rule. Both were repaired; the publication audit passed <strong>124 tests</strong>. The <a href="https://github.com/jewbee2000/abyssbench/blob/main/evidence/publication-audit/README.md">audit preserves the failing cases</a>.</p>
+
+<p>The tool supports one clock and trusted controller callbacks; its fluid model is uncalibrated, with no hardware validation. A real trace and an independent engineer’s trial are the next useful tests.</p>
+
+    <nav class="experiment-series" aria-label="Other projects in this experiment">
+  <p>Other projects in this experiment:</p>
+  <ul>
+    
+    
+    <li><a href="/2026/10/04/driverforge/">DriverForge</a></li>
+    
+    
+    
+    
+    
+    <li><a href="/2026/10/04/fixtureforge/">FixtureForge</a></li>
+    
+    
+    
+    <li><a href="/2026/10/04/rfqfuzz/">RFQFuzz</a></li>
+    
+    
+  </ul>
+</nav>
+
+  </main>
+  <footer>
+  <small>&copy; <time datetime="2026-10-04T17:34:45-07:00">2026</time>
+    Walter Teitelbaum. All rights reserved.</small>
+</footer>
+
+</article>
+
+      </div>
+    </div>
+  </div>
+  <script src="https://walter.teitelbaum.us/assets/js/bootstrap.min.js"></script>
+  
+  <script src="https://walter.teitelbaum.us/assets/js/darkmode.js"></script>
+  
+  
+</body>
+
+</html>

@@ -1,48 +1,45 @@
 {
-  "schema_version": 1,
-  "article": "https://walter.teitelbaum.us/2026/10/04/agentic-engineering-experiment/",
-  "article_title": "When the Agents Outrun the Engineer",
-  "article_source_sha256": "01ac049653f42bc77f3377587d823ce8ff784f45e50a8ae8a9b4f7921456f208",
-  "article_scope": "Opinion essay connecting the coding experiment to requirements-first engineering, delegation and careers, cabinet automation, agent access, and selective disconnection. Forecasts and product proposals are distinguished from measured project results.",
+  "schema_version": 2,
+  "experiment_index": "https://walter.teitelbaum.us/2026/10/04/agentic-engineering-experiment/",
+  "articles": [
+    {
+      "project": "driverforge",
+      "title": "DriverForge: Testing Instrument Drivers Without Hardware",
+      "url": "https://walter.teitelbaum.us/2026/10/04/driverforge/",
+      "source_sha256": "9b9b9710fe693a6586b7b467bfbf38eff351f44a5f2c107d29ee08235b188b6a",
+      "approximate_body_words": 331
+    },
+    {
+      "project": "abyssbench",
+      "title": "AbyssBench: Checking Controller Timing",
+      "url": "https://walter.teitelbaum.us/2026/10/04/abyssbench/",
+      "source_sha256": "ceb622a97672a1022ee25c6b64b0d572d6d0db9a2a6538e6667c4efa0a2fa737",
+      "approximate_body_words": 317
+    },
+    {
+      "project": "fixtureforge",
+      "title": "FixtureForge: Checking Tool Access in CAD",
+      "url": "https://walter.teitelbaum.us/2026/10/04/fixtureforge/",
+      "source_sha256": "9b49f42a6e203400cd6b50ff9580ad1e1c8d725775a2fc47aa5fa497bdf48eb4",
+      "approximate_body_words": 308
+    },
+    {
+      "project": "rfqfuzz",
+      "title": "RFQFuzz: Regression Tests for Drawing Reviewers",
+      "url": "https://walter.teitelbaum.us/2026/10/04/rfqfuzz/",
+      "source_sha256": "416e4a2ff198dd7aa4536cb5ab5b49495d7bff5805cb4284585f25a961384a02",
+      "approximate_body_words": 309
+    }
+  ],
   "experiment_dates": [
     "2026-10-03",
     "2026-10-04"
   ],
   "publication_review_date_local": "2026-10-04",
   "timezone": "America/Los_Angeles",
+  "authorship": "Four first-person project notes drafted with Codex from Walter Teitelbaum’s instructions, session history and audited project evidence. The shared banner describes the two-day experiment and his aim to practice framing, delegating and evaluating engineering work.",
+  "shared_banner_sha256": "230225aa7d120c8a10ecbbb76c43cc85cb8be50dbc0254033a54f65efc74a818",
   "method": "Repository/source/test/evidence inspection, Codex session-history review, reproduced suites, targeted adversarial regressions, primary-source research, independent editorial review, and desktop/mobile site checks. Agents performed implementation and publication code reviews; this is not an independent human certification.",
-  "authorship": "First-person Walter Teitelbaum essay, drafted with Codex from session records, author-supplied AI/career/robotics notes and direct personal reflections. Source research and editorial synthesis supplement those inputs; no confidential cabinet artifacts or raw private chat archives are published.",
-  "editorial_sources_reviewed_on": "2026-10-04",
-  "editorial_source_urls": [
-    "https://arxiv.org/abs/2512.08296v3",
-    "https://blogs.microsoft.com/blog/2026/02/24/microsoft-sovereign-cloud-adds-governance-productivity-and-support-for-large-ai-models-securely-running-even-when-completely-disconnected/",
-    "https://cloud.google.com/blog/topics/hybrid-cloud/google-distributed-cloud-at-next26",
-    "https://garymarcus.substack.com/p/dario-amodei-hype-ai-safety-and-the",
-    "https://huggingface.co/blog/agent-intrusion-technical-timeline",
-    "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
-    "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
-    "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
-    "https://pymeasure.readthedocs.io/en/stable/dev/adding_instruments/tests.html",
-    "https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/",
-    "https://stratechery.com/2026/microsoft-and-software-survival/",
-    "https://www.anthropic.com/research/AI-assistance-coding-skills",
-    "https://www.cisa.gov/sites/default/files/2024-05/defending-ot-operations-against-ongoing-pro-russia-hacktivist-activity-508c.pdf",
-    "https://www.cisa.gov/stopransomware/ransomware-guide",
-    "https://www.colabsoftware.com/product/autoreview",
-    "https://www.eplan.help/en-us/Infoportal/Content/ESW/Content/htm/smartwiring_k_connection_list_checking_mode.htm",
-    "https://www.linkedin.com/posts/yann-lecun_my-positionvisionproposal-paper-is-finally-activity-6947257092785278976-9AE7",
-    "https://www.nist.gov/publications/zero-trust-architecture",
-    "https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged",
-    "https://www.rittal.com/com-en/products/PG20231215RAS101/PG20240408RAS202/PG20240408RAS205/PRO136436?variantId=4051205",
-    "https://www.wirebot.tech/products-sharp",
-    "https://www.wscad.com/en/apps/"
-  ],
-  "source_access_notes": [
-    "Some CISA pages blocked direct retrieval; narrow claims were verified from official indexed advisory and guidance text.",
-    "Vendor product documentation establishes advertised scope, not independently measured performance.",
-    "Hugging Face, OpenAI, and METR/Redwood accounts differ about inferred motive; the article does not resolve that disagreement.",
-    "Agent scaling cites April 8 2026 paper version 3 (260 configurations), superseding the earlier 180-configuration blog account."
-  ],
   "limitations": [
     "No controlled human-only baseline or reliable total time/token-cost comparison.",
     "No physical hardware, manufacturing approval, or external practitioner adoption established.",

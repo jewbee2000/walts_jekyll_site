@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    Walter Teitelbaum &middot; RFQFuzz: Regression Tests for Drawing Reviewers
+    
+  </title>
+
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/open-color.min.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/syntax.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/styles.min.css">
+  <link rel="stylesheet" href="/assets/css/experiment.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://walter.teitelbaum.us/assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://walter.teitelbaum.us/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://walter.teitelbaum.us/assets/favicon-16x16.png">
+  <link rel="manifest" href="https://walter.teitelbaum.us/assets/site.webmanifest">
+  <link rel="alternate" type="application/atom+xml" title="Walter Teitelbaum" href="https://walter.teitelbaum.us/feed.xml">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="RFQFuzz: Regression Tests for Drawing Reviewers" />
+<meta name="author" content="Walter Teitelbaum" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Compare reviewer behavior on controlled CAD and drawing packages, with evidence for each changed finding. Part of Walter Teitelbaum’s two-day AI engineering experiment." />
+<meta property="og:description" content="Compare reviewer behavior on controlled CAD and drawing packages, with evidence for each changed finding. Part of Walter Teitelbaum’s two-day AI engineering experiment." />
+<link rel="canonical" href="https://walter.teitelbaum.us/2026/10/04/rfqfuzz/" />
+<meta property="og:url" content="https://walter.teitelbaum.us/2026/10/04/rfqfuzz/" />
+<meta property="og:site_name" content="Walter Teitelbaum" />
+<meta property="og:image" content="https://walter.teitelbaum.us/assets/files/agentic-engineering/rfq-plate.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-04T00:00:00-07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://walter.teitelbaum.us/assets/files/agentic-engineering/rfq-plate.png" />
+<meta property="twitter:title" content="RFQFuzz: Regression Tests for Drawing Reviewers" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Walter Teitelbaum"},"dateModified":"2026-10-04T00:00:00-07:00","datePublished":"2026-10-04T00:00:00-07:00","description":"Compare reviewer behavior on controlled CAD and drawing packages, with evidence for each changed finding. Part of Walter Teitelbaum’s two-day AI engineering experiment.","headline":"RFQFuzz: Regression Tests for Drawing Reviewers","image":"https://walter.teitelbaum.us/assets/files/agentic-engineering/rfq-plate.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://walter.teitelbaum.us/2026/10/04/rfqfuzz/"},"url":"https://walter.teitelbaum.us/2026/10/04/rfqfuzz/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body>
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-11 col-lg-10 experiment-layout">
+        <article>
+  <header>
+  <div>
+    <a class="site-title" href="https://walter.teitelbaum.us">Walter Teitelbaum</a>
+    <small>
+      
+      Engineer
+      
+    </small>
+  </div>
+  <a id="theme-toggle" class="toggle-icon" onclick="modeSwitcher()"></a>
+</header>
+
+  <main>
+    <h1 class="post-title">RFQFuzz: Regression Tests for Drawing Reviewers</h1>
+    <time datetime="2026-10-04T00:00:00-07:00" class="post-date">October  4, 2026</time>
+    <p class="lead">Compare reviewer behavior on controlled CAD and drawing packages, with evidence for each changed finding.</p>
+    <aside class="experiment-banner" aria-label="About the AI engineering experiment">
+  <p class="experiment-banner-title">A two-day AI engineering experiment</p>
+  <p>On October 3–4, 2026, I asked Codex to identify useful engineering projects, define requirements and acceptance criteria, and implement them. I’m using this work to understand the tools’ current capabilities and practice a more managerial way of thinking: framing problems, delegating execution, and evaluating results. The agents drafted much of the specification; these posts describe what was built and what remains unproven.</p>
+</aside>
+
+    <p><a href="https://github.com/jewbee2000/rfq-fuzz">RFQFuzz</a> is a local regression toolkit for engineers developing or adopting reviewers of CNC request-for-quotation packages. It checks whether a change to a review prompt, rule engine, or capability profile changes the findings on controlled STEP models and drawings.</p>
+
+<p>I initially considered a drawing-review tool. The <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/docs/RESEARCH_AND_GO_NO_GO.md">research into existing products</a> led to a narrower question: how can someone test the reviewer itself? RFQFuzz supplies known defects, corrected counterparts, and valid alternatives so that flagging every difference is not a successful strategy.</p>
+
+<h2 id="how-it-is-used">How it is used</h2>
+
+<p>The workflow is to validate a challenge package, pass its public files to a reviewer, import the observations, and compare the results across versions. Reports connect changed findings to the relevant drawing and geometry. Package consistency and conditional CNC advisories are scored separately.</p>
+
+<p>The <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/docs/DEMO.md">installation and demo guide</a> provides a 15-case offline replay. After setup, run this from the checkout with the environment active:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python -m rfqfuzz.v1 demo examples/v1-demo work/my-demo
+</code></pre></div></div>
+
+<p>Open <code class="language-plaintext highlighter-rouge">work/my-demo/report/index.html</code>. The demo compares retained responses with two deliberately injected changes; it requires no live model or API key.</p>
+
+<h2 id="a-small-example">A small example</h2>
+
+<p>One challenge pairs a STEP model containing 6.00 mm bores with a drawing specifying 6.80 ±0.05 mm at the same manufacturing stage. A corrected drawing resolves the contradiction. Another package legitimately differs because it describes a later reaming operation. That context matters as much as the numbers.</p>
+
+<figure class="experiment-figure">
+  <a href="/assets/files/agentic-engineering/rfq-plate.png"><img src="/assets/files/agentic-engineering/rfq-plate.png" alt="RFQFuzz plate drawing specifying four 6.80 plus or minus 0.05 millimetre bores, deliberately contradicting its same-stage STEP model." loading="lazy" width="2339" height="1654" /></a>
+  <figcaption>A deliberately inconsistent challenge drawing, not a production part.</figcaption>
+</figure>
+
+<h2 id="validation-and-limits">Validation and limits</h2>
+
+<p>The publication audit passed <strong>278 tests</strong>, up from 270 after repairs to local-unit interpretation and process output limits. The <a href="https://github.com/jewbee2000/rfq-fuzz/tree/main/evidence/publication-code-audit">audit records</a> preserve that distinction.</p>
+
+<p>Its 145 validated core packets are development cases, with no holdout. The tool supports three finite geometry families, and its geometry checks share the OCCT kernel. It does not establish general drawing-review accuracy or approve manufacture. I see its potential in making regressions explainable; independent engineering use is still needed to assess its value.</p>
+
+    <nav class="experiment-series" aria-label="Other projects in this experiment">
+  <p>Other projects in this experiment:</p>
+  <ul>
+    
+    
+    <li><a href="/2026/10/04/driverforge/">DriverForge</a></li>
+    
+    
+    
+    <li><a href="/2026/10/04/abyssbench/">AbyssBench</a></li>
+    
+    
+    
+    <li><a href="/2026/10/04/fixtureforge/">FixtureForge</a></li>
+    
+    
+    
+    
+  </ul>
+</nav>
+
+  </main>
+  <footer>
+  <small>&copy; <time datetime="2026-10-04T17:34:45-07:00">2026</time>
+    Walter Teitelbaum. All rights reserved.</small>
+</footer>
+
+</article>
+
+      </div>
+    </div>
+  </div>
+  <script src="https://walter.teitelbaum.us/assets/js/bootstrap.min.js"></script>
+  
+  <script src="https://walter.teitelbaum.us/assets/js/darkmode.js"></script>
+  
+  
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+- id: driverforge
+  name: DriverForge
+  url: /2026/10/04/driverforge/
+  summary: Protocol fault testing for instrument drivers.
+- id: abyssbench
+  name: AbyssBench
+  url: /2026/10/04/abyssbench/
+  summary: Controller replay and timing-contract checks.
+- id: fixtureforge
+  name: FixtureForge
+  url: /2026/10/04/fixtureforge/
+  summary: Straight-path tool access checks against CAD geometry.
+- id: rfqfuzz
+  name: RFQFuzz
+  url: /2026/10/04/rfqfuzz/
+  summary: Regression tests for reviewers of CNC drawing packages.
