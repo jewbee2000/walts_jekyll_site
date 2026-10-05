@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "article": "https://walter.teitelbaum.us/2026/10/04/agentic-engineering-experiment/",
+  "experiment_dates": [
+    "2026-10-03",
+    "2026-10-04"
+  ],
+  "publication_review_date_local": "2026-10-04",
+  "timezone": "America/Los_Angeles",
+  "method": "Repository/source/test/evidence inspection, Codex session-history review, reproduced suites, targeted adversarial regressions, primary-source research, independent editorial review, and desktop/mobile site checks. Agents performed implementation and publication code reviews; this is not an independent human certification.",
+  "authorship": "First-person Walter Teitelbaum retrospective, drafted with Codex from session records and his supplied personal reflections.",
+  "limitations": [
+    "No controlled human-only baseline or reliable total time/token-cost comparison.",
+    "No physical hardware, manufacturing approval, or external practitioner adoption established.",
+    "Synthetic development fixtures and agent-authored acceptance criteria can share mistakes with the implementation.",
+    "Deliberate mutants and replay changes are distinguished from bugs discovered during implementation or publication review.",
+    "Test totals are reproducibility checkpoints, not comparable quality scores.",
+    "FixtureForge has four retained-evidence assertions within its 61 tests.",
+    "Project snapshots include subsequent publication repairs; original results are listed separately."
+  ],
+  "projects": {
+    "driverforge": {
+      "name": "DriverForge",
+      "repository": "https://github.com/jewbee2000/driverforge",
+      "original_snapshot": "0583650745cc552fa6f2b3300bbf3db34e37f552",
+      "publication_snapshot": "e16553ca3e3d42fc36e77650a953eeb87008cec0",
+      "original_passing_tests": 94,
+      "publication_audit_passing_tests": 100,
+      "audit": "https://github.com/jewbee2000/driverforge/blob/e16553ca3e3d42fc36e77650a953eeb87008cec0/evidence/article-audit/README.md",
+      "checks": [
+        {
+          "path": "evidence/article-audit/checks.json",
+          "url": "https://github.com/jewbee2000/driverforge/blob/e16553ca3e3d42fc36e77650a953eeb87008cec0/evidence/article-audit/checks.json",
+          "git_blob_sha256": "2807f551441932d88a10f434c723708256345be7691e7d4376d7b0ba3ebc8e6d"
+        },
+        {
+          "path": "evidence/article-audit/tests.txt",
+          "url": "https://github.com/jewbee2000/driverforge/blob/e16553ca3e3d42fc36e77650a953eeb87008cec0/evidence/article-audit/tests.txt",
+          "git_blob_sha256": "799d6305915a571b0f9b8b68f9c895eba75b5b40a048c0e52a1bae6f2f8c946d"
+        },
+        {
+          "path": "evidence/article-audit/junit.xml",
+          "url": "https://github.com/jewbee2000/driverforge/blob/e16553ca3e3d42fc36e77650a953eeb87008cec0/evidence/article-audit/junit.xml",
+          "git_blob_sha256": "470c88204a72f6b40381d963a51e572de37376620a96e0a23d956ee95aca39e8"
+        }
+      ]
+    },
+    "abyssbench": {
+      "name": "AbyssBench",
+      "repository": "https://github.com/jewbee2000/abyssbench",
+      "original_snapshot": "39dfee9649634778f56356dab8485b6b277f169a",
+      "publication_snapshot": "1e96da466415b2619f0f2043542f41ef04aff209",
+      "original_passing_tests": 116,
+      "publication_audit_passing_tests": 124,
+      "audit": "https://github.com/jewbee2000/abyssbench/blob/1e96da466415b2619f0f2043542f41ef04aff209/evidence/publication-audit/README.md",
+      "checks": [
+        {
+          "path": "evidence/publication-audit/full-suite.json",
+          "url": "https://github.com/jewbee2000/abyssbench/blob/1e96da466415b2619f0f2043542f41ef04aff209/evidence/publication-audit/full-suite.json",
+          "git_blob_sha256": "d1c2b68237f6eeb18ce487e9dd8818297439123b80751e7d8d50fb0a18faa50a"
+        },
+        {
+          "path": "evidence/publication-audit/full-suite.txt",
+          "url": "https://github.com/jewbee2000/abyssbench/blob/1e96da466415b2619f0f2043542f41ef04aff209/evidence/publication-audit/full-suite.txt",
+          "git_blob_sha256": "678b5d2931539fa3e8d2e2b98821d20627986c5ad352c18eb53b15829f4c9637"
+        },
+        {
+          "path": "evidence/publication-audit/quality-checks.txt",
+          "url": "https://github.com/jewbee2000/abyssbench/blob/1e96da466415b2619f0f2043542f41ef04aff209/evidence/publication-audit/quality-checks.txt",
+          "git_blob_sha256": "feb535231e9e10e92c2b8bdf1a4ee06639f819e23d82ebd4c3f1b3d32ac8d234"
+        },
+        {
+          "path": "evidence/publication-audit/fresh-wheel.json",
+          "url": "https://github.com/jewbee2000/abyssbench/blob/1e96da466415b2619f0f2043542f41ef04aff209/evidence/publication-audit/fresh-wheel.json",
+          "git_blob_sha256": "42cbd7d2343817d2798c5c32d69b8c9b7db6d7c9fe0f0b4ac08b96aaeca781e6"
+        }
+      ]
+    },
+    "fixtureforge": {
+      "name": "FixtureForge",
+      "repository": "https://github.com/jewbee2000/fixtureforge",
+      "original_snapshot": "e6dc788dc2a4d29b2c67b3736e67327535bf1846",
+      "publication_snapshot": "dc67aad324508a47ad1838f5431aea4679d3ee54",
+      "original_passing_tests": 61,
+      "publication_audit_passing_tests": 61,
+      "audit": "https://github.com/jewbee2000/fixtureforge/blob/dc67aad324508a47ad1838f5431aea4679d3ee54/evidence/publication-audit/README.md",
+      "checks": [
+        {
+          "path": "evidence/publication-audit/audit.json",
+          "url": "https://github.com/jewbee2000/fixtureforge/blob/dc67aad324508a47ad1838f5431aea4679d3ee54/evidence/publication-audit/audit.json",
+          "git_blob_sha256": "ee7d9ad3be425a878a018d4c10747979319f43a2ddb428463e8eea15c796d2f0"
+        },
+        {
+          "path": "evidence/publication-audit/acceptance.xml",
+          "url": "https://github.com/jewbee2000/fixtureforge/blob/dc67aad324508a47ad1838f5431aea4679d3ee54/evidence/publication-audit/acceptance.xml",
+          "git_blob_sha256": "7098482974b26a835ba0c7c8df477ee187e241e8e8e63bb9ca0cb35828b7ebd1"
+        },
+        {
+          "path": "evidence/publication-audit/performance.json",
+          "url": "https://github.com/jewbee2000/fixtureforge/blob/dc67aad324508a47ad1838f5431aea4679d3ee54/evidence/publication-audit/performance.json",
+          "git_blob_sha256": "f80acccf8f78fc0ecb21dfcffa60fc002dec64db63aa303d21335c39f8ff24b0"
+        }
+      ]
+    },
+    "rfq-fuzz": {
+      "name": "RFQFuzz",
+      "repository": "https://github.com/jewbee2000/rfq-fuzz",
+      "original_snapshot": "3bf066cf9f09626edf4f10acd99b159ad258ce5f",
+      "publication_snapshot": "59702a90c7c346b78aeda262da5d5a5c9161ffa3",
+      "original_passing_tests": 270,
+      "publication_audit_passing_tests": 278,
+      "audit": "https://github.com/jewbee2000/rfq-fuzz/blob/59702a90c7c346b78aeda262da5d5a5c9161ffa3/evidence/publication-code-audit/README.md",
+      "checks": [
+        {
+          "path": "evidence/publication-code-audit/checks.json",
+          "url": "https://github.com/jewbee2000/rfq-fuzz/blob/59702a90c7c346b78aeda262da5d5a5c9161ffa3/evidence/publication-code-audit/checks.json",
+          "git_blob_sha256": "1f4be63247c6504d728662ecb062d08cd8bc075dc37e687f580af354af2ac150"
+        },
+        {
+          "path": "evidence/publication-code-audit/tests.txt",
+          "url": "https://github.com/jewbee2000/rfq-fuzz/blob/59702a90c7c346b78aeda262da5d5a5c9161ffa3/evidence/publication-code-audit/tests.txt",
+          "git_blob_sha256": "194f0590cb4caccbb872ada5268830c7414821ef479c051afb5922fc9a31e711"
+        },
+        {
+          "path": "evidence/publication-code-audit/junit.xml",
+          "url": "https://github.com/jewbee2000/rfq-fuzz/blob/59702a90c7c346b78aeda262da5d5a5c9161ffa3/evidence/publication-code-audit/junit.xml",
+          "git_blob_sha256": "f75bc87542b6473d2b77492b1e224440959f778d5f0f8080149f1fc503e32a9e"
+        },
+        {
+          "path": "evidence/publication-code-audit/document-audit.json",
+          "url": "https://github.com/jewbee2000/rfq-fuzz/blob/59702a90c7c346b78aeda262da5d5a5c9161ffa3/evidence/publication-code-audit/document-audit.json",
+          "git_blob_sha256": "1010f538073574d0c7b1b546c2ce2cb772c9d25c057c966ce2a17292234507e1"
+        }
+      ]
+    }
+  },
+  "figures": [
+    {
+      "site_path": "/assets/files/agentic-engineering/driver-signed-failure.png",
+      "sha256": "f275dcdf90000a19754032c6556d083953978e2a524c6a66e7877edaa6da494c",
+      "source_path": "evidence/signed-failure.png",
+      "source_url": "https://github.com/jewbee2000/driverforge/blob/e16553ca3e3d42fc36e77650a953eeb87008cec0/evidence/signed-failure.png",
+      "description": "Original synthetic signed-decoding defect demonstration; deliberately faulty driver."
+    },
+    {
+      "site_path": "/assets/files/agentic-engineering/abyss-timing.png",
+      "sha256": "c723bbeb44652fbdfdc7a3dd9c6a2f04ad027f83f30f27bdea05f688845c9b86",
+      "source_path": "evidence/publication-audit/stuck-valve-timeline.png",
+      "source_url": "https://github.com/jewbee2000/abyssbench/blob/1e96da466415b2619f0f2043542f41ef04aff209/evidence/publication-audit/stuck-valve-timeline.png",
+      "description": "Publication plot of retained synthetic JSONL; source, data and figure provenance committed alongside plot."
+    },
+    {
+      "site_path": "/assets/files/agentic-engineering/fixture-access.jpg",
+      "sha256": "e7402aeefdf620ac0e8a2c05065f4fb5a5b741495ae7f5f6ca0f9d1dc45e1d2d",
+      "source_path": "evidence/publication-audit/rejected-report-desktop.jpg",
+      "source_url": "https://github.com/jewbee2000/fixtureforge/blob/dc67aad324508a47ad1838f5431aea4679d3ee54/evidence/publication-audit/rejected-report-desktop.jpg",
+      "description": "Publication browser capture of actual report for deliberately seeded obstructed path."
+    },
+    {
+      "site_path": "/assets/files/agentic-engineering/rfq-plate.png",
+      "sha256": "2032fa6fc91c8383d9ad9bb74c14a20cc200ed6958e1a7eaf35a9ec07bb71735",
+      "source_path": "evidence/M0/bundle/public/pk-7a1c/drawing.png",
+      "source_url": "https://github.com/jewbee2000/rfq-fuzz/blob/59702a90c7c346b78aeda262da5d5a5c9161ffa3/evidence/M0/bundle/public/pk-7a1c/drawing.png",
+      "description": "Actual exported M0 drawing, intentionally contradicting same-stage STEP geometry."
+    },
+    {
+      "site_path": "/assets/files/agentic-engineering/rfq-regression.png",
+      "sha256": "0eb8216411f9cd22cc420a848418d8078220b30951fc04b01fb38e354ff6d94f",
+      "source_path": "evidence/M5/browser/report-changed-evidence.png",
+      "source_url": "https://github.com/jewbee2000/rfq-fuzz/blob/59702a90c7c346b78aeda262da5d5a5c9161ffa3/evidence/M5/browser/report-changed-evidence.png",
+      "description": "Retained browser capture of deliberately injected regression in offline replay, not an observed commercial reviewer regression."
+    }
+  ]
+}

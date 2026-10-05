@@ -3,6 +3,10 @@
   <h1><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h1>
   <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date: "%B %e, %Y" }}</time>
   <p class="lead">{{ post.lead }}</p>
+  {% if post.article_wide %}
+  <p><a href="{{ post.url | relative_url }}">Read the full article, with project figures and results.</a></p>
+  {% else %}
   {{ post.content }}
+  {% endif %}
   {% endfor %}
 </div>
