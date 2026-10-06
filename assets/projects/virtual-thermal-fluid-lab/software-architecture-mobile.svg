@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="1740" viewBox="0 0 540 1740" role="img" aria-labelledby="title desc">
+<title id="title">Virtual Thermal Fluid Lab software architecture, narrow layout</title><desc id="desc">A scenario runner drives a Python plant and separately advances C controller virtual time. Plant outputs pass through observed I/O adapters to the controller. Requested commands pass through leases and actuator faults, returning as held applied inputs. The runner records the experiment for an evaluator, verified export and static browser replay. Dashed source reuse connects the same core to cross-built Pico wrappers; no physical thermal rig is claimed.</desc>
+<defs><marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#286787"/></marker><marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#a44a28"/></marker></defs>
+<rect width="540" height="1740" fill="white"/>
+<g font-family="Segoe UI, Arial, sans-serif"><text x="25" y="41" font-size="30" font-weight="700" fill="#203b46" text-anchor="start">Software architecture</text><text x="25" y="76" font-size="23" font-weight="400" fill="#203b46" text-anchor="start">Control loop + recorded evidence</text><rect x="25" y="105" width="490" height="165" rx="14" fill="#f5f8f7" stroke="#47616b" stroke-width="2"/>
+<circle cx="56" cy="140" r="17" fill="#47616b"/>
+<text x="56" y="147" font-size="21" font-weight="700" fill="white" text-anchor="middle">1</text>
+<text x="84" y="148" font-size="26" font-weight="700" fill="#203b46" text-anchor="start">Scenario + runner</text>
+<text x="48" y="188" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Strict model / limits / solver config</text>
+<text x="48" y="219" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Integer-µs events and controller ticks</text>
+<text x="48" y="250" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Reliable STEP clock to C every tick</text><path d="M270 270V291" fill="none" stroke="#286787" stroke-width="3" marker-end="url(#blue)"/><rect x="25" y="300" width="490" height="165" rx="14" fill="#f5f8f7" stroke="#47616b" stroke-width="2"/>
+<circle cx="56" cy="335" r="17" fill="#47616b"/>
+<text x="56" y="342" font-size="21" font-weight="700" fill="white" text-anchor="middle">2</text>
+<text x="84" y="343" font-size="26" font-weight="700" fill="#203b46" text-anchor="start">Python plant</text>
+<text x="48" y="383" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Thermal states + hydraulic flow</text>
+<text x="48" y="414" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Pump / valve lag · SciPy integration</text>
+<text x="48" y="445" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Truth stays in Python</text><path d="M270 465V486" fill="none" stroke="#286787" stroke-width="3" marker-end="url(#blue)"/><rect x="25" y="495" width="490" height="165" rx="14" fill="#f5f8f7" stroke="#47616b" stroke-width="2"/>
+<circle cx="56" cy="530" r="17" fill="#47616b"/>
+<text x="56" y="537" font-size="21" font-weight="700" fill="white" text-anchor="middle">3</text>
+<text x="84" y="538" font-size="26" font-weight="700" fill="#203b46" text-anchor="start">Observed I/O</text>
+<text x="48" y="578" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Quantized values + timestamp / quality</text>
+<text x="48" y="609" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Freeze, delay, drop or damage inputs</text>
+<text x="48" y="640" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">No plant state or fault labels to C</text><path d="M270 660V681" fill="none" stroke="#286787" stroke-width="3" marker-end="url(#blue)"/><rect x="25" y="690" width="490" height="165" rx="14" fill="#f0f6fa" stroke="#286787" stroke-width="2"/>
+<circle cx="56" cy="725" r="17" fill="#286787"/>
+<text x="56" y="732" font-size="21" font-weight="700" fill="white" text-anchor="middle">4</text>
+<text x="84" y="733" font-size="26" font-weight="700" fill="#203b46" text-anchor="start">C controller</text>
+<text x="48" y="773" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Native executable · flow PI + trips</text>
+<text x="48" y="804" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Bounded checksummed wire frames</text>
+<text x="48" y="835" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Receives observed channels only</text><path d="M270 855V876" fill="none" stroke="#a44a28" stroke-width="3" marker-end="url(#orange)"/><rect x="25" y="885" width="490" height="165" rx="14" fill="#fff5ec" stroke="#a44a28" stroke-width="2"/>
+<circle cx="56" cy="920" r="17" fill="#a44a28"/>
+<text x="56" y="927" font-size="21" font-weight="700" fill="white" text-anchor="middle">5</text>
+<text x="84" y="928" font-size="26" font-weight="700" fill="#203b46" text-anchor="start">Command / actuator path</text>
+<text x="48" y="968" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Request → leased → fault-modified</text>
+<text x="48" y="999" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Applied inputs held between updates</text>
+<text x="48" y="1030" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Returns to the Python plant</text><path d="M270 1050V1071" fill="none" stroke="#286787" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#blue)"/><rect x="25" y="1080" width="490" height="165" rx="14" fill="#f5f8f7" stroke="#47616b" stroke-width="2"/>
+<circle cx="56" cy="1115" r="17" fill="#47616b"/>
+<text x="56" y="1122" font-size="21" font-weight="700" fill="white" text-anchor="middle">6</text>
+<text x="84" y="1123" font-size="26" font-weight="700" fill="#203b46" text-anchor="start">Evaluator + records</text>
+<text x="48" y="1163" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Truth, observations, commands, wire</text>
+<text x="48" y="1194" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Separate outcomes + CSV / manifests</text>
+<text x="48" y="1225" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Source, solver and artifact hashes</text><path d="M270 1245V1266" fill="none" stroke="#286787" stroke-width="3" marker-end="url(#blue)"/><rect x="25" y="1275" width="490" height="165" rx="14" fill="#f5f8f7" stroke="#47616b" stroke-width="2"/>
+<circle cx="56" cy="1310" r="17" fill="#47616b"/>
+<text x="56" y="1317" font-size="21" font-weight="700" fill="white" text-anchor="middle">7</text>
+<text x="84" y="1318" font-size="26" font-weight="700" fill="#203b46" text-anchor="start">Verified export + replay</text>
+<text x="48" y="1358" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">All rows and original raw downloads</text>
+<text x="48" y="1389" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">JavaScript / uPlot · shared cursor</text>
+<text x="48" y="1420" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Playback, events and comparison</text><path d="M515 185H531V772H517" fill="none" stroke="#286787" stroke-width="3" marker-end="url(#blue)"/><path d="M25 967H10V382H23" fill="none" stroke="#a44a28" stroke-width="3" marker-end="url(#orange)"/><text x="25" y="1497" font-size="22" font-weight="700" fill="#a44a28" text-anchor="start">Feedback: 5 → 2 supplies held plant inputs.</text><text x="25" y="1531" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Record the loop; then inspect its saved evidence.</text><rect x="25" y="1570" width="490" height="145" rx="12" fill="#f0f6fa" stroke="#286787" stroke-dasharray="7 5"/><text x="46" y="1606" font-size="25" font-weight="700" fill="#203b46" text-anchor="start">Same C source → Pico HAL</text><text x="46" y="1640" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Timer / ADC / GPIO / USB / watchdog</text><text x="46" y="1670" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Cross-built · indicator-only GPIO</text><text x="46" y="1699" font-size="21" font-weight="400" fill="#203b46" text-anchor="start">Board execution not performed</text></g></svg>
