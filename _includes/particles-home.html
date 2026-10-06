@@ -1,13 +1,13 @@
 <div id="particles-js" class="fullscreen">
   <div class="jumbotron text-center">
     {% if site.photo %}
-    <img class="particles-photo" src="{{ site.photo }}" />
+    <img class="particles-photo" src="{{ site.photo | relative_url }}" alt="{{ site.author.name | escape }}" />
     {% endif %}
     <h1 class="particles-title">{{ site.title }}</h1>
-    <h1 class="particles-subtitle">{{ site.taglong }}</h1>
+    <p class="particles-subtitle">{{ site.taglong | escape }}</p>
     <div class="nowrap">
       {% if site.profile.facebook %}
-      <a class="particles-icon" href="{{ site.profile.facebook }}">{% include svg/facebook.svg %}</a>
+      <a class="particles-icon" href="{{ site.profile.facebook }}" aria-label="Walter Teitelbaum on Facebook">{% include svg/facebook.svg %}</a>
       {% endif %}
       {% if site.profile.x %}
       <a class="particles-icon" href="{{ site.profile.x }}">{% include svg/x.svg %}</a>
@@ -19,10 +19,10 @@
       <a class="particles-icon" href="{{ site.profile.bluesky }}">{% include svg/bluesky.svg %}</a>
       {% endif %}
       {% if site.profile.instagram %}      
-      <a class="particles-icon" href="{{ site.profile.instagram }}">{% include svg/instagram.svg %}</a>
+      <a class="particles-icon" href="{{ site.profile.instagram }}" aria-label="Walter Teitelbaum on Instagram">{% include svg/instagram.svg %}</a>
       {% endif %}
       {% if site.profile.linkedin %}
-      <a class="particles-icon" href="{{ site.profile.linkedin }}">{% include svg/linkedin.svg %}</a>
+      <a class="particles-icon" href="{{ site.profile.linkedin }}" aria-label="Walter Teitelbaum on LinkedIn">{% include svg/linkedin.svg %}</a>
       {% endif %}
       {% if site.profile.xing %}
       <a class="particles-icon" href="{{ site.profile.xing }}">{% include svg/xing.svg %}</a>
@@ -34,14 +34,14 @@
       <a class="particles-icon" href="{{ site.profile.medium }}">{% include svg/medium.svg %}</a>
       {% endif %}
       {% if site.profile.github %}
-      <a class="particles-icon" href="{{ site.profile.github }}">{% include svg/github.svg %}</a>
+      <a class="particles-icon" href="{{ site.profile.github }}" aria-label="Walter Teitelbaum on GitHub">{% include svg/github.svg %}</a>
       {% endif %}
       {% if site.profile.cv != false %}
-      <a class="particles-icon" href="cv">{% include svg/cv-circled.svg %}</a>
+      <a class="particles-icon" href="{{ '/cv/' | relative_url }}" aria-label="Walter Teitelbaum's resume">{% include svg/cv-circled.svg %}</a>
       {% endif %}
     </div>
   </div>
   <div class="particles-scroll">
-    <a class="particles-icon" href="#scroll">{% include svg/nav-arrow-down.svg %}</a>
+    <a class="particles-icon" href="#scroll" aria-label="Read about Walter Teitelbaum">{% include svg/nav-arrow-down.svg %}</a>
   </div>
 </div>

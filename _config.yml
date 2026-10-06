@@ -1,5 +1,5 @@
 title: Walter Teitelbaum
-description: Welcome to my site. Feel free to have a look around.
+description: Walter Teitelbaum is an automation and mechatronics engineer in Seattle. Explore his engineering projects, technical notes, and resume.
 url: "https://walter.teitelbaum.us"
 baseurl: ""
 
@@ -8,13 +8,15 @@ theme: cvless
 destination: docs
 
 # site settings
-taglong: Welcome to my site.
+taglong: Automation & Mechatronics Engineer
 tagshort: Engineer
 cv: true
 
 # author settings
 author:
   name: Walter Teitelbaum
+  type: Person
+  url: "https://walter.teitelbaum.us/"
   email: walter@teitelbaum.us
 photo: assets/files/walt_headshot.png
 address: Seattle, WA
@@ -26,6 +28,17 @@ profile:
   instagram: https://www.instagram.com/walter.teitelbaum/
   linkedin: https://www.linkedin.com/in/walter-teitelbaum/
   github: https://github.com/jewbee2000
+
+# Public profiles that identify the same person.
+person_profiles:
+  name: Walter Teitelbaum
+  links:
+    - https://www.linkedin.com/in/walter-teitelbaum/
+    - https://github.com/jewbee2000
+    - https://www.facebook.com/walter.teitelbaum/
+    - https://www.instagram.com/walter.teitelbaum/
+
+google_site_verification: xhx7o_NA2HY_grmXk2vz-l_civ3qMrowYwOVz57qgak
 
 # build settings
 permalink: pretty

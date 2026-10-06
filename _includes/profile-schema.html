@@ -1,0 +1,25 @@
+{% assign profile_url = '/' | absolute_url %}
+{% assign person_id = profile_url | append: '#walter-teitelbaum' %}
+{% assign profile_id = profile_url | append: '#profile' %}
+{% assign profile_image = site.photo | absolute_url %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": {{ profile_id | jsonify }},
+  "url": {{ profile_url | jsonify }},
+  "name": {{ page.title | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "mainEntity": {
+    "@type": "Person",
+    "@id": {{ person_id | jsonify }},
+    "name": {{ site.author.name | jsonify }},
+    "alternateName": "Walt Teitelbaum",
+    "url": {{ profile_url | jsonify }},
+    "image": {{ profile_image | jsonify }},
+    "description": "Automation and mechatronics engineer in Seattle, Washington.",
+    "jobTitle": "Automation and Mechatronics Engineer",
+    "sameAs": {{ site.person_profiles.links | jsonify }}
+  }
+}
+</script>

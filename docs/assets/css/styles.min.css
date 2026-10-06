@@ -358,6 +358,7 @@
     white-space: nowrap; }
   
   .particles-subtitle {
+    color: var(--color-particles-text);
     margin: 0 0 1em 0;
     font-size: 1.25em;
     font-weight: 400; }
@@ -512,4 +513,3 @@
     #cv .reversefootnote,
     #cv a.iconlink {
       display: none; } }
-  

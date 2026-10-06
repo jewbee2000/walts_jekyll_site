@@ -1,6 +1,8 @@
 ---
 layout: cv
 title: Resume
+description: Walter Teitelbaum's resume, with experience in automation, robotics, motion control, Python software, and manufacturing test systems.
+image: /assets/files/walt_headshot.png
 ---
 
 # Resume
