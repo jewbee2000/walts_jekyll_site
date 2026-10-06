@@ -1,0 +1,5 @@
+# Generated evidence hashes cover original bytes, including CSV CRLF.
+assets/projects/virtual-thermal-fluid-lab/** -text
+docs/assets/projects/virtual-thermal-fluid-lab/** -text
+assets/projects/virtual-thermal-fluid-lab/replay/data.js -diff
+docs/assets/projects/virtual-thermal-fluid-lab/replay/data.js -diff

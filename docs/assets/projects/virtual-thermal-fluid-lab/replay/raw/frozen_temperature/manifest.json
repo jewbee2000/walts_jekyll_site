@@ -1,0 +1,354 @@
+{
+  "schema_version": 1,
+  "scenario": {
+    "schema_version": 1,
+    "topology": "thermal_loop",
+    "name": "frozen_temperature",
+    "case_id": "frozen_temperature",
+    "duration_us": 600000000,
+    "tick_us": 100000,
+    "seed": 1,
+    "initial": {
+      "wall_temperature_k": 317.7911483254,
+      "hot_temperature_k": 301.1244816587,
+      "cold_temperature_k": 293.15,
+      "pump_speed": 0.5274982823,
+      "valve_opening": 0.65
+    },
+    "model": {
+      "version": 1,
+      "density_kg_m3": 1000.0,
+      "specific_heat_j_kg_k": 4180.0,
+      "hot_mass_kg": 2.0,
+      "cold_mass_kg": 3.0,
+      "wall_capacity_j_k": 10000.0,
+      "max_heat_w": 5000.0,
+      "hot_conductance_w_k": 300.0,
+      "sink_conductance_w_k": 500.0,
+      "sink_temperature_k": 283.15,
+      "pump_shutoff_pa": 100000.0,
+      "pump_curve_pa_s2_m6": 400000000000.0,
+      "pipe_resistance_pa_s2_m6": 600000000000.0,
+      "valve_resistance_pa_s2_m6": 100000000000.0,
+      "pump_tau_s": 1.0,
+      "valve_tau_s": 0.5
+    },
+    "controller": {
+      "profile": 2,
+      "version": 1,
+      "config_id": 2,
+      "tick_us": 100000,
+      "stale_us": 300000,
+      "lease_us": 300000,
+      "kp_scaled": 2000000000,
+      "ki_scaled": 200000000,
+      "ff_ppm": 527498,
+      "normal_valve_ppm": 650000,
+      "target_i": 150000,
+      "min_control_i": 0,
+      "max_control_i": 500000,
+      "min_temp_mK": 273150,
+      "max_temp_mK": 368150,
+      "hot_trip_mK": 338150,
+      "wall_trip_mK": 358150
+    },
+    "sensor_adapter": {
+      "separate_wall_trip_k": 358.15
+    },
+    "initial_heat_demand": 1.0,
+    "events": [
+      {
+        "event_id": "arm_initial",
+        "type": "operation",
+        "time_us": 0,
+        "operation": "ARM"
+      },
+      {
+        "event_id": "frozen_primary",
+        "type": "observation_override",
+        "time_us": 60000000,
+        "channels": [
+          3,
+          5
+        ],
+        "mode": "freeze",
+        "value_i": [
+          301124,
+          317791
+        ]
+      },
+      {
+        "event_id": "lost_sink",
+        "type": "model_coefficients",
+        "time_us": 60000000,
+        "sink_conductance_w_k": 0.0
+      }
+    ],
+    "solver": {
+      "version": 1,
+      "method": "RK45",
+      "rtol": 1e-07,
+      "atol": [
+        1e-08,
+        1e-08,
+        1e-08,
+        1e-10,
+        1e-10,
+        1e-05,
+        1e-05
+      ],
+      "max_step_s": 0.05
+    }
+  },
+  "model": {
+    "version": 1,
+    "density_kg_m3": 1000.0,
+    "specific_heat_j_kg_k": 4180.0,
+    "hot_mass_kg": 2.0,
+    "cold_mass_kg": 3.0,
+    "wall_capacity_j_k": 10000.0,
+    "max_heat_w": 5000.0,
+    "hot_conductance_w_k": 300.0,
+    "sink_conductance_w_k": 500.0,
+    "sink_temperature_k": 283.15,
+    "pump_shutoff_pa": 100000.0,
+    "pump_curve_pa_s2_m6": 400000000000.0,
+    "pipe_resistance_pa_s2_m6": 600000000000.0,
+    "valve_resistance_pa_s2_m6": 100000000000.0,
+    "pump_tau_s": 1.0,
+    "valve_tau_s": 0.5
+  },
+  "solver": {
+    "version": 1,
+    "method": "RK45",
+    "rtol": 1e-07,
+    "requested_rtol": 1e-07,
+    "atol": [
+      1e-08,
+      1e-08,
+      1e-08,
+      1e-10,
+      1e-10,
+      1e-05,
+      1e-05
+    ],
+    "max_step_s": 0.05,
+    "effective_max_step_s": 0.05,
+    "state_order": [
+      "wall_temperature_k",
+      "hot_temperature_k",
+      "cold_temperature_k",
+      "pump_speed",
+      "valve_opening",
+      "heat_in_j",
+      "heat_rejected_j"
+    ],
+    "state_units": [
+      "K",
+      "K",
+      "K",
+      "1",
+      "1",
+      "J",
+      "J"
+    ]
+  },
+  "controller": {
+    "profile": 2,
+    "version": 1,
+    "config_id": 2,
+    "tick_us": 100000,
+    "stale_us": 300000,
+    "lease_us": 300000,
+    "kp_scaled": 2000000000,
+    "ki_scaled": 200000000,
+    "ff_ppm": 527498,
+    "normal_valve_ppm": 650000,
+    "target_i": 150000,
+    "min_control_i": 0,
+    "max_control_i": 500000,
+    "min_temp_mK": 273150,
+    "max_temp_mK": 368150,
+    "hot_trip_mK": 338150,
+    "wall_trip_mK": 358150
+  },
+  "execution": {
+    "source_sha256": "fa2a7a40d64fc2dad4022ed6f4642dfd7249912d36882f28a845d164e83babc9",
+    "source_files_sha256": {
+      "CMakeLists.txt": "93df455688fc72fb7c04b43de59d0940d99603b36ce1613b2053fb24c1988053",
+      "firmware/core/fl_core.c": "cd5e7a8f003cc843a72395bf733f86925e6966163ce73029fddd58f109f075d8",
+      "firmware/core/fl_core.h": "54e4c93d64a550a09a9a34013c01feedb24cd5f173aa2b4d7e49d3a841b2054b",
+      "firmware/core/fl_protocol.c": "b8ee5c41b3858d04248ac89ca3ae2688d7268aa4cf5f6b63177e81b9c4401cb7",
+      "firmware/core/fl_protocol.h": "d53eef76fedc773fe149361d302649857edb75e6d960dc13bf1c8c6144f1ac74",
+      "firmware/host/main.c": "a1107a28c4cb522c898f5996d200aedf7e4ce7a07eeff491cee6fe950d124e1c",
+      "firmware/pico/CMakeLists.txt": "ae2bfdda9aaba0fc36c55a78366dd297b2edbc964637085a1d5f81182add437c",
+      "firmware/pico/device_policy.c": "3a6d225bd1c113a264d9dec91e70cf6569cfabb969232c4936a3e3e47d71878f",
+      "firmware/pico/device_policy.h": "ef5706809efe38ced832a4298a4e64e216971dda2018d15c027a4e7feab01274",
+      "firmware/pico/fl_hal.c": "bad89ca27ae85cb4a883d0478f42a3949edf2796f9e5fc4a05aa213e342ac917",
+      "firmware/pico/fl_hal.h": "74c3d84cd02ff40a71c4a9d99112ad747765cbaf90dd6ca5ffc64a4acd731f3a",
+      "firmware/pico/main.c": "f4309bda3f3b4db84713656dde604ffdaf52c32bf04bf36b14fcdcb55036dac3",
+      "firmware/pico/tests/CMakeLists.txt": "0f438eb66c0254add0b1fd33dfc1249846ea1c06a80f450aadc83ba59d6c713e",
+      "firmware/pico/tests/hal_stub/hardware/adc.h": "7e1af2cc663741f3b7dc8b85ca40bd1cc66e8a02e6f82792753267449008297f",
+      "firmware/pico/tests/hal_stub/pico/stdlib.h": "b065f0abd92e30c222226ebe53a7506097a6cb47e8e651f85fa915c2712730cd",
+      "firmware/pico/tests/test_device.c": "ba80b501969764017b410e353969b3c3dc77b08ba90262fe005d231e1bd66546",
+      "firmware/pico/tests/test_hal.c": "bd7ae9fe63b2b0a304c38b0f367ebb117ea742206f0a7f8ad4bf1af25a24870c",
+      "firmware/pico/tests/test_usb_budget.c": "901749c55e191fe975a048a7bb84f6f36060e817f863392781539bbd8ef03ab5",
+      "firmware/pico/tests/usb_stub/tusb.h": "dd3d45ecf744d7f034248cddbb81862178dbe82d9c3df8d850ab8adc06461684",
+      "firmware/pico/tests/usb_stub/usbd.c": "ac641b4397cbb7c0d38dd62f1a6f0e8101cd88ed9614d4e13ce09c0f577d21b9",
+      "firmware/pico/tusb_config.h": "6a519c23e5272596e7d403a4deb0c6dcc1a064804782aba96495c47f9de80e37",
+      "firmware/pico/usb_descriptors.c": "ac3591ac67b84a0e07e8e8427723cd3ded1f9c8dd30a50960dc8f54e4ef2fbb5",
+      "firmware/pico/usb_task.c": "7d287e0d64f141d1874a343a2f79d30cc8f2adfca350ffe3bfd8cfb910c38005",
+      "firmware/tests/test_core.c": "a1bda95571b568d61fe7b3acf1d1f8c82192e0384ee6a7f80068dafe108997e4",
+      "pyproject.toml": "9b48979f9c0168aca7994a9ab0c513099e31c7a9eb5853a710ef08bf29b723ca",
+      "schemas/tank-manifest-v1.schema.json": "0bb96fb4e0ab3e1143439cda4033d30683c1f8152744f22e7b66acf5fbdb95a3",
+      "schemas/tank-model-v1.schema.json": "8db6727e02c9076c6539ea2674ef1ebe057b1bcc96f359998b65f9df8c76d21a",
+      "schemas/tank-scenario-v1.schema.json": "73bc16d99892a2ebb12b0f6f398196bc85454ea244ea227ee3ba2f9ec225b0e0",
+      "schemas/tank-solver-v1.schema.json": "f012c7765f8c86a6f36ddcdcc7c8843f6f25ffc66d672166978ef7ab97bc0dc6",
+      "schemas/tank-summary-v1.schema.json": "4d96d0fb4bbb89ed433a287a19573edb3a4b248093824cf1cff424fbdfb4aecb",
+      "schemas/tank-telemetry-v1.schema.json": "e6b5cecbc4642e53d3dc7a717573d47782a277baa2bf9ecccda8cc11eeecb51d",
+      "schemas/thermal-campaign-v1.schema.json": "e5b4efcc55ea0c9af568fcd0f202e11e2a23e059b945f0f80745090d18e08e79",
+      "schemas/thermal-controller-v1.schema.json": "0a25e65aa1fd00eee953040f92814ed039d33d317e0e235be102bc881b7d4513",
+      "schemas/thermal-manifest-v1.schema.json": "38a23d5c60ba12474aa60f5d8f58082280e0dbb530ceb847d8debe87f9ecdda8",
+      "schemas/thermal-model-v1.schema.json": "a2c59b86a42a5842add9172498439ac82d63263ec95d0d5736dd27a4add76391",
+      "schemas/thermal-solver-input-v1.schema.json": "2046ebbfb45846b88fe08971eb717c3d26daa693c26a586365dc106ea6984ce3",
+      "schemas/thermal-solver-v1.schema.json": "5b48ae2f57deb365fdc833666273242b3b6f1d924c86b9096d8282c65b1baef2",
+      "schemas/thermal-summary-v1.schema.json": "585406530443dfc95c62300175b6556d40b9ff90d4f3b5c907bd07d9558cd633",
+      "schemas/thermal-telemetry-row-v1.schema.json": "04225fdd9aad0f3a5a407215fc42b6a4e7f1ab42d05af203f7a650f9c209bbc2",
+      "scripts/audit_exports.py": "f64c4883d191118f23f9b7869b9b6a98bbcf02a59a55583933ed979500997a7d",
+      "scripts/benchmark_campaign.py": "2de4ead293b3bc2321de3de64a811eea5b88075be6c13afa0b537917d0d25308",
+      "scripts/build_host.ps1": "e641062a473838540f9155a85855e4130142dc9eb9d3f92f4b76ebde3f07555f",
+      "scripts/build_pico.ps1": "bd6006888e52e0eb3b987f3a826ba5064346c65d9f886b5746ab50710dccbf0a",
+      "scripts/build_replay.py": "ea06c1e5a935a6b1196bb870d9af90385a6d84d86a455e340c01e873d1d02f37",
+      "scripts/refine_campaign.py": "e7f2dec7202fa414839ff2bc7a2fd4f8cd06ea5ff2c7ac6044e31931d1987564",
+      "scripts/run_campaign.py": "72de7ec1b2f555218913e72ba178360a2bead5d4a6809f459d1d0c8c78bd8c98",
+      "scripts/run_suite.py": "ab33d251121241d8a6aa20d2b8e6b89454e1513e84cc3d7e0ab57ebc9830355b",
+      "scripts/verify_host.py": "153874ae68107a59a2af943aa444765f0a0f48baf077996ebc5d586829c357cc",
+      "scripts/verify_thermal.py": "b2a7acd2ccbf61814d8094ec4c8f29aa7b61a79090c787b82fae95bd36f8bdc1",
+      "src/fluidlab/__init__.py": "f8d23a932ec8175c50d317cb3367c0f6e81bdff7a9b20737bbd07eb760d14377",
+      "src/fluidlab/c_controller.py": "31f502c78f9137a7d50f883a301b4fd0288035da313f6c4a03a283f9814b959c",
+      "src/fluidlab/campaign.py": "3881133c4a5a554eb1f08c0c9ea07f1bd427f1ee648b46659fa992abe02680fe",
+      "src/fluidlab/campaign_evaluator.py": "aad00ecf48d518e1e55816e6f14c4af4c7a2ab39db67cef0984d62dfda74d8c8",
+      "src/fluidlab/cli.py": "6c67e549184fa4829c988ccbe554a1b86201bd38409eed34c32874069de46366",
+      "src/fluidlab/contracts.py": "ef9d5fda55b594d4ac4cded6ff7f9908a786d4902f19895dababc98f2e53a408",
+      "src/fluidlab/control.py": "45a80a9cb8eb95f71f2d2194bb256e26a161672cd9d03121f17ac5b20f84569a",
+      "src/fluidlab/evaluator.py": "542ec0950a761eef63497a027e767bff0229fd1a7df4e3b4d80e4d06870646b7",
+      "src/fluidlab/plant.py": "0463cddf9682ae6466fd510979a1b45842eb87ad6c7eeee5fa8bd1aeee3300ae",
+      "src/fluidlab/protocol.py": "8676845308c4a871f36015af7f781861a407f7fb9708b7a5a5f8ea4d8a071498",
+      "src/fluidlab/provenance.py": "e7a0ca0ac794de1c0eeab160ee0b50ee6fac87a4492b9e0a11726de27b189580",
+      "src/fluidlab/runner.py": "7947e732a50a3dd8f7963c89f986abe29fe2260126de52e020da2966799b50ac",
+      "src/fluidlab/thermal.py": "7becf06efd5a586b92078b7be5769d4692fb7c5bdd684d14fde183706db3ebf8",
+      "uv.lock": "76472376ec629c6fb1da220501125f413dc2944f76e75139283ea2cb3ca7bcd0"
+    },
+    "source_inclusion": [
+      "src/**/*.py",
+      "scripts/**/*.py",
+      "schemas/*.json",
+      "pyproject.toml",
+      "uv.lock",
+      "firmware/**/*.c",
+      "firmware/**/*.h",
+      "firmware/**/*.cmake",
+      "firmware/**/CMakeLists.txt",
+      "CMakeLists.txt",
+      "scripts/**/*.ps1"
+    ],
+    "source_exclusion": [
+      "firmware/**/artifacts/**",
+      "firmware/**/build/**",
+      "firmware/**/generated/**",
+      "firmware/**/out/**",
+      "firmware/**/third_party/**",
+      "firmware/**/vendor/**",
+      "firmware/**/cmake-build-*/**"
+    ],
+    "source_hash_framing": "POSIX UTF-8 path, NUL, uint64 BE raw-byte length, raw bytes",
+    "source_line_endings": "raw bytes; repository .gitattributes specifies LF",
+    "lock_sha256": "76472376ec629c6fb1da220501125f413dc2944f76e75139283ea2cb3ca7bcd0",
+    "controller_sha256": "7304c58ebb75fad60d2e4f7107a4b65b6dbae047b010158a8aaaf4d2181eff6a",
+    "controller_implementation": "portable_c11_host",
+    "firmware_execution": "NOT_EXECUTED",
+    "python": "3.12.2",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "units": {
+      "wall_temperature_k": "K",
+      "hot_temperature_k": "K",
+      "cold_temperature_k": "K",
+      "pump_speed": "1",
+      "valve_opening": "1",
+      "heat_in_j": "J",
+      "heat_rejected_j": "J",
+      "time_s": "s",
+      "time_us": "us",
+      "flow_m3_s": "m3/s",
+      "pump_pressure_pa": "Pa",
+      "energy_residual_j": "J"
+    },
+    "git_revision": "cc5a6feae95dc5888bf3041bc9dc3306dba667ba",
+    "git_dirty": false,
+    "git_root_matches": true,
+    "controller_execution": "HOST_SIL",
+    "executable_path": "C:\\Users\\Walt\\.codex\\worktrees\\thermal-lab-release-check\\virtual-fluid-lab\\artifacts\\host-build\\Release\\fluid_controller_host.exe",
+    "firmware_core_sha256": {
+      "firmware/core/fl_core.c": "cd5e7a8f003cc843a72395bf733f86925e6966163ce73029fddd58f109f075d8",
+      "firmware/core/fl_core.h": "54e4c93d64a550a09a9a34013c01feedb24cd5f173aa2b4d7e49d3a841b2054b",
+      "firmware/core/fl_protocol.c": "b8ee5c41b3858d04248ac89ca3ae2688d7268aa4cf5f6b63177e81b9c4401cb7",
+      "firmware/core/fl_protocol.h": "d53eef76fedc773fe149361d302649857edb75e6d960dc13bf1c8c6144f1ac74"
+    },
+    "physical_validation": "NOT_STARTED",
+    "board_execution": "NOT_EXECUTED",
+    "parameter_pedigree": "assumed",
+    "compiler_build_metadata": {
+      "status": "RECORDED",
+      "files": {
+        "CMakeCache.txt": {
+          "sha256": "2d5ff4d11186116b1dcb50b2f7151be11011079cbe250d47a580303d19aac412",
+          "identity_lines": [
+            "CMAKE_GENERATOR:INTERNAL=Visual Studio 17 2022"
+          ]
+        },
+        "CMakeFiles/4.4.4/CMakeCCompiler.cmake": {
+          "sha256": "68000c0e6de921b90921063fb99987b3d7725fcbe6053a583c54ade9c49bc82a",
+          "identity_lines": [
+            "set(CMAKE_C_COMPILER_ID \"MSVC\")",
+            "set(CMAKE_C_COMPILER_VERSION \"19.44.35229.0\")",
+            "set(CMAKE_C_COMPILER_VERSION_INTERNAL \"\")",
+            "set(CMAKE_C_COMPILER_ID_RUN 1)"
+          ]
+        }
+      }
+    },
+    "configuration_sha256": "a365b942ced71831b846b03c18f96efbdebd47f10481ce1ccc1aa622004b097b",
+    "scenario_sha256": "efc99152f51c77d0e73c4b6aa142014894b08b842bec5bcaefcf06a917eb3946",
+    "frozen_default_case_match": true,
+    "configuration_scope": "FROZEN_DEFAULT"
+  },
+  "clocks": {
+    "absolute": "virtual simulation microseconds",
+    "wire": "V: absolute minus session_origin_us",
+    "source": "original V acquisition",
+    "receipt": "delivery STEP absolute V",
+    "host": "monotonic wall seconds; never subtracted from V",
+    "device": "NOT_EXECUTED"
+  },
+  "quantization": {
+    "command_ppm": 1000000,
+    "temperature_mk": 1000,
+    "flow_ul_s": 1000000000,
+    "command_rounding_max_ppm": 0.5,
+    "temperature_rounding_max_mk": 0.5,
+    "flow_rounding_max_ul_s": 0.5
+  },
+  "artifacts": {
+    "controller.json": "c52212d7b9dd3488d3a069960c742fa0ceb933faee81dead3423d808d8765a3e",
+    "model.json": "5d23ccc09949a701f1e69857c236618dbe307559d78481cf95aba9b981ca32d3",
+    "scenario.json": "00bf50a29511e6714199790a64de6ca92c9a34cee75bdf23a5a9696279554ee0",
+    "solver.json": "36ab9f2e869b5332c843bcf413fb4945979001d6ca023970c4a2d210146dc807",
+    "summary.json": "1aa041bdb33b21faa8c6775566c35b964b7061e9fd3c4fa159de4f95357c741a",
+    "telemetry.csv": "0bd8cf310a7ab75574d8926492b892ee095c1ebf535f55052315c2e7bf8e9b4e",
+    "wire/epoch-1/events.jsonl": "b72295a01ede73f1a3314d44df4768315dfcfc8db6294bc95badfa4756efd84a",
+    "wire/epoch-1/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "wire/epoch-1/stdin.bin": "61bc0bfdd9b3fcd5b49b1fd65e9288f6029a06510c917d9ebfc57276992d3775",
+    "wire/epoch-1/stdout.bin": "f0120f516ba84e358f0a3af17c4f399e599859a6b097bf7c90aa6b79a364a573"
+  }
+}

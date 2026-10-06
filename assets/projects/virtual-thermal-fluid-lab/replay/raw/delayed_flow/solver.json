@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "method": "RK45",
+  "rtol": 1e-07,
+  "requested_rtol": 1e-07,
+  "atol": [
+    1e-08,
+    1e-08,
+    1e-08,
+    1e-10,
+    1e-10,
+    1e-05,
+    1e-05
+  ],
+  "max_step_s": 0.05,
+  "effective_max_step_s": 0.05,
+  "state_order": [
+    "wall_temperature_k",
+    "hot_temperature_k",
+    "cold_temperature_k",
+    "pump_speed",
+    "valve_opening",
+    "heat_in_j",
+    "heat_rejected_j"
+  ],
+  "state_units": [
+    "K",
+    "K",
+    "K",
+    "1",
+    "1",
+    "J",
+    "J"
+  ]
+}

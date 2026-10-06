@@ -1,0 +1,19 @@
+{
+  "profile": 2,
+  "version": 1,
+  "config_id": 2,
+  "tick_us": 100000,
+  "stale_us": 300000,
+  "lease_us": 300000,
+  "kp_scaled": 2000000000,
+  "ki_scaled": 200000000,
+  "ff_ppm": 527498,
+  "normal_valve_ppm": 650000,
+  "target_i": 150000,
+  "min_control_i": 0,
+  "max_control_i": 500000,
+  "min_temp_mK": 273150,
+  "max_temp_mK": 368150,
+  "hot_trip_mK": 338150,
+  "wall_trip_mK": 358150
+}
