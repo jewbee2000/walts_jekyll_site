@@ -1,4 +1,129 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://walter.teitelbaum.us/feed.xml" rel="self" type="application/atom+xml" /><link href="https://walter.teitelbaum.us/" rel="alternate" type="text/html" /><updated>2026-10-06T08:01:04-07:00</updated><id>https://walter.teitelbaum.us/feed.xml</id><title type="html">Walter Teitelbaum</title><subtitle>Walter Teitelbaum is an automation and mechatronics engineer in Seattle. Explore his engineering projects, technical notes, and resume.</subtitle><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><entry><title type="html">Testing a Thermal Fluid Loop with Simulation and Embedded Control</title><link href="https://walter.teitelbaum.us/2026/10/06/virtual-thermal-fluid-lab/" rel="alternate" type="text/html" title="Testing a Thermal Fluid Loop with Simulation and Embedded Control" /><published>2026-10-06T00:00:00-07:00</published><updated>2026-10-06T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/06/virtual-thermal-fluid-lab</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/06/virtual-thermal-fluid-lab/"><![CDATA[<p>Virtual Thermal Fluid Lab is my software test bench for exploring how fluid flow, heat transfer, and embedded control interact. I can run a healthy loop, introduce a restriction or a sensor fault, and follow the resulting behavior from the controller’s inputs through to the simulated temperatures.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://walter.teitelbaum.us/feed.xml" rel="self" type="application/atom+xml" /><link href="https://walter.teitelbaum.us/" rel="alternate" type="text/html" /><updated>2026-10-11T12:28:59-07:00</updated><id>https://walter.teitelbaum.us/feed.xml</id><title type="html">Walter Teitelbaum</title><subtitle>Walter Teitelbaum is an automation and mechatronics engineer in Seattle. Explore his engineering projects, technical notes, and resume.</subtitle><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><entry><title type="html">Building a vocal arranger with AI</title><link href="https://walter.teitelbaum.us/2026/10/11/vocal-arranger/" rel="alternate" type="text/html" title="Building a vocal arranger with AI" /><published>2026-10-11T00:00:00-07:00</published><updated>2026-10-11T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/11/vocal-arranger</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/11/vocal-arranger/"><![CDATA[<style>
+.vocal-arranger-media audio { display: block; width: 100%; margin: 1rem 0; }
+.vocal-arranger-media img { display: block; max-width: 100%; height: auto; }
+.vocal-arranger-media details { margin-top: 1rem; }
+.vocal-arranger-media summary { cursor: pointer; font-weight: 600; }
+.vocal-arranger-media details p { margin-top: 1.5rem; }
+</style>
+
+<p>I sing in <a href="https://youtu.be/ictqLjDXr2Y">an a cappella group</a>, and I wanted to
+arrange a song for us. That was the inspiration for this project. I wondered
+whether Codex could help me turn a lead sheet and some plain-English
+instructions into a five-part a cappella arrangement. I tried it with Paul
+Simon’s “Diamonds on the Soles of Her Shoes,” and I was pleasantly surprised
+by what came back.</p>
+
+<p>A lead sheet supplies a song’s melody, chords and lyrics. I wanted the software
+to develop that foundation into parts for soprano, alto, tenor, baritone and
+bass. I specified eleven singers sharing those five parts: one soprano, four
+altos, and two each on tenor, baritone and bass. I asked for intermediate
+difficulty, ten different arrangements, and three finalists with printable
+scores, editable notation, rehearsal files and simulated singing.</p>
+
+<p>I worked with Codex to build the software, giving it musical goals and letting
+it choose the detailed parameters. After the first batch, I asked for one
+revision: more rhythmic variety and syncopation, occasional backing responses
+using words from the song, and more sharing of complete lead phrases among the
+voices. I wanted the backing parts to have something interesting to do, too.</p>
+
+<p>My workflow had four steps:</p>
+
+<ol>
+  <li><strong>Read the music.</strong> The software turned the lead sheet into a precise list
+of notes, durations, words and chords that it could work with.</li>
+  <li><strong>Give the voices different jobs.</strong> Codex wrote rules for bass movement,
+harmony, accompaniment rhythms, lead handoffs and changes in texture. It
+developed the short supplied edition into arrangements a little over three
+minutes long, with introductions, repeated sections and endings.</li>
+  <li><strong>Check and compare.</strong> Software checked things such as whether a bar added
+up correctly, a part stayed within its assumed range, or the original words
+and melody were preserved. Separate AI reviewers assessed the ten candidates
+for source fidelity, harmony, rhythm, singability and musical coherence.</li>
+  <li><strong>Make the results usable.</strong> The project exported scores and rehearsal
+tracks, then used the <a href="https://sinsy.sp.nitech.ac.jp/en">Sinsy singing synthesizer</a>
+to make vocal demonstrations from the written parts.</li>
+</ol>
+
+<p>What impressed me was having several complete, editable arrangements to work
+with after that one revision. The three finalists were “Velvet Conversation,”
+“Street-Corner Replies” and “Dancing Counterlines.” I could see my requests
+showing up in the music. I’d still want musicians to try the parts and tell me
+what works; an AI review score only goes so far.</p>
+
+<p>The Sinsy sung demos sounded hilarious. I noticed a bug where the bass, baritone
+and tenor weren’t singing the lyrics. The alto and soprano did sing them,
+but with what sounded to me like German accents. It was a very funny way to
+preview the music.</p>
+
+<p>Here’s “Velvet Conversation,” one of the completed arrangements, along with
+its matching sung demo. You can listen and follow the score below.</p>
+
+<figure class="experiment-figure vocal-arranger-media">
+  <figcaption><strong>Velvet Conversation — Sinsy sung demo</strong></figcaption>
+  <audio controls="" preload="metadata" aria-label="Velvet Conversation sung demo">
+    <source src="/assets/projects/vocal-arranger/diamonds-velvet-conversation.mp3" type="audio/mpeg" />
+    <a href="/assets/projects/vocal-arranger/diamonds-velvet-conversation.mp3">Listen to the sung demo</a>.
+  </audio>
+  <p><a href="/assets/projects/vocal-arranger/diamonds-velvet-conversation.mp3">Open or download the sung demo</a> (3:07).</p>
+</figure>
+
+<figure class="experiment-figure vocal-arranger-media">
+  <figcaption><strong>Diamonds on the Soles of Her Shoes — Velvet Conversation</strong><br />Complete five-part arrangement</figcaption>
+  <a href="/assets/projects/vocal-arranger/diamonds-velvet-conversation.pdf">
+    <img src="/assets/projects/vocal-arranger/score/page-01.png" alt="Velvet Conversation score, page 1 of 14" width="100%" />
+  </a>
+  <p>Page 1 of 14. Open the pages below to follow the complete arrangement.</p>
+  <details>
+    <summary>View score pages 2–14</summary>
+    <p>Page 2 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-02.png" alt="Velvet Conversation score, page 2 of 14" loading="lazy" width="100%" />
+    <p>Page 3 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-03.png" alt="Velvet Conversation score, page 3 of 14" loading="lazy" width="100%" />
+    <p>Page 4 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-04.png" alt="Velvet Conversation score, page 4 of 14" loading="lazy" width="100%" />
+    <p>Page 5 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-05.png" alt="Velvet Conversation score, page 5 of 14" loading="lazy" width="100%" />
+    <p>Page 6 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-06.png" alt="Velvet Conversation score, page 6 of 14" loading="lazy" width="100%" />
+    <p>Page 7 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-07.png" alt="Velvet Conversation score, page 7 of 14" loading="lazy" width="100%" />
+    <p>Page 8 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-08.png" alt="Velvet Conversation score, page 8 of 14" loading="lazy" width="100%" />
+    <p>Page 9 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-09.png" alt="Velvet Conversation score, page 9 of 14" loading="lazy" width="100%" />
+    <p>Page 10 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-10.png" alt="Velvet Conversation score, page 10 of 14" loading="lazy" width="100%" />
+    <p>Page 11 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-11.png" alt="Velvet Conversation score, page 11 of 14" loading="lazy" width="100%" />
+    <p>Page 12 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-12.png" alt="Velvet Conversation score, page 12 of 14" loading="lazy" width="100%" />
+    <p>Page 13 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-13.png" alt="Velvet Conversation score, page 13 of 14" loading="lazy" width="100%" />
+    <p>Page 14 of 14</p>
+    <img src="/assets/projects/vocal-arranger/score/page-14.png" alt="Velvet Conversation score, page 14 of 14" loading="lazy" width="100%" />
+  </details>
+  <p><a href="/assets/projects/vocal-arranger/diamonds-velvet-conversation.pdf">Open or download the complete score</a>.</p>
+</figure>
+
+<p>The harder problem appeared when I tried starting with a recording instead of
+a known-good lead sheet. A waveform or MP3 contains overlapping sounds;
+producing readable music requires identifying the melody and chords, finding
+the beat and bar lines, and deciding how performed timing should be written.
+A singer’s slight delay, a swung pair of notes and a deliberate offbeat entrance
+need different interpretations. A transcription can capture plausible pitches
+yet lose the rhythm and feel that make the song recognizable to a musician.
+That helped me understand the limitations described by the tools themselves: Spotify’s
+<a href="https://github.com/spotify/basic-pitch">Basic Pitch</a> says it works best on one
+instrument at a time, while <a href="https://github.com/chrisdonahue/sheetsage#improving-results">Sheet Sage’s documentation</a>
+describes tempo and downbeat errors that can distort the notation. In my
+experiments, getting a trustworthy, intuitive lead sheet remained the weak link.</p>
+
+<p>I came away impressed by how far I could get with Codex, a good lead sheet and
+a little feedback. I also came away with a much greater appreciation for the work
+involved in writing that lead sheet in the first place. I’ve
+<a href="https://github.com/jewbee2000/vocal-arranger">released the code on GitHub</a>,
+including an original demo that others can try. The code repository is separate
+from the “Diamonds” score and sung example included here.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[I wanted to arrange a song for my a cappella group. Here is what I learned working with Codex, with a completed Diamonds score and Sinsy sung demo.]]></summary></entry><entry><title type="html">Testing a Thermal Fluid Loop with Simulation and Embedded Control</title><link href="https://walter.teitelbaum.us/2026/10/06/virtual-thermal-fluid-lab/" rel="alternate" type="text/html" title="Testing a Thermal Fluid Loop with Simulation and Embedded Control" /><published>2026-10-06T00:00:00-07:00</published><updated>2026-10-06T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/06/virtual-thermal-fluid-lab</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/06/virtual-thermal-fluid-lab/"><![CDATA[<p>Virtual Thermal Fluid Lab is my software test bench for exploring how fluid flow, heat transfer, and embedded control interact. I can run a healthy loop, introduce a restriction or a sensor fault, and follow the resulting behavior from the controller’s inputs through to the simulated temperatures.</p>
 
 <p>The project brings together three tools: a Python plant model, an actual C controller executable, and a browser replay. Each has a clear job, and the recorded interfaces make it possible to investigate the whole experiment without needing a physical rig for every software change.</p>
 
@@ -98,56 +223,7 @@ Loop pressure drop: (Kpipe + Kvalve/z²) Q², for z &gt; 0</pre>
 
 <p>The selected 240-second demo took 8.43 wall seconds on the Windows workstation. Its observed process peaks met the chosen laptop budget, with monitoring limits documented; this is not a hard-real-time claim. The <a href="https://github.com/jewbee2000/virtual-thermal-fluid-lab/releases/tag/v0.1.0">source and release</a> include reproduction commands and the full evidence.</p>
 
-<p>Physical validation remains <strong>NOT_STARTED</strong>. The lumped thermal model omits fluid travel-time delays, local gradients, phase change, and pump dissipation. The next experiment is an indicator-only Pico capture of acquisition, arming, latching, reconnects, and timing, followed by measured water-loop experiments with separate holdout runs.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Inside Virtual Thermal Fluid Lab: deterministic simulation, portable embedded control, fault scenarios, verified results, and an inspectable replay.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/projects/virtual-thermal-fluid-lab/nominal.png" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/projects/virtual-thermal-fluid-lab/nominal.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">AbyssBench: Checking Controller Timing</title><link href="https://walter.teitelbaum.us/2026/10/04/abyssbench/" rel="alternate" type="text/html" title="AbyssBench: Checking Controller Timing" /><published>2026-10-04T00:00:00-07:00</published><updated>2026-10-04T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/04/abyssbench</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/04/abyssbench/"><![CDATA[<p>A controller can issue the right command while the machine continues doing the wrong thing. <a href="https://github.com/jewbee2000/abyssbench">AbyssBench</a> explores that distinction: when a sensor reading becomes stale or an actuator stops responding, did the controller issue the required response before its deadline—and does the recorded evidence actually establish that?</p>
-
-<p>I see it as a small tool for engineers developing control logic or reviewing test logs. It combines pytest with <a href="https://github.com/nickovic/rtamt">RTAMT</a>, an existing temporal monitoring library. Its contribution is the surrounding workflow: explicit timing rules, repeatable traces, and evidence that keeps commands separate from measured behavior.</p>
-
-<h2 id="how-it-is-used">How it is used</h2>
-
-<p>I would start with the <a href="https://github.com/jewbee2000/abyssbench#try-it-locally-powershell-python-312">installation and offline demo</a>. The <a href="https://github.com/jewbee2000/abyssbench/blob/main/docs/API.md">public API walkthrough</a> offers two starting points: import a supported JSONL or explicitly mapped CSV trace, or supply a trusted Python controller to the example simulator. Define acceptable ranges, measurement age, response deadlines, and prohibited transitions; run the check; then inspect each rule’s verdict and supporting events. Incomplete observation windows remain inconclusive. A recent packet carrying an old measurement does not become fresh just because it arrived recently.</p>
-
-<h2 id="a-small-example">A small example</h2>
-
-<p>The pump-and-valve example makes the distinction visible. The simulated valve sticks closed at 500 milliseconds. At 1,010 milliseconds, the controller detects the persistent mismatch and issues pump-off and valve-open commands. The valve remains closed. The response check can pass because the required commands were issued; that says nothing about mechanical recovery.</p>
-
-<figure class="experiment-figure">
-  <a href="/assets/files/agentic-engineering/abyss-timing.png"><img src="/assets/files/agentic-engineering/abyss-timing.png" alt="Simulation timeline: a valve sticks at 500 milliseconds and the controller issues safe commands at 1,010 milliseconds while the valve remains closed." loading="lazy" width="1920" height="1120" /></a>
-  <figcaption>Recorded simulation events: commanded and actual valve positions remain separate.</figcaption>
-</figure>
-
-<h2 id="validation-and-limits">Validation and limits</h2>
-
-<p>The original release passed 116 tests. The publication review nevertheless found two edge cases: a single observation could crash the monitor, and a command preceding a fault at the same timestamp could incorrectly satisfy its response rule. Both were repaired; the publication audit passed <strong>124 tests</strong>. The <a href="https://github.com/jewbee2000/abyssbench/blob/main/evidence/publication-audit/README.md">audit preserves the failing cases</a>.</p>
-
-<p>The tool supports one clock and trusted controller callbacks; its fluid model is uncalibrated, with no hardware validation. A real trace and an independent engineer’s trial are the next useful tests.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Replay controller events and check whether the recorded response satisfies an explicit timing contract. Part of Walter Teitelbaum's two-day AI engineering experiment.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/abyss-timing.png" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/abyss-timing.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">RFQFuzz: Regression Tests for Drawing Reviewers</title><link href="https://walter.teitelbaum.us/2026/10/04/rfqfuzz/" rel="alternate" type="text/html" title="RFQFuzz: Regression Tests for Drawing Reviewers" /><published>2026-10-04T00:00:00-07:00</published><updated>2026-10-04T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/04/rfqfuzz</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/04/rfqfuzz/"><![CDATA[<p><a href="https://github.com/jewbee2000/rfq-fuzz">RFQFuzz</a> is a local regression toolkit for engineers developing or adopting reviewers of CNC request-for-quotation packages. It checks whether a change to a review prompt, rule engine, or capability profile changes the findings on controlled STEP models and drawings.</p>
-
-<p>I initially considered a drawing-review tool. The <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/docs/RESEARCH_AND_GO_NO_GO.md">research into existing products</a> led to a narrower question: how can someone test the reviewer itself? RFQFuzz supplies known defects, corrected counterparts, and valid alternatives so that flagging every difference is not a successful strategy.</p>
-
-<h2 id="how-it-is-used">How it is used</h2>
-
-<p>The workflow is to validate a challenge package, pass its public files to a reviewer, import the observations, and compare the results across versions. Reports connect changed findings to the relevant drawing and geometry. Package consistency and conditional CNC advisories are scored separately.</p>
-
-<p>The <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/docs/DEMO.md">installation and demo guide</a> provides a 15-case offline replay. After setup, run this from the checkout with the environment active:</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python -m rfqfuzz.v1 demo examples/v1-demo work/my-demo
-</code></pre></div></div>
-
-<p>Open <code class="language-plaintext highlighter-rouge">work/my-demo/report/index.html</code>. The demo compares retained responses with two deliberately injected changes; it requires no live model or API key.</p>
-
-<h2 id="a-small-example">A small example</h2>
-
-<p>One challenge pairs a STEP model containing 6.00 mm bores with a drawing specifying 6.80 ±0.05 mm at the same manufacturing stage. A corrected drawing resolves the contradiction. Another package legitimately differs because it describes a later reaming operation. That context matters as much as the numbers.</p>
-
-<figure class="experiment-figure">
-  <a href="/assets/files/agentic-engineering/rfq-plate.png"><img src="/assets/files/agentic-engineering/rfq-plate.png" alt="RFQFuzz plate drawing specifying four 6.80 plus or minus 0.05 millimetre bores, deliberately contradicting its same-stage STEP model." loading="lazy" width="2339" height="1654" /></a>
-  <figcaption>A deliberately inconsistent challenge drawing, not a production part.</figcaption>
-</figure>
-
-<h2 id="validation-and-limits">Validation and limits</h2>
-
-<p>The publication audit passed <strong>278 tests</strong>, up from 270 after repairs to local-unit interpretation and process output limits. The <a href="https://github.com/jewbee2000/rfq-fuzz/tree/main/evidence/publication-code-audit">audit records</a> preserve that distinction.</p>
-
-<p>Its 145 validated core packets are development cases, with no holdout. The tool supports three finite geometry families, and its geometry checks share the OCCT kernel. It does not establish general drawing-review accuracy or approve manufacture. I see its potential in making regressions explainable; independent engineering use is still needed to assess its value.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Compare reviewer behavior on controlled CAD and drawing packages, with evidence for each changed finding. Part of Walter Teitelbaum's two-day AI engineering experiment.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/rfq-plate.png" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/rfq-plate.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">FixtureForge: Checking Tool Access in CAD</title><link href="https://walter.teitelbaum.us/2026/10/04/fixtureforge/" rel="alternate" type="text/html" title="FixtureForge: Checking Tool Access in CAD" /><published>2026-10-04T00:00:00-07:00</published><updated>2026-10-04T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/04/fixtureforge</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/04/fixtureforge/"><![CDATA[<p>A part can fit inside a fixture while leaving no route for a screwdriver or connector to reach it. <a href="https://github.com/jewbee2000/fixtureforge">FixtureForge</a> checks that narrower assembly question: can a simplified tool follow a specified straight path without intersecting the parts around it?</p>
+<p>Physical validation remains <strong>NOT_STARTED</strong>. The lumped thermal model omits fluid travel-time delays, local gradients, phase change, and pump dissipation. The next experiment is an indicator-only Pico capture of acquisition, arming, latching, reconnects, and timing, followed by measured water-loop experiments with separate holdout runs.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Inside Virtual Thermal Fluid Lab: deterministic simulation, portable embedded control, fault scenarios, verified results, and an inspectable replay.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/projects/virtual-thermal-fluid-lab/nominal.png" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/projects/virtual-thermal-fluid-lab/nominal.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">FixtureForge: Checking Tool Access in CAD</title><link href="https://walter.teitelbaum.us/2026/10/04/fixtureforge/" rel="alternate" type="text/html" title="FixtureForge: Checking Tool Access in CAD" /><published>2026-10-04T00:00:00-07:00</published><updated>2026-10-04T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/04/fixtureforge</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/04/fixtureforge/"><![CDATA[<p>A part can fit inside a fixture while leaving no route for a screwdriver or connector to reach it. <a href="https://github.com/jewbee2000/fixtureforge">FixtureForge</a> checks that narrower assembly question: can a simplified tool follow a specified straight path without intersecting the parts around it?</p>
 
 <p>I see this as a small, inspectable integration of existing CAD tools. CadQuery supplies the geometric operations; FixtureForge adds an input contract, repeatable checks, and reports identifying the obstructing part. Its <a href="https://github.com/jewbee2000/fixtureforge/blob/main/docs/BASELINE.md">comparison with CadQuery, build123d, and CADCLAW</a> illustrates why checking only the starting and ending positions can miss an obstacle in between.</p>
 
@@ -200,7 +276,56 @@ Loop pressure drop: (Kpipe + Kvalve/z²) Q², for z &gt; 0</pre>
 
 <p>The publication audit passed <strong>100 tests</strong>. That includes six regressions added during publication review after discovering that report comparison missed changes to completion status and source evidence. Separately, the offline demo passes 39 reference cases and rejects six deliberately introduced defects.</p>
 
-<p>I would treat this as a starting point for driver development. No physical instruments or independent practitioners have validated it. The reference protocols are fictional, Windows/Python 3.12 is the verified environment, and two synthetic fault cases still fail the upstream integration’s stated consumer contract. Those failures remain visible in the <a href="https://github.com/jewbee2000/driverforge/tree/main/evidence/article-audit">audit evidence</a>.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[A small Python tool for replaying protocol faults and inspecting how an instrument driver responds. Part of Walter Teitelbaum's two-day AI engineering experiment.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/driver-signed-failure.png" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/driver-signed-failure.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Printed Bicycle Components</title><link href="https://walter.teitelbaum.us/2025/04/01/3D-Printed-Bicycle-Components/" rel="alternate" type="text/html" title="3D Printed Bicycle Components" /><published>2025-04-01T00:00:00-07:00</published><updated>2025-04-01T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2025/04/01/3D%20Printed%20Bicycle%20Components</id><content type="html" xml:base="https://walter.teitelbaum.us/2025/04/01/3D-Printed-Bicycle-Components/"><![CDATA[<p>My buddy <a href="https://www.youtube.com/@archmdz">Ari Klau</a> is a badass professional triathlete. However, he has not seen much financial success in the sport yet and does not have a bicycle brand as a sponsor. The sport of triathlon is extremely dependent on marginal gains in aerodynamics for competitive success. The fastest athletes in the world spend countless hours in the wind tunnel, testing various components and positions on the bicycle to become as slippery as possible.</p>
+<p>I would treat this as a starting point for driver development. No physical instruments or independent practitioners have validated it. The reference protocols are fictional, Windows/Python 3.12 is the verified environment, and two synthetic fault cases still fail the upstream integration’s stated consumer contract. Those failures remain visible in the <a href="https://github.com/jewbee2000/driverforge/tree/main/evidence/article-audit">audit evidence</a>.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[A small Python tool for replaying protocol faults and inspecting how an instrument driver responds. Part of Walter Teitelbaum's two-day AI engineering experiment.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/driver-signed-failure.png" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/driver-signed-failure.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">RFQFuzz: Regression Tests for Drawing Reviewers</title><link href="https://walter.teitelbaum.us/2026/10/04/rfqfuzz/" rel="alternate" type="text/html" title="RFQFuzz: Regression Tests for Drawing Reviewers" /><published>2026-10-04T00:00:00-07:00</published><updated>2026-10-04T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/04/rfqfuzz</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/04/rfqfuzz/"><![CDATA[<p><a href="https://github.com/jewbee2000/rfq-fuzz">RFQFuzz</a> is a local regression toolkit for engineers developing or adopting reviewers of CNC request-for-quotation packages. It checks whether a change to a review prompt, rule engine, or capability profile changes the findings on controlled STEP models and drawings.</p>
+
+<p>I initially considered a drawing-review tool. The <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/docs/RESEARCH_AND_GO_NO_GO.md">research into existing products</a> led to a narrower question: how can someone test the reviewer itself? RFQFuzz supplies known defects, corrected counterparts, and valid alternatives so that flagging every difference is not a successful strategy.</p>
+
+<h2 id="how-it-is-used">How it is used</h2>
+
+<p>The workflow is to validate a challenge package, pass its public files to a reviewer, import the observations, and compare the results across versions. Reports connect changed findings to the relevant drawing and geometry. Package consistency and conditional CNC advisories are scored separately.</p>
+
+<p>The <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/docs/DEMO.md">installation and demo guide</a> provides a 15-case offline replay. After setup, run this from the checkout with the environment active:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python -m rfqfuzz.v1 demo examples/v1-demo work/my-demo
+</code></pre></div></div>
+
+<p>Open <code class="language-plaintext highlighter-rouge">work/my-demo/report/index.html</code>. The demo compares retained responses with two deliberately injected changes; it requires no live model or API key.</p>
+
+<h2 id="a-small-example">A small example</h2>
+
+<p>One challenge pairs a STEP model containing 6.00 mm bores with a drawing specifying 6.80 ±0.05 mm at the same manufacturing stage. A corrected drawing resolves the contradiction. Another package legitimately differs because it describes a later reaming operation. That context matters as much as the numbers.</p>
+
+<figure class="experiment-figure">
+  <a href="/assets/files/agentic-engineering/rfq-plate.png"><img src="/assets/files/agentic-engineering/rfq-plate.png" alt="RFQFuzz plate drawing specifying four 6.80 plus or minus 0.05 millimetre bores, deliberately contradicting its same-stage STEP model." loading="lazy" width="2339" height="1654" /></a>
+  <figcaption>A deliberately inconsistent challenge drawing, not a production part.</figcaption>
+</figure>
+
+<h2 id="validation-and-limits">Validation and limits</h2>
+
+<p>The publication audit passed <strong>278 tests</strong>, up from 270 after repairs to local-unit interpretation and process output limits. The <a href="https://github.com/jewbee2000/rfq-fuzz/tree/main/evidence/publication-code-audit">audit records</a> preserve that distinction.</p>
+
+<p>Its 145 validated core packets are development cases, with no holdout. The tool supports three finite geometry families, and its geometry checks share the OCCT kernel. It does not establish general drawing-review accuracy or approve manufacture. I see its potential in making regressions explainable; independent engineering use is still needed to assess its value.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Compare reviewer behavior on controlled CAD and drawing packages, with evidence for each changed finding. Part of Walter Teitelbaum's two-day AI engineering experiment.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/rfq-plate.png" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/rfq-plate.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">AbyssBench: Checking Controller Timing</title><link href="https://walter.teitelbaum.us/2026/10/04/abyssbench/" rel="alternate" type="text/html" title="AbyssBench: Checking Controller Timing" /><published>2026-10-04T00:00:00-07:00</published><updated>2026-10-04T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/04/abyssbench</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/04/abyssbench/"><![CDATA[<p>A controller can issue the right command while the machine continues doing the wrong thing. <a href="https://github.com/jewbee2000/abyssbench">AbyssBench</a> explores that distinction: when a sensor reading becomes stale or an actuator stops responding, did the controller issue the required response before its deadline—and does the recorded evidence actually establish that?</p>
+
+<p>I see it as a small tool for engineers developing control logic or reviewing test logs. It combines pytest with <a href="https://github.com/nickovic/rtamt">RTAMT</a>, an existing temporal monitoring library. Its contribution is the surrounding workflow: explicit timing rules, repeatable traces, and evidence that keeps commands separate from measured behavior.</p>
+
+<h2 id="how-it-is-used">How it is used</h2>
+
+<p>I would start with the <a href="https://github.com/jewbee2000/abyssbench#try-it-locally-powershell-python-312">installation and offline demo</a>. The <a href="https://github.com/jewbee2000/abyssbench/blob/main/docs/API.md">public API walkthrough</a> offers two starting points: import a supported JSONL or explicitly mapped CSV trace, or supply a trusted Python controller to the example simulator. Define acceptable ranges, measurement age, response deadlines, and prohibited transitions; run the check; then inspect each rule’s verdict and supporting events. Incomplete observation windows remain inconclusive. A recent packet carrying an old measurement does not become fresh just because it arrived recently.</p>
+
+<h2 id="a-small-example">A small example</h2>
+
+<p>The pump-and-valve example makes the distinction visible. The simulated valve sticks closed at 500 milliseconds. At 1,010 milliseconds, the controller detects the persistent mismatch and issues pump-off and valve-open commands. The valve remains closed. The response check can pass because the required commands were issued; that says nothing about mechanical recovery.</p>
+
+<figure class="experiment-figure">
+  <a href="/assets/files/agentic-engineering/abyss-timing.png"><img src="/assets/files/agentic-engineering/abyss-timing.png" alt="Simulation timeline: a valve sticks at 500 milliseconds and the controller issues safe commands at 1,010 milliseconds while the valve remains closed." loading="lazy" width="1920" height="1120" /></a>
+  <figcaption>Recorded simulation events: commanded and actual valve positions remain separate.</figcaption>
+</figure>
+
+<h2 id="validation-and-limits">Validation and limits</h2>
+
+<p>The original release passed 116 tests. The publication review nevertheless found two edge cases: a single observation could crash the monitor, and a command preceding a fault at the same timestamp could incorrectly satisfy its response rule. Both were repaired; the publication audit passed <strong>124 tests</strong>. The <a href="https://github.com/jewbee2000/abyssbench/blob/main/evidence/publication-audit/README.md">audit preserves the failing cases</a>.</p>
+
+<p>The tool supports one clock and trusted controller callbacks; its fluid model is uncalibrated, with no hardware validation. A real trace and an independent engineer’s trial are the next useful tests.</p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Replay controller events and check whether the recorded response satisfies an explicit timing contract. Part of Walter Teitelbaum's two-day AI engineering experiment.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/abyss-timing.png" /><media:content medium="image" url="https://walter.teitelbaum.us/assets/files/agentic-engineering/abyss-timing.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3D Printed Bicycle Components</title><link href="https://walter.teitelbaum.us/2025/04/01/3D-Printed-Bicycle-Components/" rel="alternate" type="text/html" title="3D Printed Bicycle Components" /><published>2025-04-01T00:00:00-07:00</published><updated>2025-04-01T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2025/04/01/3D%20Printed%20Bicycle%20Components</id><content type="html" xml:base="https://walter.teitelbaum.us/2025/04/01/3D-Printed-Bicycle-Components/"><![CDATA[<p>My buddy <a href="https://www.youtube.com/@archmdz">Ari Klau</a> is a badass professional triathlete. However, he has not seen much financial success in the sport yet and does not have a bicycle brand as a sponsor. The sport of triathlon is extremely dependent on marginal gains in aerodynamics for competitive success. The fastest athletes in the world spend countless hours in the wind tunnel, testing various components and positions on the bicycle to become as slippery as possible.</p>
 
 <p>Without access to resources like that, I have been using my knowledge of aerodynamics to design and print various components for Ari’s race bike in order to give him an opportunity to compete with the best in the world.</p>
 
@@ -445,17 +570,4 @@ Loop pressure drop: (Kpipe + Kvalve/z²) Q², for z &gt; 0</pre>
 
 <p><a href="https://walter.teitelbaum.us/assets/files/Final Report.pdf">Click Here to download the Final Report</a></p>
 
-<p><a href="https://walter.teitelbaum.us/assets/files/Design Brief v3.pdf">Click Here to download the Design Brief</a></p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Note This project was graciously funded by Dr. Ricardo Sanfelice and the Hybrid Systems Labratory at the University of California: Santa Cruz]]></summary></entry><entry><title type="html">Automated Pruning for Polyculture</title><link href="https://walter.teitelbaum.us/2021/07/25/Automated-Pruning-for-Polyculture/" rel="alternate" type="text/html" title="Automated Pruning for Polyculture" /><published>2021-07-25T00:00:00-07:00</published><updated>2021-07-25T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2021/07/25/Automated%20Pruning%20for%20Polyculture</id><content type="html" xml:base="https://walter.teitelbaum.us/2021/07/25/Automated-Pruning-for-Polyculture/"><![CDATA[<p class="message"><strong>Note</strong> This project was graciously funded by Dr. Ken Goldberg and the UC Berkeley <a href="https://autolab.berkeley.edu/">AUTOLab</a> as part of the <a href="https://github.com/BerkeleyAutomation/AlphaGarden">Alphagarden</a> Project</p>
-
-<p>This summer I did a few weeks of volunteer research at UC Berkeley. I was asked to design a pruning attachment for the <a href="https://farm.bot/?srsltid=AfmBOoqRhzMuiJLiP-o9ItITznpnXR070whCaood9Z0IdypC3U3dJaiO">FarmBot</a> that the AUTOLab had purchased in order to do a real-life demo of their polyculture optimization software.</p>
-
-<p>When I showed up, the FarmBot had already planted a large gardenbox filled with various seeds acording to a deep-learning based maximization algoritm. The garden layout was simulated in a custom OpenAI gym reinforcement learning environment and compared to the physical testbed.</p>
-
-<p>I decided to design a 3-axis servo arm and used a sharp pair of Japanese topiary shears as an end effector. I was able to have the new design working within two weeks! Here is the end result:</p>
-
-<p><img src="https://walter.teitelbaum.us/assets/files/Shears2.png" alt="CAD Model" title="CAD Model" />
-<img src="https://walter.teitelbaum.us/assets/files/Shears1.png" alt="Walt's Pruning Attachment" title="Walt's Pruning Attachment" /></p>
-
-<p>I also contributed several paragraphs to <a href="https://ieeexplore.ieee.org/abstract/document/10506760">“Automated Pruning and Irrigation of Polyculture Plants”</a> which was ultimately published in <a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8856">IEEE Transactions on Automation Science and Engineering</a> ( Volume: 21, <a href="https://ieeexplore.ieee.org/xpl/tocresult.jsp?isnumber=10631719&amp;punumber=8856">Issue: 3</a>, July 2024)</p>
-
-<p><a href="https://cad.onshape.com/documents/19c47b2204936e0e6afb5d5f/w/8c687fab2e1043ea59059492/e/a7e77233d09cace7d0dfaa54">Link to my CAD files</a></p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Note This project was graciously funded by Dr. Ken Goldberg and the UC Berkeley AUTOLab as part of the Alphagarden Project]]></summary></entry></feed>
+<p><a href="https://walter.teitelbaum.us/assets/files/Design Brief v3.pdf">Click Here to download the Design Brief</a></p>]]></content><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><summary type="html"><![CDATA[Note This project was graciously funded by Dr. Ricardo Sanfelice and the Hybrid Systems Labratory at the University of California: Santa Cruz]]></summary></entry></feed>
