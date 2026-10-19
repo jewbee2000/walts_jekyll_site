@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">Balancing is a measured experiment</title>
+  <desc id="desc">Capture amplitude and phase at two sensors. Add an independent known trial mass to each correction plane, restoring baseline between trials. Build a two by two influence matrix, calculate correction masses and angles, then verify with a fresh measurement. Phasor arrows are schematic.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#607781"/></marker>
+    <marker id="teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#087f8c"/></marker>
+    <marker id="amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#ad5b16"/></marker>
+  </defs>
+  <rect width="960" height="600" rx="16" fill="#f5f8f9"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#183541">
+    <text x="32" y="55" font-size="32" font-weight="700">Balancing is a measured experiment</text>
+    <text x="32" y="94" font-size="22" fill="#47616c">Two sensor channels. Two independent trial masses. One fresh check.</text>
+    <g fill="#fff" stroke="#c6d6dc" stroke-width="2">
+      <rect x="24" y="132" width="288" height="408" rx="12"/>
+      <rect x="336" y="132" width="288" height="408" rx="12"/>
+      <rect x="648" y="132" width="288" height="408" rx="12"/>
+    </g>
+    <g font-size="27" font-weight="700">
+      <text x="48" y="182">1. Capture baseline</text>
+      <text x="360" y="182">2. Test each plane</text>
+      <text x="672" y="182">3. Correct + verify</text>
+    </g>
+    <g font-size="20" text-anchor="middle">
+      <text x="102" y="236" fill="#087f8c">Sensor A</text>
+      <text x="234" y="236" fill="#ad5b16">Sensor B</text>
+    </g>
+    <g fill="#f6fafb" stroke="#c6d6dc" stroke-width="1.5">
+      <circle cx="102" cy="300" r="45"/><circle cx="234" cy="300" r="45"/>
+      <path d="M 49 300 H 155 M 102 247 V 353 M 181 300 H 287 M 234 247 V 353" fill="none"/>
+    </g>
+    <path d="M 102 300 L 133 270" stroke="#087f8c" stroke-width="4" marker-end="url(#teal)"/>
+    <path d="M 234 300 L 213 266" stroke="#ad5b16" stroke-width="4" marker-end="url(#amber)"/>
+    <text x="168" y="399" text-anchor="middle" font-size="23" font-weight="700">Amplitude + phase</text>
+    <text x="168" y="433" text-anchor="middle" font-size="20">Both sensors, same RPM.</text>
+    <rect x="48" y="472" width="240" height="39" rx="7" fill="#e9f2f5"/>
+    <text x="168" y="498" text-anchor="middle" font-size="19">Keep this reference capture</text>
+    <g font-size="20" text-anchor="middle">
+      <text x="414" y="236">Trial A</text><text x="546" y="236">Trial B</text>
+    </g>
+    <g fill="#e9f2f5" stroke="#607781" stroke-width="2.5">
+      <circle cx="414" cy="300" r="44"/><circle cx="546" cy="300" r="44"/>
+      <circle cx="414" cy="300" r="8" fill="#607781"/><circle cx="546" cy="300" r="8" fill="#607781"/>
+    </g>
+    <circle cx="414" cy="261" r="11" fill="#087f8c"/>
+    <circle cx="546" cy="261" r="11" fill="#ad5b16"/>
+    <path d="M 471 300 H 486" fill="none" stroke="#607781" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <g text-anchor="middle" font-size="20">
+      <text x="480" y="399" font-size="23" font-weight="700">One plane at a time</text>
+      <text x="480" y="433">Restore the other plane</text>
+      <text x="480" y="460">to baseline for each trial.</text>
+    </g>
+    <text x="792" y="290" text-anchor="middle" font-family="Georgia, serif" font-size="37">A · C = −V₀</text>
+    <g font-size="20" text-anchor="middle">
+      <text x="792" y="332">A: measured influence</text>
+      <text x="792" y="361">C: correction vectors</text>
+      <text x="792" y="412">Calculate mass + angle.</text>
+      <text x="792" y="442">Apply; measure again.</text>
+    </g>
+    <rect x="672" y="472" width="240" height="39" rx="7" fill="#dcefe8"/>
+    <text x="792" y="498" text-anchor="middle" font-size="19" fill="#245b46">Fresh verification capture</text>
+    <path d="M 315 335 H 331" fill="none" stroke="#607781" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <path d="M 627 335 H 643" fill="none" stroke="#607781" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="32" y="578" font-size="18" fill="#47616c">Workflow schematic · all sensor measurements in SpinLab XR are synthetic</text>
+  </g>
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="940" viewBox="0 0 480 940" role="img" aria-labelledby="title desc">
+  <title id="title">Balancing is a measured experiment</title>
+  <desc id="desc">Capture both sensors at the same speed, test known trial masses in each plane independently, solve for correction mass and angle, and verify with a fresh capture. Phasor arrows are schematic.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#607781"/></marker>
+    <marker id="teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#087f8c"/></marker>
+    <marker id="amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#ad5b16"/></marker>
+  </defs>
+  <rect width="480" height="940" rx="14" fill="#f5f8f9"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#183541">
+    <text x="24" y="43" font-size="29" font-weight="700">A measured balancing</text>
+    <text x="24" y="79" font-size="29" font-weight="700">experiment</text>
+    <g fill="#fff" stroke="#c6d6dc" stroke-width="2">
+      <rect x="24" y="112" width="432" height="232" rx="12"/>
+      <rect x="24" y="372" width="432" height="232" rx="12"/>
+      <rect x="24" y="632" width="432" height="250" rx="12"/>
+    </g>
+    <g font-size="29" font-weight="700">
+      <text x="48" y="153">1. Capture baseline</text>
+      <text x="48" y="413">2. Test each plane</text>
+      <text x="48" y="673">3. Correct + verify</text>
+    </g>
+    <g fill="#f6fafb" stroke="#c6d6dc" stroke-width="1.5">
+      <circle cx="141" cy="224" r="38"/><circle cx="339" cy="224" r="38"/>
+      <path d="M 96 224 H 186 M 141 179 V 269 M 294 224 H 384 M 339 179 V 269" fill="none"/>
+    </g>
+    <path d="M 141 224 L 166 199" stroke="#087f8c" stroke-width="4" marker-end="url(#teal)"/>
+    <path d="M 339 224 L 322 195" stroke="#ad5b16" stroke-width="4" marker-end="url(#amber)"/>
+    <g text-anchor="middle" font-size="24">
+      <text x="141" y="293" fill="#087f8c">Sensor A</text><text x="339" y="293" fill="#ad5b16">Sensor B</text>
+      <text x="240" y="326">Amplitude + phase, same RPM.</text>
+    </g>
+    <g fill="#e9f2f5" stroke="#607781" stroke-width="2.5">
+      <circle cx="141" cy="482" r="35"/><circle cx="339" cy="482" r="35"/>
+      <circle cx="141" cy="482" r="7" fill="#607781"/><circle cx="339" cy="482" r="7" fill="#607781"/>
+    </g>
+    <circle cx="141" cy="450" r="10" fill="#087f8c"/><circle cx="339" cy="450" r="10" fill="#ad5b16"/>
+    <path d="M 211 482 H 266" fill="none" stroke="#607781" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <g text-anchor="middle" font-size="24">
+      <text x="141" y="541">Trial A</text><text x="339" y="541">Trial B</text>
+      <text x="240" y="582">Restore baseline between trials.</text>
+    </g>
+    <text x="240" y="738" text-anchor="middle" font-family="Georgia, serif" font-size="39">A · C = −V₀</text>
+    <g font-size="24" text-anchor="middle">
+      <text x="240" y="783">Solve for mass + angle.</text>
+      <text x="240" y="817">Apply the correction.</text>
+      <text x="240" y="851" fill="#245b46">Take a fresh measurement.</text>
+    </g>
+    <path d="M 240 349 V 365" fill="none" stroke="#607781" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <path d="M 240 609 V 625" fill="none" stroke="#607781" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="240" y="919" text-anchor="middle" font-size="20" fill="#47616c">Schematic · synthetic measurements</text>
+  </g>
+</svg>

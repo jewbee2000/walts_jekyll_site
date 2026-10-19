@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://walter.teitelbaum.us/feed.xml" rel="self" type="application/atom+xml" /><link href="https://walter.teitelbaum.us/" rel="alternate" type="text/html" /><updated>2026-10-18T20:47:50-07:00</updated><id>https://walter.teitelbaum.us/feed.xml</id><title type="html">Walter Teitelbaum</title><subtitle>Walter Teitelbaum is an automation and mechatronics engineer in Seattle. Explore his engineering projects, technical notes, and resume.</subtitle><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><entry><title type="html">SpinLab XR: Rotor Balancing in Virtual Reality</title><link href="https://walter.teitelbaum.us/2026/10/18/spinlab-xr/" rel="alternate" type="text/html" title="SpinLab XR: Rotor Balancing in Virtual Reality" /><published>2026-10-18T00:00:00-07:00</published><updated>2026-10-18T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/18/spinlab-xr</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/18/spinlab-xr/"><![CDATA[<p>An off-center mass can make a spinning assembly shake. Correcting it takes more
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://walter.teitelbaum.us/feed.xml" rel="self" type="application/atom+xml" /><link href="https://walter.teitelbaum.us/" rel="alternate" type="text/html" /><updated>2026-10-18T20:55:17-07:00</updated><id>https://walter.teitelbaum.us/feed.xml</id><title type="html">Walter Teitelbaum</title><subtitle>Walter Teitelbaum is an automation and mechatronics engineer in Seattle. Explore his engineering projects, technical notes, and resume.</subtitle><author><name>Walter Teitelbaum</name><email>walter@teitelbaum.us</email></author><entry><title type="html">SpinLab XR: Rotor Balancing in Virtual Reality</title><link href="https://walter.teitelbaum.us/2026/10/18/spinlab-xr/" rel="alternate" type="text/html" title="SpinLab XR: Rotor Balancing in Virtual Reality" /><published>2026-10-18T00:00:00-07:00</published><updated>2026-10-18T00:00:00-07:00</updated><id>https://walter.teitelbaum.us/2026/10/18/spinlab-xr</id><content type="html" xml:base="https://walter.teitelbaum.us/2026/10/18/spinlab-xr/"><![CDATA[<p>An off-center mass can make a spinning assembly shake. Correcting it takes more
 than adding a weight: you need to measure the vibration, understand its timing,
 and determine where a correction will help. I built <strong>SpinLab XR</strong> to make that
 process something you can explore with your hands.</p>
@@ -27,6 +27,11 @@ Using amplitude and phase, a 2×2 complex influence matrix yields a correction
 mass and angle for each plane. The code rejects weak or nearly singular
 calibration data and requires fresh measurements after speed or probe changes.</p>
 
+<figure class="experiment-figure">
+  <a href="/assets/projects/spinlab-xr/balancing-workflow.svg"><picture><source media="(max-width: 600px)" srcset="/assets/projects/spinlab-xr/balancing-workflow-mobile.svg" width="480" height="940" /><img src="/assets/projects/spinlab-xr/balancing-workflow.svg" alt="Three stages of balancing: capture both sensors, test known trial masses independently in planes A and B, then solve and verify the correction." width="960" height="600" loading="lazy" /></picture></a>
+  <figcaption>Known trial masses reveal how each plane influences both sensors. A is the measured influence matrix, C the correction vectors, and V₀ the baseline vibration. The arrows are schematic.</figcaption>
+</figure>
+
 <p>The <a href="https://github.com/jewbee2000/spinlab-xr-public/blob/v0.8.0/native/scripts/rotor_lab.gd#L539">measurement pipeline</a>
 supplies those records from a reduced physics model. Unbalance forcing grows
 with speed squared; a damped support response adds resonance and phase shifts.
@@ -34,6 +39,11 @@ Simulated captures include sensor offsets, a twice-per-revolution harmonic,
 and noise. A tachometer-referenced least-squares fit estimates the
 once-per-revolution vibration while accounting for the offset and second
 harmonic. Verification then checks the installed correction with a new capture.</p>
+
+<figure class="experiment-figure">
+  <a href="/assets/projects/spinlab-xr/physics-measurement.svg"><img src="/assets/projects/spinlab-xr/physics-measurement.svg" alt="Two plots from SpinLab's synthetic model: the speed response rises around a 22 hertz support mode, and a noisy 600 rpm displacement capture is compared with its fitted once-per-revolution component." width="756" height="1008" loading="lazy" /></a>
+  <figcaption>Native model output: a quasi-steady speed response (top), and a 600 rpm synthetic capture with its offset removed (bottom). The fitted 1× component supplies the balancing measurement. <a href="/assets/projects/spinlab-xr/physics-measurement-data.json">View the plot data.</a></figcaption>
+</figure>
 
 <p>Built with <strong>Godot and OpenXR</strong> and tested on Quest 2, SpinLab XR combines
 mechanical interaction, signal analysis, and guided instruction in one offline
