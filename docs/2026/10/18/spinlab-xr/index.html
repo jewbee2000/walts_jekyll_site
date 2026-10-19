@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    SpinLab XR: Rotor Balancing in Virtual Reality &middot; Walter Teitelbaum
+    
+  </title>
+
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/open-color.min.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/syntax.css">
+  <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/styles.min.css?v=20261006-seo">
+  <link rel="stylesheet" href="/assets/css/experiment.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://walter.teitelbaum.us/assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://walter.teitelbaum.us/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://walter.teitelbaum.us/assets/favicon-16x16.png">
+  <link rel="manifest" href="https://walter.teitelbaum.us/assets/site.webmanifest">
+  <link rel="alternate" type="application/atom+xml" title="Walter Teitelbaum" href="https://walter.teitelbaum.us/feed.xml">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="SpinLab XR: Rotor Balancing in Virtual Reality" />
+<meta name="author" content="Walter Teitelbaum" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="SpinLab XR brings a rotor-balancing station to Meta Quest 2, combining physical interaction, scientific measurement methods, and a narrated learning experience." />
+<meta property="og:description" content="SpinLab XR brings a rotor-balancing station to Meta Quest 2, combining physical interaction, scientific measurement methods, and a narrated learning experience." />
+<link rel="canonical" href="https://walter.teitelbaum.us/2026/10/18/spinlab-xr/" />
+<meta property="og:url" content="https://walter.teitelbaum.us/2026/10/18/spinlab-xr/" />
+<meta property="og:site_name" content="Walter Teitelbaum" />
+<meta property="og:image" content="https://walter.teitelbaum.us/assets/projects/spinlab-xr/station.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-18T00:00:00-07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://walter.teitelbaum.us/assets/projects/spinlab-xr/station.png" />
+<meta property="twitter:title" content="SpinLab XR: Rotor Balancing in Virtual Reality" />
+<meta name="google-site-verification" content="xhx7o_NA2HY_grmXk2vz-l_civ3qMrowYwOVz57qgak" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Walter Teitelbaum","url":"https://walter.teitelbaum.us/"},"dateModified":"2026-10-18T00:00:00-07:00","datePublished":"2026-10-18T00:00:00-07:00","description":"SpinLab XR brings a rotor-balancing station to Meta Quest 2, combining physical interaction, scientific measurement methods, and a narrated learning experience.","headline":"SpinLab XR: Rotor Balancing in Virtual Reality","image":"https://walter.teitelbaum.us/assets/projects/spinlab-xr/station.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://walter.teitelbaum.us/2026/10/18/spinlab-xr/"},"url":"https://walter.teitelbaum.us/2026/10/18/spinlab-xr/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+
+
+<body>
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-11 col-lg-10 experiment-layout">
+        <article>
+  <header>
+  <div>
+    <a class="site-title" href="https://walter.teitelbaum.us">Walter Teitelbaum</a>
+    <small>
+      
+      Engineer
+      
+    </small>
+  </div>
+  <a id="theme-toggle" class="toggle-icon" onclick="modeSwitcher()"></a>
+</header>
+
+  <main>
+    <h1 class="post-title">SpinLab XR: Rotor Balancing in Virtual Reality</h1>
+    <time datetime="2026-10-18T00:00:00-07:00" class="post-date">October 18, 2026</time>
+    <p class="lead">A virtual engineering lab for learning how to measure vibration and balance a spinning rotor.</p>
+    
+    <p>An off-center mass can make a spinning assembly shake. Correcting it takes more
+than adding a weight: you need to measure the vibration, understand its timing,
+and determine where a correction will help. I built <strong>SpinLab XR</strong> to make that
+process something you can explore with your hands.</p>
+
+<p>The app runs directly on Meta Quest 2. Using the Touch controllers, you load a
+rotor, lower the guard, turn a probe micrometer, and adjust correction mass and
+angle. A monitor beside the bench displays captured vibration signals and how
+the response changes with rotational speed.</p>
+
+<figure class="experiment-figure">
+  <img src="/assets/projects/spinlab-xr/station.png" alt="Virtual rotor-balancing bench with a raised guard, rotor cassette, probe micrometer, adjustment knobs, side monitor, and operating console." width="1728" height="1200" loading="lazy" />
+  <figcaption>The virtual station, shown in a desktop view of the Quest app.</figcaption>
+</figure>
+
+<p>A 38-step narrated course starts with the basics and introduces each concept
+when you need it. Small prompts appear beside the next control; completing the
+task advances the lesson immediately. You establish a baseline, measure the
+effect of known trial masses in two correction planes, calculate a correction,
+and take a fresh measurement to check the result. Stopping, fault recovery,
+repeatability, and saving a test report are part of the exercise, too.</p>
+
+<p>Behind the station is a numerical model with tachometer-referenced vibration
+analysis and single- or two-plane influence-coefficient balancing. The
+measurements are synthetic, but the experiment follows a real engineering
+workflow: prepare, measure, identify, correct, and verify.</p>
+
+<p>Built with <strong>Godot and OpenXR</strong> and tested on Quest 2, SpinLab XR combines
+mechanical interaction, signal analysis, and guided instruction in one offline
+lab. It offers a way to rehearse a complex procedure before using physical
+equipment.</p>
+
+<p><a href="https://github.com/jewbee2000/spinlab-xr-public">Explore the project on GitHub</a>
+or <a href="https://github.com/jewbee2000/spinlab-xr-public/releases/tag/v0.8.0">download the Quest APK and installation guide</a>.</p>
+
+    
+  </main>
+  <footer>
+  <small>&copy; <time datetime="2026-10-18T20:40:35-07:00">2026</time>
+    Walter Teitelbaum. All rights reserved.</small>
+</footer>
+
+</article>
+
+      </div>
+    </div>
+  </div>
+  <script src="https://walter.teitelbaum.us/assets/js/bootstrap.min.js"></script>
+  
+  <script src="https://walter.teitelbaum.us/assets/js/darkmode.js"></script>
+  
+  
+</body>
+
+</html>
