@@ -13,4 +13,4 @@ I enjoy building useful things, learning from the people around me, and helping 
 
 This site is a small home for projects, notes, and the occasional write-up. You can [read my resume](cv), [download a print version](assets/files/Resume - Walter Teitelbaum.pdf), or [browse my posts](posts) if you'd like to see what I've been working on.
 
-{% include archive.html %}
+{% include project-cards.html %}

@@ -1,5 +1,7 @@
 ---
 layout: post
+thumbnail: /assets/images/project-cards/word-chain.webp
+thumbnail_alt: Word Chain game showing a chain of compound nouns
 title: Word Chain
 date: 2024-04-02
 lead: A web-based word game

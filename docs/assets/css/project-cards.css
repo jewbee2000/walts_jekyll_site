@@ -1,0 +1,109 @@
+/* Homepage project cards. Keep the theme's hero and article styles untouched. */
+#home .project-cards {
+  margin-top: 2rem;
+}
+
+#home .project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.125rem;
+  padding: 0;
+  margin: 1rem 0 0;
+  list-style: none;
+}
+
+#home .project-grid > li {
+  min-width: 0;
+}
+
+#home a.project-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 0.625rem;
+  background: var(--color-background);
+  background: color-mix(in srgb, var(--color-background) 97%, var(--color-text));
+  color: var(--color-text);
+  text-decoration: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+#home a.project-card:hover,
+#home a.project-card:focus {
+  border: 1px solid var(--color-link);
+  color: var(--color-text);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+#home a.project-card:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 3px;
+}
+
+#home .project-card-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+#home .project-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.625rem;
+  min-width: 0;
+  padding: 1rem;
+}
+
+#home .project-card-date {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+#home .project-card-title {
+  margin: 0;
+  font-family: var(--type-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+
+#home .project-card-description {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+#home .project-card-action {
+  margin-top: auto;
+  padding-top: 0.375rem;
+  color: var(--color-link);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+#home a.project-card:hover .project-card-action,
+#home a.project-card:focus .project-card-action {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+@media (max-width: 575.98px) {
+  #home .project-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #home a.project-card {
+    transition: none;
+  }
+}

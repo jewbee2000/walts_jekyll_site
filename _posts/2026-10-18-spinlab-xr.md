@@ -1,5 +1,8 @@
 ---
 layout: post
+card_title: SpinLab XR
+thumbnail: /assets/images/project-cards/spinlab-xr.webp
+thumbnail_alt: Virtual rotor-balancing bench in SpinLab XR
 title: "SpinLab XR: Rotor Balancing in Virtual Reality"
 date: 2026-10-18 00:00:00 -0700
 permalink: /2026/10/18/spinlab-xr/

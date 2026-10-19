@@ -1,5 +1,8 @@
 ---
 layout: post
+card_title: FixtureForge
+thumbnail: /assets/images/project-cards/fixtureforge.webp
+thumbnail_alt: Sensor-clamp CAD model from a tool-access inspection
 title: "FixtureForge: Checking Tool Access in CAD"
 date: 2026-10-04 00:00:00 -0700
 permalink: /2026/10/04/fixtureforge/

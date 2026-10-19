@@ -1,5 +1,7 @@
 ---
 layout: post
+thumbnail: /assets/images/project-cards/3d-printed-bicycle-components.webp
+thumbnail_alt: Printed bottle riser installed on a triathlon bicycle
 title: 3D Printed Bicycle Components
 date: 2025-04-1
 lead: For aerodynamic superiority.

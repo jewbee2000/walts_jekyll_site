@@ -1,5 +1,8 @@
 ---
 layout: post
+card_title: Automated Pruning
+thumbnail: /assets/images/project-cards/automated-pruning-for-polyculture.webp
+thumbnail_alt: Servo-operated pruning shears mounted on the FarmBot
 title: Automated Pruning for Polyculture
 date: 2021-07-25
 lead: A collaboration with UC Berkeley AUTOLab

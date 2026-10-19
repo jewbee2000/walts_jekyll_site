@@ -1,5 +1,8 @@
 ---
 layout: post
+card_title: DriverForge
+thumbnail: /assets/images/project-cards/driverforge.webp
+thumbnail_alt: Synthetic driver report comparing expected and decoded temperatures
 title: "DriverForge: Testing Instrument Drivers Without Hardware"
 date: 2026-10-04 00:00:00 -0700
 permalink: /2026/10/04/driverforge/

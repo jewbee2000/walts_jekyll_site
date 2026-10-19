@@ -1,5 +1,8 @@
 ---
 layout: post
+card_title: Modular Drive-by-Wire
+thumbnail: /assets/images/project-cards/senior-design-project.webp
+thumbnail_alt: Schematic of the modular vehicle control system
 title: Modular Drive-by-Wire System
 date: 2022-05-23
 lead: Walt's Senior Capstone Project

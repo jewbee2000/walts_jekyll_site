@@ -1,0 +1,23 @@
+<section class="project-cards" aria-labelledby="projects-heading">
+  <h2 id="projects-heading">Projects</h2>
+  <ul class="project-grid">
+{% for post in site.posts %}
+    <li>
+      <a class="project-card" href="{{ post.url | relative_url }}" aria-labelledby="project-title-{{ forloop.index }}">
+{% if post.thumbnail %}
+        <img class="project-card-image" src="{{ post.thumbnail | relative_url }}" alt="{{ post.thumbnail_alt | default: post.title | escape }}" width="640" height="400" loading="lazy" decoding="async">
+{% endif %}
+        <div class="project-card-body">
+          <time class="project-card-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %e, %Y" }}</time>
+          <h3 class="project-card-title" id="project-title-{{ forloop.index }}">{{ post.card_title | default: post.title | escape }}</h3>
+{% assign summary = post.lead | default: post.description %}
+{% if summary %}
+          <p class="project-card-description">{{ summary | escape }}</p>
+{% endif %}
+          <span class="project-card-action" aria-hidden="true">Read project <span>→</span></span>
+        </div>
+      </a>
+    </li>
+{% endfor %}
+  </ul>
+</section>

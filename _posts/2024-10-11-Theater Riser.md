@@ -1,5 +1,7 @@
 ---
 layout: post
+thumbnail: /assets/images/project-cards/theater-riser.webp
+thumbnail_alt: Building the timber frame for the couch platform
 title: Wooden Couch Riser
 date: 2024-10-11
 lead: A silly carpentry project.

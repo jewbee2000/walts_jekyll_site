@@ -1,5 +1,8 @@
 ---
 layout: post
+card_title: AbyssBench
+thumbnail: /assets/images/project-cards/abyssbench.webp
+thumbnail_alt: Simulated valve commands compared with a stuck valve
 title: "AbyssBench: Checking Controller Timing"
 date: 2026-10-04 00:00:00 -0700
 permalink: /2026/10/04/abyssbench/

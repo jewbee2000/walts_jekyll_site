@@ -1,5 +1,8 @@
 ---
 layout: post
+card_title: Vocal Arranger
+thumbnail: /assets/images/project-cards/vocal-arranger.webp
+thumbnail_alt: Five-part score for the Velvet Conversation arrangement
 title: "Building a vocal arranger with AI"
 date: 2026-10-11 00:00:00 -0700
 permalink: /2026/10/11/vocal-arranger/

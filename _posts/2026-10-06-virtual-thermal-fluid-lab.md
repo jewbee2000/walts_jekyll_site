@@ -1,5 +1,8 @@
 ---
 layout: post
+card_title: Thermal Fluid Lab
+thumbnail: /assets/images/project-cards/virtual-thermal-fluid-lab.webp
+thumbnail_alt: Diagram of the simulated thermal circulation loop
 title: "Testing a Thermal Fluid Loop with Simulation and Embedded Control"
 date: 2026-10-06 00:00:00 -0700
 permalink: /2026/10/06/virtual-thermal-fluid-lab/
