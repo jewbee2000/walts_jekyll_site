@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Posts
+article_wide: true
 pagination:
   enabled: true
 ---

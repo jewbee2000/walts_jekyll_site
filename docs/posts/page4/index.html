@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/open-color.min.css">
   <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/syntax.css">
   <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/styles.min.css?v=20261006-seo">
-  
+  <link rel="stylesheet" href="/assets/css/experiment.css">
   <link rel="apple-touch-icon" sizes="180x180" href="https://walter.teitelbaum.us/assets/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://walter.teitelbaum.us/assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="https://walter.teitelbaum.us/assets/favicon-16x16.png">
@@ -53,7 +53,7 @@
 
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col col-sm-10 col-md-8 col-lg-6">
+      <div class="col-12 col-md-11 col-lg-10 experiment-layout">
         <article>
   <header>
   <div>
@@ -87,16 +87,43 @@
   <h1><a href="https://walter.teitelbaum.us/2026/10/04/rfqfuzz/">RFQFuzz: Regression Tests for Drawing Reviewers</a></h1>
   <time datetime="2026-10-04T00:00:00-07:00" class="post-date">October  4, 2026</time>
   <p class="lead">Compare reviewer behavior on controlled CAD and drawing packages, with evidence for each changed finding.</p>
-  
-  <p><a href="/2026/10/04/rfqfuzz/">Read the project note.</a></p>
-  
+  <p><a href="https://github.com/jewbee2000/rfq-fuzz">RFQFuzz</a> is a local regression toolkit for engineers developing or adopting reviewers of CNC request-for-quotation packages. It checks whether a change to a review prompt, rule engine, or capability profile changes the findings on controlled STEP models and drawings.</p>
+
+<p>I initially considered a drawing-review tool. The <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/docs/RESEARCH_AND_GO_NO_GO.md">research into existing products</a> led to a narrower question: how can someone test the reviewer itself? RFQFuzz supplies known defects, corrected counterparts, and valid alternatives so that flagging every difference is not a successful strategy.</p>
+
+<h2 id="how-it-is-used">How it is used</h2>
+
+<p>The workflow is to validate a challenge package, pass its public files to a reviewer, import the observations, and compare the results across versions. Reports connect changed findings to the relevant drawing and geometry. Package consistency and conditional CNC advisories are scored separately.</p>
+
+<p>The <a href="https://github.com/jewbee2000/rfq-fuzz/blob/main/docs/DEMO.md">installation and demo guide</a> provides a 15-case offline replay. After setup, run this from the checkout with the environment active:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python -m rfqfuzz.v1 demo examples/v1-demo work/my-demo
+</code></pre></div></div>
+
+<p>Open <code class="language-plaintext highlighter-rouge">work/my-demo/report/index.html</code>. The demo compares retained responses with two deliberately injected changes; it requires no live model or API key.</p>
+
+<h2 id="a-small-example">A small example</h2>
+
+<p>One challenge pairs a STEP model containing 6.00 mm bores with a drawing specifying 6.80 ±0.05 mm at the same manufacturing stage. A corrected drawing resolves the contradiction. Another package legitimately differs because it describes a later reaming operation. That context matters as much as the numbers.</p>
+
+<figure class="experiment-figure">
+  <a href="/assets/files/agentic-engineering/rfq-plate.png"><img src="/assets/files/agentic-engineering/rfq-plate.png" alt="RFQFuzz plate drawing specifying four 6.80 plus or minus 0.05 millimetre bores, deliberately contradicting its same-stage STEP model." loading="lazy" width="2339" height="1654" /></a>
+  <figcaption>A deliberately inconsistent challenge drawing, not a production part.</figcaption>
+</figure>
+
+<h2 id="validation-and-limits">Validation and limits</h2>
+
+<p>The publication audit passed <strong>278 tests</strong>, up from 270 after repairs to local-unit interpretation and process output limits. The <a href="https://github.com/jewbee2000/rfq-fuzz/tree/main/evidence/publication-code-audit">audit records</a> preserve that distinction.</p>
+
+<p>Its 145 validated core packets are development cases, with no holdout. The tool supports three finite geometry families, and its geometry checks share the OCCT kernel. It does not establish general drawing-review accuracy or approve manufacture. I see its potential in making regressions explainable; independent engineering use is still needed to assess its value.</p>
+
   
 </div>
 
 
   </main>
   <footer>
-  <small>&copy; <time datetime="2026-10-18T20:40:35-07:00">2026</time>
+  <small>&copy; <time datetime="2026-10-18T21:08:52-07:00">2026</time>
     Walter Teitelbaum. All rights reserved.</small>
 </footer>
 

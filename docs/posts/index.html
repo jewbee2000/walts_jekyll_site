@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/open-color.min.css">
   <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/syntax.css">
   <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/styles.min.css?v=20261006-seo">
-  
+  <link rel="stylesheet" href="/assets/css/experiment.css">
   <link rel="apple-touch-icon" sizes="180x180" href="https://walter.teitelbaum.us/assets/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://walter.teitelbaum.us/assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="https://walter.teitelbaum.us/assets/favicon-16x16.png">
@@ -52,7 +52,7 @@
 
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col col-sm-10 col-md-8 col-lg-6">
+      <div class="col-12 col-md-11 col-lg-10 experiment-layout">
         <article>
   <header>
   <div>
@@ -86,16 +86,68 @@
   <h1><a href="https://walter.teitelbaum.us/2026/10/18/spinlab-xr/">SpinLab XR: Rotor Balancing in Virtual Reality</a></h1>
   <time datetime="2026-10-18T00:00:00-07:00" class="post-date">October 18, 2026</time>
   <p class="lead">A virtual engineering lab for learning how to measure vibration and balance a spinning rotor.</p>
-  
-  <p><a href="/2026/10/18/spinlab-xr/">Read the project note.</a></p>
-  
+  <p>An off-center mass can make a spinning assembly shake. Correcting it takes more
+than adding a weight: you need to measure the vibration, understand its timing,
+and determine where a correction will help. I built <strong>SpinLab XR</strong> to make that
+process something you can explore with your hands.</p>
+
+<p>The app runs directly on Meta Quest 2. Using the Touch controllers, you load a
+rotor, lower the guard, turn a probe micrometer, and adjust correction mass and
+angle. A monitor beside the bench displays captured vibration signals and how
+the response changes with rotational speed.</p>
+
+<figure class="experiment-figure">
+  <img src="/assets/projects/spinlab-xr/station.png" alt="Virtual rotor-balancing bench with a raised guard, rotor cassette, probe micrometer, adjustment knobs, side monitor, and operating console." width="1728" height="1200" loading="lazy" />
+  <figcaption>The virtual station, shown in a desktop view of the Quest app.</figcaption>
+</figure>
+
+<p>A 38-step narrated course starts with the basics and introduces each concept
+when you need it. Small prompts appear beside the next control; completing the
+task advances the lesson immediately. You establish a baseline, measure the
+effect of known trial masses in two correction planes, calculate a correction,
+and take a fresh measurement to check the result. Stopping, fault recovery,
+repeatability, and saving a test report are part of the exercise, too.</p>
+
+<p>The <a href="https://github.com/jewbee2000/spinlab-xr-public/blob/v0.8.0/native/scripts/rotor_lab.gd#L221">balancing solver</a>
+treats calibration as an experiment. A baseline and independent known trial
+masses establish how each correction plane changes vibration at both sensors.
+Using amplitude and phase, a 2×2 complex influence matrix yields a correction
+mass and angle for each plane. The code rejects weak or nearly singular
+calibration data and requires fresh measurements after speed or probe changes.</p>
+
+<figure class="experiment-figure">
+  <a href="/assets/projects/spinlab-xr/balancing-workflow.svg"><picture><source media="(max-width: 600px)" srcset="/assets/projects/spinlab-xr/balancing-workflow-mobile.svg" width="480" height="940" /><img src="/assets/projects/spinlab-xr/balancing-workflow.svg" alt="Three stages of balancing: capture both sensors, test known trial masses independently in planes A and B, then solve and verify the correction." width="960" height="600" loading="lazy" /></picture></a>
+  <figcaption>Known trial masses reveal how each plane influences both sensors. A is the measured influence matrix, C the correction vectors, and V₀ the baseline vibration. The arrows are schematic.</figcaption>
+</figure>
+
+<p>The <a href="https://github.com/jewbee2000/spinlab-xr-public/blob/v0.8.0/native/scripts/rotor_lab.gd#L539">measurement pipeline</a>
+supplies those records from a reduced physics model. Unbalance forcing grows
+with speed squared; a damped support response adds resonance and phase shifts.
+Simulated captures include sensor offsets, a twice-per-revolution harmonic,
+and noise. A tachometer-referenced least-squares fit estimates the
+once-per-revolution vibration while accounting for the offset and second
+harmonic. Verification then checks the installed correction with a new capture.</p>
+
+<figure class="experiment-figure">
+  <a href="/assets/projects/spinlab-xr/physics-measurement.svg"><img src="/assets/projects/spinlab-xr/physics-measurement.svg" alt="Two plots from SpinLab's synthetic model: the speed response rises around a 22 hertz support mode, and a noisy 600 rpm displacement capture is compared with its fitted once-per-revolution component." width="756" height="1008" loading="lazy" /></a>
+  <figcaption>Native model output: a quasi-steady speed response (top), and a 600 rpm synthetic capture with its offset removed (bottom). The fitted 1× component supplies the balancing measurement. <a href="/assets/projects/spinlab-xr/physics-measurement-data.json">View the plot data.</a></figcaption>
+</figure>
+
+<p>Built with <strong>Godot and OpenXR</strong> and tested on Quest 2, SpinLab XR combines
+mechanical interaction, signal analysis, and guided instruction in one offline
+lab. It offers a way to rehearse a complex procedure before using physical
+equipment.</p>
+
+<p><a href="https://github.com/jewbee2000/spinlab-xr-public">Explore the project on GitHub</a>
+or <a href="https://github.com/jewbee2000/spinlab-xr-public/releases/tag/v0.8.0">download the Quest APK and installation guide</a>.</p>
+
   
 </div>
 
 
   </main>
   <footer>
-  <small>&copy; <time datetime="2026-10-18T20:40:35-07:00">2026</time>
+  <small>&copy; <time datetime="2026-10-18T21:08:52-07:00">2026</time>
     Walter Teitelbaum. All rights reserved.</small>
 </footer>
 

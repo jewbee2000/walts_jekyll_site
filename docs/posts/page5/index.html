@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/open-color.min.css">
   <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/syntax.css">
   <link rel="stylesheet" href="https://walter.teitelbaum.us/assets/css/styles.min.css?v=20261006-seo">
-  
+  <link rel="stylesheet" href="/assets/css/experiment.css">
   <link rel="apple-touch-icon" sizes="180x180" href="https://walter.teitelbaum.us/assets/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://walter.teitelbaum.us/assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="https://walter.teitelbaum.us/assets/favicon-16x16.png">
@@ -53,7 +53,7 @@
 
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col col-sm-10 col-md-8 col-lg-6">
+      <div class="col-12 col-md-11 col-lg-10 experiment-layout">
         <article>
   <header>
   <div>
@@ -87,16 +87,40 @@
   <h1><a href="https://walter.teitelbaum.us/2026/10/04/fixtureforge/">FixtureForge: Checking Tool Access in CAD</a></h1>
   <time datetime="2026-10-04T00:00:00-07:00" class="post-date">October  4, 2026</time>
   <p class="lead">Inspect whether a simplified tool can follow a declared path through a fixture or small assembly.</p>
-  
-  <p><a href="/2026/10/04/fixtureforge/">Read the project note.</a></p>
-  
+  <p>A part can fit inside a fixture while leaving no route for a screwdriver or connector to reach it. <a href="https://github.com/jewbee2000/fixtureforge">FixtureForge</a> checks that narrower assembly question: can a simplified tool follow a specified straight path without intersecting the parts around it?</p>
+
+<p>I see this as a small, inspectable integration of existing CAD tools. CadQuery supplies the geometric operations; FixtureForge adds an input contract, repeatable checks, and reports identifying the obstructing part. Its <a href="https://github.com/jewbee2000/fixtureforge/blob/main/docs/BASELINE.md">comparison with CadQuery, build123d, and CADCLAW</a> illustrates why checking only the starting and ending positions can miss an obstacle in between.</p>
+
+<h2 id="how-it-is-used">How it is used</h2>
+
+<p>The intended user is an engineer checking access in a fixture or small assembly. After following the <a href="https://github.com/jewbee2000/fixtureforge#reproduce-locally">installation and demo instructions</a>, the workflow is:</p>
+
+<ol>
+  <li>Supply each part as a single-solid STEP file in millimetres.</li>
+  <li>Define a box or cylinder representing the tool, its starting and ending positions, and the parts present at that assembly stage in the <a href="https://github.com/jewbee2000/fixtureforge/blob/main/docs/PUBLIC_API.md">JSON access contract</a>.</li>
+  <li>Run the inspection and open the local HTML report. The check considers the volume occupied along the whole path.</li>
+</ol>
+
+<p>The supplied sensor-clamp demonstration deliberately routes a tool through the upper clamp. Its report shows approximately <strong>382.377 mm³</strong> of overlap. The demo also includes a corrected path, making it possible to inspect both outcomes.</p>
+
+<figure class="experiment-figure">
+  <a href="/assets/files/agentic-engineering/fixture-access.jpg"><img src="/assets/files/agentic-engineering/fixture-access.jpg" alt="FixtureForge report showing a deliberately obstructed tool path through a sensor clamp, with 382.377 cubic millimetres of overlap." loading="lazy" /></a>
+  <figcaption>A deliberately seeded obstruction. Purple shows the swept envelope; this is a geometry replay, not a physical measurement.</figcaption>
+</figure>
+
+<h2 id="validation-and-limits">Validation and limits</h2>
+
+<p>The publication audit passed <strong>61 tests</strong>; four inspect retained campaign evidence rather than rerunning those campaigns. The <a href="https://github.com/jewbee2000/fixtureforge/tree/main/evidence/publication-audit">audit evidence</a> records the checks. The software is runnable, with setup verified on Windows and Python 3.12.</p>
+
+<p>I would use it to investigate a declared access path, not approve an assembly. It supports straight translations and conservative envelopes, which can over-report collisions. It does not plan rotating motions or establish clamping force or material strength. The clamp has not been physically validated, and usefulness to an independent practitioner remains untested.</p>
+
   
 </div>
 
 
   </main>
   <footer>
-  <small>&copy; <time datetime="2026-10-18T20:40:35-07:00">2026</time>
+  <small>&copy; <time datetime="2026-10-18T21:08:52-07:00">2026</time>
     Walter Teitelbaum. All rights reserved.</small>
 </footer>
 
