@@ -31,10 +31,20 @@ effect of known trial masses in two correction planes, calculate a correction,
 and take a fresh measurement to check the result. Stopping, fault recovery,
 repeatability, and saving a test report are part of the exercise, too.
 
-Behind the station is a numerical model with tachometer-referenced vibration
-analysis and single- or two-plane influence-coefficient balancing. The
-measurements are synthetic, but the experiment follows a real engineering
-workflow: prepare, measure, identify, correct, and verify.
+The [balancing solver](https://github.com/jewbee2000/spinlab-xr-public/blob/v0.8.0/native/scripts/rotor_lab.gd#L221)
+treats calibration as an experiment. A baseline and independent known trial
+masses establish how each correction plane changes vibration at both sensors.
+Using amplitude and phase, a 2×2 complex influence matrix yields a correction
+mass and angle for each plane. The code rejects weak or nearly singular
+calibration data and requires fresh measurements after speed or probe changes.
+
+The [measurement pipeline](https://github.com/jewbee2000/spinlab-xr-public/blob/v0.8.0/native/scripts/rotor_lab.gd#L539)
+supplies those records from a reduced physics model. Unbalance forcing grows
+with speed squared; a damped support response adds resonance and phase shifts.
+Simulated captures include sensor offsets, a twice-per-revolution harmonic,
+and noise. A tachometer-referenced least-squares fit estimates the
+once-per-revolution vibration while accounting for the offset and second
+harmonic. Verification then checks the installed correction with a new capture.
 
 Built with **Godot and OpenXR** and tested on Quest 2, SpinLab XR combines
 mechanical interaction, signal analysis, and guided instruction in one offline
